@@ -7,7 +7,6 @@ import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
 
-
 dotenv.config()
 
 connectDB()
@@ -20,6 +19,11 @@ app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
 
+//sandbox paypal (fake) when I need the client_id, i call this endpoint
+// i dont want to store the id in front end
+app.get('/api/config/paypal', (req, res) =>
+  res.send(process.env.PAYPAL_CLIENT_ID)
+)
 
 app.use(notFound)
 app.use(errorHandler)

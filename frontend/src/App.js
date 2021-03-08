@@ -9,6 +9,9 @@ import CartView from './views/CartView'
 import LoginView from './views/LoginView'
 import RegisterView from './views/RegisterView'
 import ProfileView from './views/ProfileView'
+import ShippingView from './views/ShippingView'
+import PaymentView from './views/PaymentView'
+import PlaceOrderView from './views/PlaceOrderView'
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
           <Route path='/profile' component={ProfileView} />
           <Route path='/register' component={RegisterView} />
           <Route path='/login' component={LoginView} />
+          <Route path='/shipping' component={ShippingView} />
+          <Route path='/payment' component={PaymentView} />
+          <Route path='/placeorder' component={PlaceOrderView} />
           <Route path='/product/:id' component={ProductView} />
           <Route path='/cart/:id?' component={CartView} />
           <Route path='/' component={HomeView} exact />

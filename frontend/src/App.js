@@ -13,6 +13,8 @@ import ShippingView from './views/ShippingView'
 import PaymentView from './views/PaymentView'
 import PlaceOrderView from './views/PlaceOrderView'
 import OrderView from './views/OrderView'
+import UserListView from './views/UserListView'
+import UserEditView from './views/UserEditView'
 
 function App() {
   return (
@@ -24,12 +26,13 @@ function App() {
           <Route path='/register' component={RegisterView} />
           <Route path='/login' component={LoginView} />
           <Route path='/order/:id' component={OrderView} />
-
           <Route path='/shipping' component={ShippingView} />
           <Route path='/payment' component={PaymentView} />
           <Route path='/placeorder' component={PlaceOrderView} />
           <Route path='/product/:id' component={ProductView} />
           <Route path='/cart/:id?' component={CartView} />
+          <Route path='/admin/userlist' component={UserListView} />
+          <Route path='/admin/user/:id/edit' component={UserEditView} />
           <Route path='/' component={HomeView} exact />
         </Container>
       </main>

@@ -15,6 +15,8 @@ import PlaceOrderView from './views/PlaceOrderView'
 import OrderView from './views/OrderView'
 import UserListView from './views/UserListView'
 import UserEditView from './views/UserEditView'
+import ProductListView from './views/ProductListView'
+import ProductEditView from './views/ProductEditView'
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
           <Route path='/cart/:id?' component={CartView} />
           <Route path='/admin/userlist' component={UserListView} />
           <Route path='/admin/user/:id/edit' component={UserEditView} />
+          <Route path='/admin/productlist' component={ProductListView} />
+          <Route path='/admin/product/:id/edit' component={ProductEditView} />
           <Route path='/' component={HomeView} exact />
         </Container>
       </main>

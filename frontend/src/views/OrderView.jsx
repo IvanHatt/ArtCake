@@ -2,14 +2,21 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { PayPalButton } from 'react-paypal-button-v2'
 import { Link } from 'react-router-dom'
-import { Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
+import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { getOrderDetails, payOrder } from '../actions/orderActions'
-import { ORDER_PAY_RESET } from '../constants/orderConstants'
+import {
+  getOrderDetails,
+  payOrder,
+  deliverOrder,
+} from '../actions/orderActions'
+import {
+  ORDER_PAY_RESET,
+  ORDER_DELIVER_RESET,
+} from '../constants/orderConstants'
 
-const OrderView = ({ match }) => {
+const OrderView = ({ match, history }) => {
   const orderId = match.params.id
 
   const [sdkReady, setSdkReady] = useState(false)
@@ -21,6 +28,12 @@ const OrderView = ({ match }) => {
 
   const orderPay = useSelector((state) => state.orderPay)
   const { loading: loadingPay, success: successPay } = orderPay
+
+  const orderDeliver = useSelector((state) => state.orderDeliver)
+  const { loading: loadingDeliver, success: successDeliver } = orderDeliver
+
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   //// check this !! This was added because itemsPrice was not stored in orderDetails, so check the schema Order, and maybe u can add it there
   if (!loading) {
@@ -36,6 +49,9 @@ const OrderView = ({ match }) => {
   ///////////////////////////////////////////
 
   useEffect(() => {
+    if (!userInfo) {
+      history.push('/login')
+    }
     /// dinamically add paypal api sdk script, using vanilla JS
     const addPayPalScript = async () => {
       // data from axios, rename it to clientId
@@ -50,10 +66,11 @@ const OrderView = ({ match }) => {
       }
       document.body.appendChild(script)
     }
-    //if no order made go on - then when is paid, is gonna enter again (succespay true)
-    if (!order || successPay) {
-      // first reset order, dispatch directly, reset returns empty object see reducer, if not it will loop
+    //if no order made go on - then when is paid, is gonna enter again (succespay true) and when delivered also
+    if (!order || successPay || successDeliver) {
+      // first reset order pay and deliver, dispatch directly, this returns empty object see reducer, if not it will loop
       dispatch({ type: ORDER_PAY_RESET })
+      dispatch({ type: ORDER_DELIVER_RESET })
       dispatch(getOrderDetails(orderId))
     } else if (!order.isPaid) {
       if (!window.paypal) {
@@ -62,12 +79,17 @@ const OrderView = ({ match }) => {
         setSdkReady(true)
       }
     }
-  }, [dispatch, orderId, successPay, order])
+  }, [dispatch, orderId, successPay, order, successDeliver, history, userInfo])
 
   //paymentresult from react-paypal-button
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult)
     dispatch(payOrder(orderId, paymentResult))
+  }
+
+  /// only admin, chage status to delivered
+  const deliverHandler = () => {
+    dispatch(deliverOrder(order))
   }
 
   return loading ? (
@@ -193,6 +215,21 @@ const OrderView = ({ match }) => {
                   )}
                 </ListGroup.Item>
               )}
+              {loadingDeliver && <Loader />}
+              {userInfo &&
+                userInfo.isAdmin &&
+                order.isPaid &&
+                !order.isDelivered && (
+                  <ListGroup.Item>
+                    <Button
+                      type='button'
+                      className='btn btn-block'
+                      onClick={deliverHandler}
+                    >
+                      Mark As Delivered
+                    </Button>
+                  </ListGroup.Item>
+                )}
             </ListGroup>
           </Card>
         </Col>

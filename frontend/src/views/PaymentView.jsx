@@ -9,7 +9,7 @@ const PaymentView = ({ history }) => {
   const cart = useSelector((state) => state.cart)
   const { shippingAddress } = cart
   //if no shipping address, redirect because is needed before payment
-  if (!shippingAddress) {
+  if (!shippingAddress.address) {
     history.push('/shipping')
   }
 

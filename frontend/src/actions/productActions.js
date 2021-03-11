@@ -6,6 +6,9 @@ import {
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
+  PRODUCT_CREATE_REVIEW_REQUEST,
+  PRODUCT_CREATE_REVIEW_SUCCESS,
+  PRODUCT_CREATE_REVIEW_FAIL,
   PRODUCT_DELETE_SUCCESS,
   PRODUCT_DELETE_REQUEST,
   PRODUCT_DELETE_FAIL,
@@ -19,11 +22,15 @@ import {
 
 /// async (dispatch) belongs to thunk
 /// thunk is used to return a function instead of an action obj
-export const listProducts = () => async (dispatch) => {
+export const listProducts = (keyword = '', pageNumber = '') => async (
+  dispatch
+) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST })
 
-    const { data } = await axios.get('/api/products')
+    const { data } = await axios.get(
+      `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
+    )
 
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
@@ -53,6 +60,42 @@ export const listProductDetails = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+export const createProductReview = (productId, review) => async (
+  dispatch,
+  getState
+) => {
+  try {
+    dispatch({
+      type: PRODUCT_CREATE_REVIEW_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    await axios.post(`/api/products/${productId}/reviews`, review, config)
+
+    dispatch({
+      type: PRODUCT_CREATE_REVIEW_SUCCESS,
+    })
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_CREATE_REVIEW_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
@@ -153,6 +196,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
       type: PRODUCT_UPDATE_SUCCESS,
       payload: data,
     })
+    dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data })
   } catch (error) {
     dispatch({
       type: PRODUCT_UPDATE_FAIL,

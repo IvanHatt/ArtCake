@@ -67,7 +67,7 @@ const OrderView = ({ match, history }) => {
       document.body.appendChild(script)
     }
     //if no order made go on - then when is paid, is gonna enter again (succespay true) and when delivered also
-    if (!order || successPay || successDeliver) {
+    if (!order || successPay || successDeliver || order._id !== orderId) {
       // first reset order pay and deliver, dispatch directly, this returns empty object see reducer, if not it will loop
       dispatch({ type: ORDER_PAY_RESET })
       dispatch({ type: ORDER_DELIVER_RESET })

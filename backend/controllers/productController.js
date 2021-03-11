@@ -1,13 +1,39 @@
 import asyncHandler from 'express-async-handler'
 import Product from '../models/productModel.js'
 
-// @desc    Fetch all products
+// @desc    Fetch all products or what was passed as query in the search
 // @route   GET /api/products
 // @access  Public
 const getProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({})
+  /// pagination functionality
+  //items per page
+  const pageSize = 10
+  // page number passed as a query string host/pageNumber=2
+  const page = Number(req.query.pageNumber) || 1
 
-  res.json(products)
+  //search functionality
+  //req.query catches the list?q=keyword part
+  //if a query was passed, coming from search, then use regex (so "iph" will get also "Iphone" and so on)
+  // if not, pass an empty object and get all the items
+  const keyword = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: 'i',
+        },
+      }
+    : {}
+
+  // mongoose counts number of items
+  const count = await Product.countDocuments({ ...keyword })
+
+  //mongoose limit (only displays certain amount of items) and skip (skip amount of items, zB if page 3, then skip 10*2, all the 20 in previous pages)
+  const products = await Product.find({ ...keyword })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1))
+
+  //return the items, page number, and number of total pages (all the items divided by the number shown in each page)
+  res.json({ products, page, pages: Math.ceil(count / pageSize) })
 })
 
 // @desc    Fetch single product

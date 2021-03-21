@@ -16,6 +16,7 @@ const authUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      shippingAddress: user.shippingAddress ? user.shippingAddress : null,
       token: generateToken(user._id),
     })
   } else {
@@ -28,7 +29,7 @@ const authUser = asyncHandler(async (req, res) => {
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body
+  const { name, email, password, shippingAddress } = req.body
 
   const userExists = await User.findOne({ email: email })
 
@@ -41,6 +42,7 @@ const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password,
+    shippingAddress,
   })
 
   if (user) {
@@ -48,6 +50,7 @@ const registerUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      shippingAddress: user.shippingAddress ? user.shippingAddress : null,
       isAdmin: user.isAdmin,
       token: generateToken(user._id),
     })
@@ -68,6 +71,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      shippingAddress: user.shippingAddress ? user.shippingAddress : null,
       isAdmin: user.isAdmin,
     })
   } else {
@@ -84,6 +88,10 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   if (user) {
     user.name = req.body.name || user.name
     user.email = req.body.email || user.email
+    user.shippingAddress =
+      req.body.shippingAddress || user.shippingAddress
+        ? user.shippingAddress
+        : null
     if (req.body.password) {
       user.password = req.body.password
     }
@@ -94,6 +102,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
+      shippingAddress: updatedUser.shippingAddress,
       isAdmin: updatedUser.isAdmin,
       token: generateToken(updatedUser._id),
     })
@@ -151,6 +160,10 @@ const updateUser = asyncHandler(async (req, res) => {
   if (user) {
     user.name = req.body.name || user.name
     user.email = req.body.email || user.email
+    user.shippingAddress =
+      req.body.shippingAddress || user.shippingAddress
+        ? user.shippingAddress
+        : null
     user.isAdmin = req.body.isAdmin || user.isAdmin
 
     const updatedUser = await user.save()
@@ -158,6 +171,7 @@ const updateUser = asyncHandler(async (req, res) => {
     res.json({
       _id: updatedUser._id,
       name: updatedUser.name,
+      shippingAddress: updatedUser.shippingAddress,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
     })

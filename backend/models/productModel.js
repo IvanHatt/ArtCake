@@ -31,10 +31,6 @@ const productSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    brand: {
-      type: String,
-      required: true,
-    },
     category: {
       type: String,
       required: true,
@@ -42,6 +38,20 @@ const productSchema = mongoose.Schema(
     description: {
       type: String,
       required: true,
+    },
+    characteristics: {
+      allergens: { type: String, required: true },
+      dimensions: { type: String, required: true },
+      servings: { type: String, required: true },
+      colors: { type: String },
+      veganOpt: {
+        type: Boolean,
+        required: true,
+      },
+      glutenFreeOpt: {
+        type: Boolean,
+        required: true,
+      },
     },
     reviews: [reviewSchema],
     rating: {

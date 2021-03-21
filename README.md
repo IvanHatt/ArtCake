@@ -1,5 +1,5 @@
 # Ecommerce
 
-MERN Project E-commerce App
+MERN Project ArtCake App
 
 Ivan Hattemer

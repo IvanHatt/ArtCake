@@ -16,7 +16,7 @@ const authUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
-      shippingAddress: user.shippingAddress ? user.shippingAddress : null,
+      shippingAddress: user.shippingAddress || null,
       token: generateToken(user._id),
     })
   } else {
@@ -50,7 +50,7 @@ const registerUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
-      shippingAddress: user.shippingAddress ? user.shippingAddress : null,
+      shippingAddress: user.shippingAddress || '',
       isAdmin: user.isAdmin,
       token: generateToken(user._id),
     })
@@ -71,7 +71,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
-      shippingAddress: user.shippingAddress ? user.shippingAddress : null,
+      shippingAddress: user.shippingAddress || null,
       isAdmin: user.isAdmin,
     })
   } else {

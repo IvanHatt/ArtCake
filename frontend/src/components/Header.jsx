@@ -5,6 +5,8 @@ import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
 import { LinkContainer } from 'react-router-bootstrap'
 import { logout } from '../actions/userActions.js'
+import logo from '../images/logoArtCake.png'
+import cart from '../images/cart-icon.png'
 // import SearchBox from './SearchBox'
 
 const Header = () => {
@@ -23,7 +25,7 @@ const Header = () => {
         <Container>
           <LinkContainer to='/'>
             <Navbar.Brand>
-              <Image src='/logoArtCake.png' className='logo'></Image>
+              <Image src={logo} className='logo'></Image>
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -46,7 +48,7 @@ const Header = () => {
             <Nav className='ml-auto'>
               <LinkContainer to='/cart'>
                 <Nav.Link>
-                  <Image src='cart-icon.png' className='cart-icon'></Image>
+                  <Image src={cart} className='cart-icon'></Image>
                 </Nav.Link>
               </LinkContainer>
               {userInfo ? (

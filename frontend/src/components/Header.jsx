@@ -20,7 +20,7 @@ const Header = () => {
   }
 
   return (
-    <header>
+    <header style={{ height: '15vh' }}>
       <Navbar bg='transparent' expand='lg' collapseOnSelect>
         <Container>
           <LinkContainer to='/'>

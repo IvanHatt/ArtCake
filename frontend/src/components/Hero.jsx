@@ -5,8 +5,8 @@ import './styles/hero.css'
 const Hero = () => {
   return (
     <section className='hero'>
-      <Container className='h-100'>
-        <Row className='h-100 align-items-center'>
+      <Container>
+        <Row>
           <Col md={6}>
             <div>
               <h1>There is always room for some CAKE!</h1>

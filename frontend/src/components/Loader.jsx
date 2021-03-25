@@ -5,10 +5,11 @@ const Loader = () => {
   return (
     <Spinner
       animation='border'
+      variant='primary'
       role='status'
       style={{
-        width: '100px',
-        height: '100px',
+        width: '50px',
+        height: '50px',
         margin: 'auto',
         display: 'block',
       }}

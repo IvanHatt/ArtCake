@@ -32,16 +32,16 @@ const Header = () => {
           <Navbar.Collapse id='basic-navbar-nav'>
             {/* <Route render={({ history }) => <SearchBox history={history} />} /> */}
             <Nav className='m-auto'>
-              <LinkContainer to='/contact'>
+              <LinkContainer to='/'>
                 <Nav.Link>Home</Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/contact'>
+              <LinkContainer to='/about'>
                 <Nav.Link>About</Nav.Link>
               </LinkContainer>
               <LinkContainer to='/contact'>
                 <Nav.Link>Contact</Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/contact'>
+              <LinkContainer to='/shop'>
                 <Nav.Link>Shop</Nav.Link>
               </LinkContainer>
             </Nav>

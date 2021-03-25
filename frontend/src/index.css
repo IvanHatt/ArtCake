@@ -84,3 +84,14 @@ p {
   font-size: 25px;
   line-height: 50px;
 }
+
+.cake-bcg {
+  height: 85vh;
+  display: grid;
+  place-items: center;
+  background-image: url('./images/bcg-hero.png'),
+    url('./images/cupcake-bcg3.png');
+  background-position: 110% 100%, 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 40vmax auto, 30vmax auto;
+}

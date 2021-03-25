@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -38,7 +38,7 @@ const RegisterView = ({ location, history }) => {
 
   return (
     <FormContainer>
-      <h1>Sign Up </h1>
+      <h1 className='text-center'>Sign Up </h1>
       {message && <Message variant='danger'>{message}</Message>}
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
@@ -81,18 +81,17 @@ const RegisterView = ({ location, history }) => {
           ></Form.Control>
         </Form.Group>
 
-        <Button type='submit' variant='primary'>
+        <Button type='submit' variant='primary' className='mt-4'>
           Register
         </Button>
       </Form>
-      <Row className='py-3'>
-        <Col>
-          Have an account?
-          <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
-            Login
-          </Link>
-        </Col>
-      </Row>
+
+      <span className='float-right'>
+        Already have an account?{' '}
+        <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
+          Sign In
+        </Link>
+      </span>
     </FormContainer>
   )
 }

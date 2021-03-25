@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import Paginate from '../components/Paginate'
 import Product from '../components/Product'
 import Message from '../components/Message'
@@ -23,8 +23,8 @@ const ShopView = ({ match }) => {
   }, [dispatch, keyword, pageNumber])
 
   return (
-    <>
-      <h1>Latest Products</h1>
+    <Container>
+      <h1 className='text-center'>Latest Products</h1>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -32,11 +32,14 @@ const ShopView = ({ match }) => {
       ) : (
         <>
           <Row>
-            {products.map((product) => (
-              <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                <Product product={product} />
-              </Col>
-            ))}
+            <Col md={3}>
+              <p>Filters</p>
+            </Col>
+            <Col md={9}>
+              {products.map((product) => (
+                <Product product={product} key={product._id} />
+              ))}
+            </Col>
           </Row>
           <Paginate
             pages={pages}
@@ -45,7 +48,7 @@ const ShopView = ({ match }) => {
           />
         </>
       )}
-    </>
+    </Container>
   )
 }
 

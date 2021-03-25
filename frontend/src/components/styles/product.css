@@ -1,0 +1,31 @@
+.card {
+  display: inline-block;
+  border: none;
+  width: 350px;
+  height: 330px;
+  margin: 0.5rem;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: ease-in-out 2s;
+}
+
+.product-description {
+  padding: 1rem;
+  background: whitesmoke;
+  border-radius: 0px 0px 20px 20px;
+  width: 100%;
+  height: fit-content;
+  position: absolute;
+  bottom: 0;
+}
+
+.card img {
+  object-fit: fill;
+  object-position: center;
+}
+
+.card img:hover {
+  transform: scale(1.2);
+  transition: ease-in-out 1s;
+}

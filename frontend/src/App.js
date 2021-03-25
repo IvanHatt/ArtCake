@@ -52,6 +52,7 @@ function App() {
           component={ShopView}
           exact
         />
+        <Route path='/shop' component={ShopView} exact />
         <Route path='/' component={HomeView} exact />
       </main>
 

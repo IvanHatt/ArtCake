@@ -23,10 +23,10 @@ const Topten = () => {
             <div className='topten-img-container'>
               <img
                 className='topten-img'
-                src='/images/cake-flan.png'
+                src='/images/cake-chocolate.png'
                 alt='Second slide'
               />
-              <h3>Flan Cake</h3>
+              <h3>Chocolate Cake</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
           </Carousel.Item>

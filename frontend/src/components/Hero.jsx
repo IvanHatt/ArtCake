@@ -15,7 +15,7 @@ const Hero = () => {
                 ex, at molestie ex orci sed metus. Fusce lobortis, tortor sed
                 rutrum feugiat, sem libero vehicula erat.
               </p>
-              <Button className='full-button'>Shop Here</Button>
+              <Button className='btn btn-primary'>Shop Here</Button>
             </div>
           </Col>
         </Row>

@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <header style={{ height: '15vh' }}>
-      <Navbar bg='transparent' expand='lg' collapseOnSelect>
+      <Navbar expand='lg' collapseOnSelect>
         <Container>
           <LinkContainer to='/'>
             <Navbar.Brand>

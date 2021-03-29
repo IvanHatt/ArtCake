@@ -12,11 +12,11 @@ import ShippingView from './views/ShippingView'
 import PaymentView from './views/PaymentView'
 import PlaceOrderView from './views/PlaceOrderView'
 import OrderView from './views/OrderView'
-import UserListView from './views/UserListView'
+import UserListView from './views/Admin Views/UserListView'
 import UserEditView from './views/UserEditView'
-import ProductListView from './views/ProductListView'
-import ProductEditView from './views/ProductEditView'
-import OrderListView from './views/OrderListView'
+import ProductListView from './views/Admin Views/ProductListView'
+import ProductEditView from './views/Admin Views/ProductEditView'
+import OrderListView from './views/Admin Views/OrderListView'
 import HomeView from './views/HomeView'
 import ContactView from './views/ContactView'
 
@@ -37,7 +37,7 @@ function App() {
         <Route path='/cart/:id?' component={CartView} />
         <Route path='/admin/userlist' component={UserListView} />
         <Route path='/admin/user/:id/edit' component={UserEditView} />
-        <Route path='/admin/productlist' component={ProductListView} exact />
+        <Route path='/admin/productlist' component={ProductEditView} exact />
         <Route
           path='/admin/productlist/:pageNumber'
           component={ProductListView}

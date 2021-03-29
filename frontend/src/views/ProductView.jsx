@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col, Image, ListGroup, Card, Button, Form, Container } from 'react-bootstrap'
+import {
+  Row,
+  Col,
+  Image,
+  ListGroup,
+  Button,
+  Form,
+  Container,
+  InputGroup,
+} from 'react-bootstrap'
 import Rating from '../components/Rating'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -13,6 +22,9 @@ import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 
 const ProductView = ({ history, match }) => {
   const [qty, setQty] = useState(1)
+  const [vegan, setVegan] = useState(false)
+  const [gfree, setGfree] = useState(false)
+  const [request, setRequest] = useState('')
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState('')
 
@@ -58,7 +70,7 @@ const ProductView = ({ history, match }) => {
 
   return (
     <Container>
-      <Link className='btn btn-light my-3' to='/'>
+      <Link className='btn empty-button my-3' to='/shop'>
         Go Back
       </Link>
       {loading ? (
@@ -67,51 +79,23 @@ const ProductView = ({ history, match }) => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
-          <Row>
-            <Col md={6}>
-              <Image src={product.image} alt={product.name} fluid />
-            </Col>
-            <Col md={3}>
-              <ListGroup variant='flush'>
-                <ListGroup.Item>
-                  <h3>{product.name}</h3>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <Rating
-                    value={product.rating}
-                    text={`${product.numReviews} reviews`}
-                  />
-                </ListGroup.Item>
-                <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
-                <ListGroup.Item>{product.description}</ListGroup.Item>
-              </ListGroup>
-            </Col>
-            <Col md={3}>
-              <Card>
-                <ListGroup variant='flush'>
-                  <ListGroup.Item>
-                    <Row>
-                      <Col>Price:</Col>
+          <div className='product-container'>
+            <Row>
+              <Col md={6}>
+                <Image src={product.image} alt={product.name} fluid />
+              </Col>
+              <Col md={6}>
+                <h1>{product.name}</h1>
+                <p>{product.description}</p>
+                <hr></hr>
+                {product.countInStock > 0 && (
+                  <Form>
+                    <Form.Row>
                       <Col>
-                        <strong>${product.price}</strong>
-                      </Col>
-                    </Row>
-                  </ListGroup.Item>
-
-                  <ListGroup.Item>
-                    <Row>
-                      <Col>Status:</Col>
-                      <Col>
-                        {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
-                      </Col>
-                    </Row>
-                  </ListGroup.Item>
-
-                  {product.countInStock > 0 && (
-                    <ListGroup.Item>
-                      <Row>
-                        <Col>Qty</Col>
-                        <Col>
+                        <InputGroup>
+                          <InputGroup.Prepend>
+                            <InputGroup.Text>Quantity: </InputGroup.Text>
+                          </InputGroup.Prepend>
                           <Form.Control
                             as='select'
                             value={qty}
@@ -125,27 +109,80 @@ const ProductView = ({ history, match }) => {
                               )
                             )}
                           </Form.Control>
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
-                  )}
-
-                  <ListGroup.Item>
-                    <Button
-                      onClick={addToCartHandler}
-                      className='btn-block'
-                      type='button'
-                      disabled={product.countInStock === 0}
-                    >
-                      Add To Cart
-                    </Button>
-                  </ListGroup.Item>
+                        </InputGroup>
+                      </Col>
+                      <Col>
+                        <InputGroup>
+                          <InputGroup.Prepend>
+                            <InputGroup.Text>Vegan: </InputGroup.Text>
+                          </InputGroup.Prepend>
+                          <InputGroup.Checkbox
+                            value={vegan}
+                            onChange={() => setVegan(!vegan)}
+                          />
+                        </InputGroup>
+                      </Col>
+                      <Col>
+                        <InputGroup>
+                          <InputGroup.Prepend>
+                            <InputGroup.Text>Gluten Free: </InputGroup.Text>
+                          </InputGroup.Prepend>
+                          <InputGroup.Checkbox
+                            value={gfree}
+                            onChange={() => setGfree(!gfree)}
+                          />
+                        </InputGroup>
+                      </Col>
+                    </Form.Row>
+                    <Form.Group>
+                      <Form.Label>Special requests:</Form.Label>
+                      <Form.Control
+                        as='textarea'
+                        rows={3}
+                        value={request}
+                        onChange={(e) => console.log(e.target)}
+                      />
+                    </Form.Group>
+                  </Form>
+                )}
+              </Col>
+            </Row>
+            <Row>
+              <Col md={6}>
+                <ListGroup variant='flush'>
+                  <span>Vegan Option: OK</span>
+                  <span>Gluten Free Option: OK</span>
+                  <span>Allergens: one, two</span>
+                  <hr></hr>
+                  <Rating
+                    value={product.rating}
+                    text={`${product.numReviews} reviews`}
+                  />
                 </ListGroup>
-              </Card>
-            </Col>
-          </Row>
+              </Col>
+              <Col md={6}>
+                <h3 className='text-right'>
+                  Price:
+                  <strong>${product.price}</strong>
+                </h3>
+                <Button
+                  onClick={addToCartHandler}
+                  className='btn float-right'
+                  type='button'
+                  disabled={product.countInStock === 0}
+                >
+                  Add To Cart
+                </Button>
+              </Col>
+            </Row>
+          </div>
+
           <Row>
-            <Col md={6}>
+            <Col
+              md={6}
+              className='review-container'
+              style={{ backgroundColor: 'yellow' }}
+            >
               <h2>Reviews</h2>
               {product.reviews.length === 0 && <Message>No Reviews</Message>}
               <ListGroup variant='flush'>

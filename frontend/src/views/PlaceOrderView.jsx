@@ -1,6 +1,14 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
+import {
+  Container,
+   Button,
+  Row,
+  Col,
+  ListGroup,
+  Image,
+  Card,
+} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
@@ -64,7 +72,7 @@ const PlaceOrderView = ({ history }) => {
   }
 
   return (
-    <>
+    <Container>
       <CheckoutSteps step1 step2 step3 step4 />
       <Row>
         <Col md={8}>
@@ -164,7 +172,7 @@ const PlaceOrderView = ({ history }) => {
           </Card>
         </Col>
       </Row>
-    </>
+    </Container>
   )
 }
 

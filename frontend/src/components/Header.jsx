@@ -46,6 +46,15 @@ const Header = () => {
               </LinkContainer>
             </Nav>
             <Nav className='ml-auto'>
+              <NavDropdown title='Cart' id='cart'>
+                <NavDropdown.Item>My Cart</NavDropdown.Item>
+                <LinkContainer to='/'>
+                  <NavDropdown.Item>Go to my cart</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to='/'>
+                  <NavDropdown.Item>To checkout</NavDropdown.Item>
+                </LinkContainer>
+              </NavDropdown>
               <LinkContainer to='/cart'>
                 <Nav.Link>
                   <Image src={cart} className='cart-icon'></Image>

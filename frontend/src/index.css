@@ -8,6 +8,13 @@ main {
 }
 
 h3 {
+  font-family: 'Baloo';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 128.7%;
+  color: #2d2b4b;
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+  font-size: 1.8rem;
   padding: 1rem 0;
 }
 
@@ -26,8 +33,13 @@ h1 {
 }
 
 h2 {
+  font-family: 'Baloo';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 128.7%;
+  color: #2d2b4b;
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
   font-size: 1.4rem;
-  padding: 0.5rem 0;
 }
 
 p {
@@ -96,13 +108,14 @@ p {
   background-size: 40vmax auto, 30vmax auto;
 }
 
-.product-container {
+/* general container */
+.card-container {
   padding: 20px;
   background: #eff7ff;
   border-radius: 20px;
   filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.25));
 }
 
-.product-container img {
+.card-container img {
   border-radius: 20px 0px 0px 20px;
 }

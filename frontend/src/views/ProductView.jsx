@@ -79,7 +79,7 @@ const ProductView = ({ history, match }) => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
-          <div className='product-container'>
+          <div className='card-container'>
             <Row>
               <Col md={6}>
                 <Image src={product.image} alt={product.name} fluid />

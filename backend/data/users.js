@@ -4,11 +4,6 @@ const users = [
   {
     name: 'Admin User',
     email: 'admin@example.com',
-    shippingAddress: {
-      address: 'Nahalat Yossef 3',
-      city: 'Ramat Gan',
-      addressComment: 'none',
-    },
     password: bcrypt.hashSync('123456', 10),
     isAdmin: true,
   },
@@ -19,7 +14,12 @@ const users = [
   },
   {
     name: 'Jane Doe',
-    email: 'Jane@example.com',
+    email: 'jane@example.com',
+    password: bcrypt.hashSync('123456', 10),
+  },
+  {
+    name: 'Ivan Hatt',
+    email: 'ivan@de.de',
     password: bcrypt.hashSync('123456', 10),
   },
 ]

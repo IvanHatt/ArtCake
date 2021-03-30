@@ -39,19 +39,28 @@ const productSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    characteristics: {
-      allergens: { type: String, required: true },
-      dimensions: { type: String, required: true },
-      servings: { type: String, required: true },
-      colors: { type: String },
-      veganOpt: {
-        type: Boolean,
-        required: true,
-      },
-      glutenFreeOpt: {
-        type: Boolean,
-        required: true,
-      },
+    allergens: {
+      type: String,
+      required: true,
+    },
+    dimensions: {
+      type: String,
+      required: true,
+    },
+    servings: {
+      type: String,
+      required: true,
+    },
+    colors: {
+      type: String,
+    },
+    veganOpt: {
+      type: Boolean,
+      required: true,
+    },
+    glutenFreeOpt: {
+      type: Boolean,
+      required: true,
     },
     reviews: [reviewSchema],
     rating: {
@@ -65,11 +74,6 @@ const productSchema = mongoose.Schema(
       default: 0,
     },
     price: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
-    countInStock: {
       type: Number,
       required: true,
       default: 0,

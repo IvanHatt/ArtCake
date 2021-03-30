@@ -140,7 +140,7 @@ const ProductView = ({ history, match }) => {
                         as='textarea'
                         rows={3}
                         value={request}
-                        onChange={(e) => console.log(e.target)}
+                        onChange={(e) => setRequest(e.target)}
                       />
                     </Form.Group>
                   </Form>

@@ -5,17 +5,15 @@ const products = [
     category: 'Cake',
     description:
       'A perfect cake for chocolate lovers. The cake is coated in buttercream, topped with chocolate ganache',
-    characteristics: {
-      allergens: 'eggs, almonds, peanut',
-      dimensions: '40 cm diameter',
-      servings: '12 persons',
-      veganOpt: true,
-      glutenFreeOpt: false,
-    },
+
+    allergens: 'eggs, almonds, peanut',
+    dimensions: '40 cm diameter',
+    servings: '12 persons',
+    veganOpt: true,
+    glutenFreeOpt: false,
     price: 189.99,
-    countInStock: 10,
     rating: 4.5,
-    numReviews: 12,
+    numReviews: 4,
   },
   {
     name: 'Cake Bee Honey',
@@ -23,15 +21,15 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-    characteristics: {
-      allergens: 'eggs, milk, peanut, honey',
-      dimensions: '40 cm diameter',
-      servings: '12 persons',
-      veganOpt: false,
-      glutenFreeOpt: true,
-    },
+
+    allergens: 'eggs, milk, peanut, honey',
+    dimensions: '40 cm diameter',
+    servings: '12 persons',
+    veganOpt: false,
+    glutenFreeOpt: true,
+
     price: 150,
-    countInStock: 10,
+    inStock: 10,
     rating: 4.5,
     numReviews: 12,
   },
@@ -41,15 +39,15 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-    characteristics: {
-      allergens: 'eggs, milk, peanut, cinnammon',
-      dimensions: '40 cm diameter',
-      servings: '12 persons',
-      veganOpt: true,
-      glutenFreeOpt: true,
-    },
+
+    allergens: 'eggs, milk, peanut, cinnammon',
+    dimensions: '40 cm diameter',
+    servings: '12 persons',
+    veganOpt: true,
+    glutenFreeOpt: true,
+
     price: 180,
-    countInStock: 5,
+    inStock: 5,
     rating: 3.5,
     numReviews: 2,
   },
@@ -59,15 +57,15 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-    characteristics: {
-      allergens: 'eggs, milk, peanut',
-      dimensions: '30 cm diameter',
-      servings: '10 persons',
-      veganOpt: true,
-      glutenFreeOpt: true,
-    },
+
+    allergens: 'eggs, milk, peanut',
+    dimensions: '30 cm diameter',
+    servings: '10 persons',
+    veganOpt: true,
+    glutenFreeOpt: true,
+
     price: 190,
-    countInStock: 8,
+    inStock: 8,
     rating: 4,
     numReviews: 4,
   },
@@ -77,15 +75,15 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-    characteristics: {
-      allergens: 'eggs, milk, cinnammon',
-      dimensions: '25 cm diameter',
-      servings: '10 persons',
-      veganOpt: false,
-      glutenFreeOpt: true,
-    },
+
+    allergens: 'eggs, milk, cinnammon',
+    dimensions: '25 cm diameter',
+    servings: '10 persons',
+    veganOpt: false,
+    glutenFreeOpt: true,
+
     price: 90,
-    countInStock: 4,
+    inStock: 4,
     rating: 5,
     numReviews: 3,
   },
@@ -95,15 +93,15 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-    characteristics: {
-      allergens: 'eggs, milk, peanut, cherry',
-      dimensions: '35 cm diameter',
-      servings: '8 persons',
-      veganOpt: true,
-      glutenFreeOpt: true,
-    },
+
+    allergens: 'eggs, milk, peanut, cherry',
+    dimensions: '35 cm diameter',
+    servings: '8 persons',
+    veganOpt: true,
+    glutenFreeOpt: true,
+
     price: 145,
-    countInStock: 10,
+    inStock: 10,
     rating: 3,
     numReviews: 4,
   },
@@ -113,15 +111,15 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-    characteristics: {
-      allergens: 'eggs, milk, peanut, cinnammon',
-      dimensions: '35 cm diameter',
-      servings: '12 persons',
-      veganOpt: false,
-      glutenFreeOpt: true,
-    },
+
+    allergens: 'eggs, milk, peanut, cinnammon',
+    dimensions: '35 cm diameter',
+    servings: '12 persons',
+    veganOpt: false,
+    glutenFreeOpt: true,
+
     price: 135,
-    countInStock: 8,
+    inStock: 8,
     rating: 4.5,
     numReviews: 4,
   },
@@ -131,15 +129,15 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-    characteristics: {
-      allergens: 'eggs, milk',
-      dimensions: '40 cm diameter',
-      servings: '12 persons',
-      veganOpt: true,
-      glutenFreeOpt: true,
-    },
+
+    allergens: 'eggs, milk',
+    dimensions: '40 cm diameter',
+    servings: '12 persons',
+    veganOpt: true,
+    glutenFreeOpt: true,
+
     price: 200,
-    countInStock: 0,
+    inStock: 0,
     rating: 4,
     numReviews: 2,
   },
@@ -149,15 +147,15 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-    characteristics: {
-      allergens: 'eggs, milk',
-      dimensions: '40 cm diameter',
-      servings: '8 persons',
-      veganOpt: false,
-      glutenFreeOpt: true,
-    },
+
+    allergens: 'eggs, milk',
+    dimensions: '40 cm diameter',
+    servings: '8 persons',
+    veganOpt: false,
+    glutenFreeOpt: true,
+
     price: 85,
-    countInStock: 8,
+    inStock: 8,
     rating: 5,
     numReviews: 5,
   },
@@ -167,15 +165,15 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-    characteristics: {
-      allergens: 'eggs, milk',
-      dimensions: '35 cm diameter',
-      servings: '10 persons',
-      veganOpt: true,
-      glutenFreeOpt: true,
-    },
+
+    allergens: 'eggs, milk',
+    dimensions: '35 cm diameter',
+    servings: '10 persons',
+    veganOpt: true,
+    glutenFreeOpt: true,
+
     price: 185,
-    countInStock: 2,
+    inStock: 2,
     rating: 4.5,
     numReviews: 2,
   },
@@ -185,15 +183,15 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-    characteristics: {
-      allergens: 'eggs, milk, honey',
-      dimensions: '40 cm diameter',
-      servings: '12 persons',
-      veganOpt: true,
-      glutenFreeOpt: true,
-    },
+
+    allergens: 'eggs, milk, honey',
+    dimensions: '40 cm diameter',
+    servings: '12 persons',
+    veganOpt: true,
+    glutenFreeOpt: true,
+
     price: 205,
-    countInStock: 6,
+    inStock: 6,
     rating: 5,
     numReviews: 10,
   },
@@ -203,15 +201,15 @@ const products = [
     category: 'Cup',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-    characteristics: {
-      allergens: 'eggs, milk, peanut, honey',
-      dimensions: '10 cm diameter',
-      servings: '1 person',
-      veganOpt: false,
-      glutenFreeOpt: true,
-    },
+
+    allergens: 'eggs, milk, peanut, honey',
+    dimensions: '10 cm diameter',
+    servings: '1 person',
+    veganOpt: false,
+    glutenFreeOpt: true,
+
     price: 12,
-    countInStock: 40,
+    inStock: 40,
     rating: 4,
     numReviews: 1,
   },
@@ -221,15 +219,15 @@ const products = [
     category: 'Cup',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-    characteristics: {
-      allergens: 'eggs, milk, peanut, honey',
-      dimensions: '10 cm diameter',
-      servings: '1 person',
-      veganOpt: false,
-      glutenFreeOpt: true,
-    },
+
+    allergens: 'eggs, milk, peanut, honey',
+    dimensions: '10 cm diameter',
+    servings: '1 person',
+    veganOpt: false,
+    glutenFreeOpt: true,
+
     price: 12,
-    countInStock: 40,
+    inStock: 40,
     rating: 4,
     numReviews: 1,
   },
@@ -239,15 +237,15 @@ const products = [
     category: 'Cupcake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-    characteristics: {
-      allergens: 'eggs, milk, peanut',
-      dimensions: '10 cm diameter',
-      servings: '1 person',
-      veganOpt: false,
-      glutenFreeOpt: true,
-    },
+
+    allergens: 'eggs, milk, peanut',
+    dimensions: '10 cm diameter',
+    servings: '1 person',
+    veganOpt: false,
+    glutenFreeOpt: true,
+
     price: 10,
-    countInStock: 50,
+    inStock: 50,
     rating: 4,
     numReviews: 2,
   },
@@ -257,15 +255,15 @@ const products = [
     category: 'Cupcake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-    characteristics: {
-      allergens: 'eggs, milk',
-      dimensions: '10 cm diameter',
-      servings: '1 person',
-      veganOpt: true,
-      glutenFreeOpt: true,
-    },
+
+    allergens: 'eggs, milk',
+    dimensions: '10 cm diameter',
+    servings: '1 person',
+    veganOpt: true,
+    glutenFreeOpt: true,
+
     price: 15,
-    countInStock: 40,
+    inStock: 40,
     rating: 3.5,
     numReviews: 6,
   },
@@ -275,15 +273,15 @@ const products = [
     category: 'Cupcake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-    characteristics: {
-      allergens: 'eggs, milk',
-      dimensions: '10 cm diameter',
-      servings: '1 person',
-      veganOpt: false,
-      glutenFreeOpt: true,
-    },
+
+    allergens: 'eggs, milk',
+    dimensions: '10 cm diameter',
+    servings: '1 person',
+    veganOpt: false,
+    glutenFreeOpt: true,
+
     price: 12,
-    countInStock: 30,
+    inStock: 30,
     rating: 4,
     numReviews: 1,
   },
@@ -293,15 +291,15 @@ const products = [
     category: 'Cupcake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-    characteristics: {
-      allergens: 'eggs, milk',
-      dimensions: '10 cm diameter',
-      servings: '1 person',
-      veganOpt: false,
-      glutenFreeOpt: true,
-    },
+
+    allergens: 'eggs, milk',
+    dimensions: '10 cm diameter',
+    servings: '1 person',
+    veganOpt: false,
+    glutenFreeOpt: true,
+
     price: 12,
-    countInStock: 30,
+    inStock: 30,
     rating: 4,
     numReviews: 1,
   },

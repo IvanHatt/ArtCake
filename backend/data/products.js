@@ -29,7 +29,7 @@ const products = [
     glutenFreeOpt: true,
 
     price: 150,
-    inStock: 10,
+    inStock: true,
     rating: 4.5,
     numReviews: 12,
   },
@@ -47,7 +47,7 @@ const products = [
     glutenFreeOpt: true,
 
     price: 180,
-    inStock: 5,
+    inStock: true,
     rating: 3.5,
     numReviews: 2,
   },
@@ -65,7 +65,7 @@ const products = [
     glutenFreeOpt: true,
 
     price: 190,
-    inStock: 8,
+    inStock: true,
     rating: 4,
     numReviews: 4,
   },
@@ -83,7 +83,7 @@ const products = [
     glutenFreeOpt: true,
 
     price: 90,
-    inStock: 4,
+    inStock: true,
     rating: 5,
     numReviews: 3,
   },
@@ -101,7 +101,7 @@ const products = [
     glutenFreeOpt: true,
 
     price: 145,
-    inStock: 10,
+    inStock: true,
     rating: 3,
     numReviews: 4,
   },
@@ -119,7 +119,7 @@ const products = [
     glutenFreeOpt: true,
 
     price: 135,
-    inStock: 8,
+    inStock: true,
     rating: 4.5,
     numReviews: 4,
   },
@@ -137,7 +137,7 @@ const products = [
     glutenFreeOpt: true,
 
     price: 200,
-    inStock: 0,
+    inStock: false,
     rating: 4,
     numReviews: 2,
   },
@@ -155,7 +155,7 @@ const products = [
     glutenFreeOpt: true,
 
     price: 85,
-    inStock: 8,
+    inStock: true,
     rating: 5,
     numReviews: 5,
   },
@@ -173,7 +173,7 @@ const products = [
     glutenFreeOpt: true,
 
     price: 185,
-    inStock: 2,
+    inStock: true,
     rating: 4.5,
     numReviews: 2,
   },
@@ -191,7 +191,7 @@ const products = [
     glutenFreeOpt: true,
 
     price: 205,
-    inStock: 6,
+    inStock: true,
     rating: 5,
     numReviews: 10,
   },
@@ -209,7 +209,7 @@ const products = [
     glutenFreeOpt: true,
 
     price: 12,
-    inStock: 40,
+    inStock: true,
     rating: 4,
     numReviews: 1,
   },
@@ -227,7 +227,7 @@ const products = [
     glutenFreeOpt: true,
 
     price: 12,
-    inStock: 40,
+    inStock: true,
     rating: 4,
     numReviews: 1,
   },
@@ -245,7 +245,7 @@ const products = [
     glutenFreeOpt: true,
 
     price: 10,
-    inStock: 50,
+    inStock: true,
     rating: 4,
     numReviews: 2,
   },
@@ -263,7 +263,7 @@ const products = [
     glutenFreeOpt: true,
 
     price: 15,
-    inStock: 40,
+    inStock: true,
     rating: 3.5,
     numReviews: 6,
   },
@@ -281,7 +281,7 @@ const products = [
     glutenFreeOpt: true,
 
     price: 12,
-    inStock: 30,
+    inStock: true,
     rating: 4,
     numReviews: 1,
   },
@@ -299,7 +299,7 @@ const products = [
     glutenFreeOpt: true,
 
     price: 12,
-    inStock: 30,
+    inStock: true,
     rating: 4,
     numReviews: 1,
   },

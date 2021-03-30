@@ -69,11 +69,11 @@ const CartView = ({ match, location, history }) => {
                           )
                         }
                       >
-                        {[...Array(item.countInStock).keys()].map((x) => (
-                          <option key={x + 1} value={x + 1}>
-                            {x + 1}
-                          </option>
-                        ))}
+                        <option value='1'>1</option>
+                        <option value='1'>2</option>
+                        <option value='1'>3</option>
+                        <option value='1'>4</option>
+                        <option value='1'>5</option>
                       </Form.Control>
                     </Col>
                     <Col md={2}>

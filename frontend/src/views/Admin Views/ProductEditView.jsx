@@ -17,7 +17,7 @@ const ProductEditView = ({ match, history }) => {
   const [image, setImage] = useState('')
   const [brand, setBrand] = useState('')
   const [category, setCategory] = useState('')
-  const [countInStock, setCountInStock] = useState(0)
+  const [inStock, setInStock] = useState(true)
   const [description, setDescription] = useState('')
   const [uploading, setUploading] = useState(false)
 
@@ -46,7 +46,7 @@ const ProductEditView = ({ match, history }) => {
         setImage(product.image)
         setBrand(product.brand)
         setCategory(product.category)
-        setCountInStock(product.countInSock)
+        setInStock(product.countInSock)
         setDescription(product.description)
       }
     }
@@ -63,7 +63,7 @@ const ProductEditView = ({ match, history }) => {
         brand,
         category,
         description,
-        countInStock,
+        inStock,
       })
     )
   }
@@ -154,14 +154,13 @@ const ProductEditView = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId='countInStock'>
-              <Form.Label>Count In Stock</Form.Label>
-              <Form.Control
-                type='number'
-                placeholder='Enter countInStock'
-                value={countInStock}
-                onChange={(e) => setCountInStock(e.target.value)}
-              ></Form.Control>
+            <Form.Group controlId='inStock'>
+              <Form.Check
+                type='checkbox'
+                label='In Stock?'
+                value={inStock}
+                onChange={(e) => setInStock(e.target.value)}
+              />
             </Form.Group>
 
             <Form.Group controlId='category'>

@@ -83,12 +83,38 @@ const ProductView = ({ history, match }) => {
             <Row>
               <Col md={6}>
                 <Image src={product.image} alt={product.name} fluid />
+                <ListGroup variant='flush'>
+                  <span>
+                    Vegan Option:{' '}
+                    {product.veganOpt ? (
+                      <i class='fas fa-check'></i>
+                    ) : (
+                      <i class='fas fa-times'></i>
+                    )}
+                  </span>
+                  <span>
+                    Gluten Free Option:{' '}
+                    {product.glutenFreeOpt ? (
+                      <i class='fas fa-check'></i>
+                    ) : (
+                      <i class='fas fa-times'></i>
+                    )}
+                  </span>
+                  <span>Allergens: {product.allergens}</span>
+                  <span>Dimensions: {product.dimensions}</span>
+                  <span>Servings: {product.servings}</span>
+                  <hr></hr>
+                  <Rating
+                    value={product.rating}
+                    text={`${product.numReviews} reviews`}
+                  />
+                </ListGroup>
               </Col>
               <Col md={6}>
                 <h1>{product.name}</h1>
                 <p>{product.description}</p>
                 <hr></hr>
-                {product.countInStock > 0 && (
+                {product.inStock ? (
                   <Form>
                     <Form.Row>
                       <Col>
@@ -101,38 +127,40 @@ const ProductView = ({ history, match }) => {
                             value={qty}
                             onChange={(e) => setQty(e.target.value)}
                           >
-                            {[...Array(product.countInStock).keys()].map(
-                              (x) => (
-                                <option key={x + 1} value={x + 1}>
-                                  {x + 1}
-                                </option>
-                              )
-                            )}
+                            <option value='1'>1</option>
+                            <option value='1'>2</option>
+                            <option value='1'>3</option>
+                            <option value='1'>4</option>
+                            <option value='1'>5</option>
                           </Form.Control>
                         </InputGroup>
                       </Col>
-                      <Col>
-                        <InputGroup>
-                          <InputGroup.Prepend>
-                            <InputGroup.Text>Vegan: </InputGroup.Text>
-                          </InputGroup.Prepend>
-                          <InputGroup.Checkbox
-                            value={vegan}
-                            onChange={() => setVegan(!vegan)}
-                          />
-                        </InputGroup>
-                      </Col>
-                      <Col>
-                        <InputGroup>
-                          <InputGroup.Prepend>
-                            <InputGroup.Text>Gluten Free: </InputGroup.Text>
-                          </InputGroup.Prepend>
-                          <InputGroup.Checkbox
-                            value={gfree}
-                            onChange={() => setGfree(!gfree)}
-                          />
-                        </InputGroup>
-                      </Col>
+                      {product.veganOpt && (
+                        <Col>
+                          <InputGroup>
+                            <InputGroup.Prepend>
+                              <InputGroup.Text>Vegan: </InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <InputGroup.Checkbox
+                              value={vegan}
+                              onChange={() => setVegan(!vegan)}
+                            />
+                          </InputGroup>
+                        </Col>
+                      )}
+                      {product.glutenFreeOpt && (
+                        <Col>
+                          <InputGroup>
+                            <InputGroup.Prepend>
+                              <InputGroup.Text>Gluten Free: </InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <InputGroup.Checkbox
+                              value={gfree}
+                              onChange={() => setGfree(!gfree)}
+                            />
+                          </InputGroup>
+                        </Col>
+                      )}
                     </Form.Row>
                     <Form.Group>
                       <Form.Label>Special requests:</Form.Label>
@@ -144,36 +172,27 @@ const ProductView = ({ history, match }) => {
                       />
                     </Form.Group>
                   </Form>
+                ) : (
+                  <Message variant='danger'> Out of Stock </Message>
                 )}
+                <div className='align-self-end'>
+                  <h3 className='text-right'>
+                    Price:
+                    <strong> {product.price} ILS </strong>
+                  </h3>
+                  <Button
+                    onClick={addToCartHandler}
+                    className='btn float-right'
+                    type='button'
+                    disabled={!product.inStock}
+                  >
+                    Add To Cart
+                  </Button>
+                </div>
               </Col>
             </Row>
             <Row>
-              <Col md={6}>
-                <ListGroup variant='flush'>
-                  <span>Vegan Option: OK</span>
-                  <span>Gluten Free Option: OK</span>
-                  <span>Allergens: one, two</span>
-                  <hr></hr>
-                  <Rating
-                    value={product.rating}
-                    text={`${product.numReviews} reviews`}
-                  />
-                </ListGroup>
-              </Col>
-              <Col md={6}>
-                <h3 className='text-right'>
-                  Price:
-                  <strong>${product.price}</strong>
-                </h3>
-                <Button
-                  onClick={addToCartHandler}
-                  className='btn float-right'
-                  type='button'
-                  disabled={product.countInStock === 0}
-                >
-                  Add To Cart
-                </Button>
-              </Col>
+              <Col md={6}></Col>
             </Row>
           </div>
 

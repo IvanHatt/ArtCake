@@ -115,14 +115,20 @@ const deleteProduct = asyncHandler(async (req, res) => {
 const createProduct = asyncHandler(async (req, res) => {
   const product = new Product({
     name: 'Sample name',
-    price: 0,
     user: req.user._id,
     image: '/images/sample.jpg',
-    brand: 'Sample brand',
     category: 'Sample category',
-    countInStock: 0,
-    numReviews: 0,
     description: 'Sample description',
+    allergens: 'Sample allergens',
+    dimensions: 'Sample dimensions',
+    servings: 'Sample servings',
+    colors: 'Sample colors',
+    veganOpt: true,
+    glutenFreeOpt: true,
+    inStock: true,
+    rating: 0,
+    numReviews: 0,
+    price: 0,
   })
 
   const createdProduct = await product.save()
@@ -134,13 +140,18 @@ const createProduct = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
   const {
+    allergens,
+    dimensions,
+    servings,
+    colors,
+    veganOpt,
+    glutenFreeOpt,
     name,
     price,
     description,
     image,
-    brand,
     category,
-    countInStock,
+    inStock,
   } = req.body
 
   const product = await Product.findById(req.params.id)
@@ -150,9 +161,14 @@ const updateProduct = asyncHandler(async (req, res) => {
     product.price = price
     product.description = description
     product.image = image
-    product.brand = brand
     product.category = category
-    product.countInStock = countInStock
+    product.inStock = inStock
+    product.allergens = allergens
+    product.dimensions = dimensions
+    product.servings = servings
+    product.colors = colors
+    product.veganOpt = veganOpt
+    product.glutenFreeOpt = glutenFreeOpt
 
     const updatedProduct = await product.save()
     res.json(updatedProduct)

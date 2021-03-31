@@ -6,7 +6,10 @@ import {
   CART_SAVE_PAYMENT_METHOD,
 } from '../constants/cartConstants'
 
-export const addToCart = (id, qty) => async (dispatch, getState) => {
+export const addToCart = (id, qty, vegan, gfree) => async (
+  dispatch,
+  getState
+) => {
   //get data from api about specific product
   const { data } = await axios.get(`/api/products/${id}`)
 
@@ -19,6 +22,8 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
       price: data.price,
       inStock: data.inStock,
       qty: qty,
+      vegan: vegan,
+      gfree: gfree,
     },
   })
   // localstorage only accepts string, so stringify, and when I nedd it, json.parse()

@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import * as QueryString from 'query-string'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  Accordion, 
+  Accordion,
   Row,
   Col,
   ListGroup,
@@ -17,7 +18,9 @@ import { addToCart, removeFromCart } from '../actions/cartActions'
 const CartView = ({ match, location, history }) => {
   const productId = match.params.id
 
-  const qty = location.search ? Number(location.search.split('=')[1]) : 1
+  const { qty, vegan, gfree } = location.search
+    ? QueryString.parse(location.search)
+    : { qty: null, vegan: null, gfree: null }
 
   const dispatch = useDispatch()
 
@@ -29,9 +32,9 @@ const CartView = ({ match, location, history }) => {
 
   useEffect(() => {
     if (productId) {
-      dispatch(addToCart(productId, qty))
+      dispatch(addToCart(productId, qty, vegan, gfree))
     }
-  }, [dispatch, productId, qty])
+  }, [dispatch, productId, qty, vegan, gfree])
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id))

@@ -55,7 +55,9 @@ const ProductView = ({ history, match }) => {
   }, [dispatch, match, successProductReview, product._id])
 
   const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`)
+    history.push(
+      `/cart/${match.params.id}?qty=${qty}&vegan=${vegan}&gfree=${gfree}`
+    )
   }
 
   const submitHandler = (e) => {
@@ -182,7 +184,7 @@ const ProductView = ({ history, match }) => {
             </Row>
           </div>
 
-          <Row>
+          <Row className='d-none'>
             <Col
               md={6}
               className='review-container'

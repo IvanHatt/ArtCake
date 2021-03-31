@@ -11,6 +11,8 @@ const orderSchema = mongoose.Schema(
       {
         name: { type: String, required: true },
         qty: { type: Number, required: true },
+        vegan: { type: Boolean, required: true },
+        gfree: { type: Boolean, required: true },
         image: { type: String, required: true },
         price: { type: Number, required: true },
         product: {

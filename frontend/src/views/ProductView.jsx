@@ -9,7 +9,6 @@ import {
   Button,
   Form,
   Container,
-  InputGroup,
 } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import Message from '../components/Message'
@@ -19,6 +18,7 @@ import {
   createProductReview,
 } from '../actions/productActions'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
+import Counter from '../components/Counter'
 
 const ProductView = ({ history, match }) => {
   const [qty, setQty] = useState(1)
@@ -87,17 +87,17 @@ const ProductView = ({ history, match }) => {
                   <span>
                     Vegan Option:{' '}
                     {product.veganOpt ? (
-                      <i class='fas fa-check'></i>
+                      <i className='fas fa-check'></i>
                     ) : (
-                      <i class='fas fa-times'></i>
+                      <i className='fas fa-times'></i>
                     )}
                   </span>
                   <span>
                     Gluten Free Option:{' '}
                     {product.glutenFreeOpt ? (
-                      <i class='fas fa-check'></i>
+                      <i className='fas fa-check'></i>
                     ) : (
-                      <i class='fas fa-times'></i>
+                      <i className='fas fa-times'></i>
                     )}
                   </span>
                   <span>Allergens: {product.allergens}</span>
@@ -116,69 +116,55 @@ const ProductView = ({ history, match }) => {
                 <hr></hr>
                 {product.inStock ? (
                   <Form>
-                    <Form.Row>
-                      <Col>
-                        <InputGroup>
-                          <InputGroup.Prepend>
-                            <InputGroup.Text>Quantity: </InputGroup.Text>
-                          </InputGroup.Prepend>
-                          <Form.Control
-                            as='select'
-                            value={qty}
-                            onChange={(e) => setQty(e.target.value)}
-                          >
-                            <option value='1'>1</option>
-                            <option value='1'>2</option>
-                            <option value='1'>3</option>
-                            <option value='1'>4</option>
-                            <option value='1'>5</option>
-                          </Form.Control>
-                        </InputGroup>
-                      </Col>
+                    <Form.Group className='mb-1'>
+                      <Form.Label>Quantity: </Form.Label>
+                      <Counter
+                        min='1'
+                        max={product.category === 'Cake' ? '6' : '24'}
+                        handleQuantity={(nbr) => setQty(nbr)}
+                      />
+                    </Form.Group>
+                    <Form.Group className='mb-1'>
                       {product.veganOpt && (
-                        <Col>
-                          <InputGroup>
-                            <InputGroup.Prepend>
-                              <InputGroup.Text>Vegan: </InputGroup.Text>
-                            </InputGroup.Prepend>
-                            <InputGroup.Checkbox
-                              value={vegan}
-                              onChange={() => setVegan(!vegan)}
-                            />
-                          </InputGroup>
-                        </Col>
+                        <div className='d-inline-block mr-3'>
+                          <label>Vegan:</label>
+                          <input
+                            className='mx-2'
+                            type='checkbox'
+                            value={vegan}
+                            onChange={() => setVegan(!vegan)}
+                          ></input>
+                        </div>
                       )}
                       {product.glutenFreeOpt && (
-                        <Col>
-                          <InputGroup>
-                            <InputGroup.Prepend>
-                              <InputGroup.Text>Gluten Free: </InputGroup.Text>
-                            </InputGroup.Prepend>
-                            <InputGroup.Checkbox
-                              value={gfree}
-                              onChange={() => setGfree(!gfree)}
-                            />
-                          </InputGroup>
-                        </Col>
+                        <div className='d-inline-block mr-3'>
+                          <label>Gluten Free:</label>
+                          <input
+                            className='mx-2'
+                            type='checkbox'
+                            value={gfree}
+                            onChange={() => setGfree(!gfree)}
+                          ></input>
+                        </div>
                       )}
-                    </Form.Row>
-                    <Form.Group>
+                    </Form.Group>
+                    <Form.Group className='mb-1'>
                       <Form.Label>Special requests:</Form.Label>
                       <Form.Control
                         as='textarea'
                         rows={3}
                         value={request}
-                        onChange={(e) => setRequest(e.target)}
+                        onChange={(e) => setRequest(e.target.value)}
                       />
                     </Form.Group>
                   </Form>
                 ) : (
                   <Message variant='danger'> Out of Stock </Message>
                 )}
-                <div className='align-self-end'>
+                <div className='product-price'>
                   <h3 className='text-right'>
                     Price:
-                    <strong> {product.price} ILS </strong>
+                    <strong> {qty * product.price} ILS </strong>
                   </h3>
                   <Button
                     onClick={addToCartHandler}

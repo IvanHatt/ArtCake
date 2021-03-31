@@ -1,0 +1,31 @@
+.counter-container {
+  display: inline-block;
+}
+
+.btn-counter {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  padding: 0 0.6rem;
+}
+
+.btn-counter:disabled {
+  color: grey;
+}
+
+.btn-counter:disabled:active {
+  cursor: not-allowed;
+}
+
+.count {
+  display: inline-block;
+  text-align: center;
+  width: 1rem;
+}
+
+.count::selection {
+  background: none;
+}

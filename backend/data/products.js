@@ -12,6 +12,7 @@ const products = [
     veganOpt: true,
     glutenFreeOpt: false,
     price: 189.99,
+    inStock: false,
     rating: 4.5,
     numReviews: 4,
   },

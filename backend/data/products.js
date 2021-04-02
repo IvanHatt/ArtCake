@@ -305,4 +305,36 @@ const products = [
   },
 ]
 
+// NODE_ENV = development
+// PORT = 5000
+// MONGO_URI = mongodb+srv://IvanAdmin:xwQXso1873Hv8GgM@cluster0.5m4ly.mongodb.net/ArtCake?retryWrites=true&w=majority
+// JWT_SECRET = 121212hash
+// PAYPAL_CLIENT_ID = AY_Vg0Gmw3OYiSeHTJFpSn8mRH9h2hUKM8yMH8yLOhEMdlUJR2vI51z6bTsbNS3TfsjaFw0AJq_7BWaD
+
+// # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+// # dependencies
+// node_modules
+// node_modules/
+// /.pnp
+// .pnp.js
+
+// # testing
+// /coverage
+
+// # production
+// /frontend/build
+
+// # misc
+// .DS_Store
+// .env
+// .env.local
+// .env.development.local
+// .env.test.local
+// .env.production.local
+
+// npm-debug.log*
+// yarn-debug.log*
+// yarn-error.log*
+
 export default products

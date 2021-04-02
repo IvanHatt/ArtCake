@@ -1,7 +1,7 @@
 import React from 'react'
 // import { Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import { Container, Navbar, Nav, NavDropdown, Button } from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
 import { LinkContainer } from 'react-router-bootstrap'
 import { logout } from '../actions/userActions.js'
@@ -61,13 +61,35 @@ const Header = () => {
                 </Nav.Link>
               </LinkContainer>
               {userInfo ? (
-                <NavDropdown title={userInfo.name} id='username'>
+                <NavDropdown
+                  title='My profile'
+                  id='username'
+                  className='cart-dropdown'
+                >
                   <LinkContainer to='/profile'>
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <h3> {userInfo.name}</h3>
+                    </NavDropdown.Item>
                   </LinkContainer>
-                  <NavDropdown.Item onClick={logoutHandler}>
+                  <NavDropdown.Divider />
+                  <div className='user-details'>
+                    <span>
+                      <strong>Email: </strong> {userInfo.email}
+                    </span>
+                    <span>
+                      <strong>Shipping Address: </strong>
+                      {userInfo.shippingAddress ?? 'None'}
+                    </span>
+                  </div>
+                  <NavDropdown.Divider />
+                  <Button
+                    variant='primary'
+                    size='sm'
+                    onClick={logoutHandler}
+                    className='float-right mt-2'
+                  >
                     Logout
-                  </NavDropdown.Item>
+                  </Button>
                 </NavDropdown>
               ) : (
                 <LinkContainer to='/login'>

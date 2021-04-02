@@ -8,7 +8,6 @@ import {
   Col,
   ListGroup,
   Image,
-  Form,
   Button,
   Container,
 } from 'react-bootstrap'
@@ -44,9 +43,17 @@ const CartView = ({ match, location, history }) => {
     history.push('/login?redirect=shipping')
   }
 
+  // const totalItems = cartItems
+  //   ? cartItems.reduce((acc, item) => acc + Number(item.qty), 0)
+  //   : 0
+
+  const totalPrice = cartItems
+    ? cartItems.reduce((acc, item) => acc + Number(item.qty * item.price), 0)
+    : 0
+
   return (
     <Container>
-      <div className='card-container my-4'>
+      <div className='card-container my-4 cart-view-container'>
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <Message>
@@ -55,49 +62,57 @@ const CartView = ({ match, location, history }) => {
         ) : (
           <ListGroup variant='flush'>
             {cartItems.map((item) => (
-              <ListGroup.Item key={item.product}>
+              <ListGroup.Item key={item.product} bsPrefix='cart-items'>
                 <Row>
                   <Col md={2}>
                     <Image src={item.image} alt={item.name} fluid rounded />
                   </Col>
-                  <Col md={3}>
+                  <Col md={7} className='details'>
                     <Link to={`/product/${item.product}`}>
                       <h2> {item.name}</h2>
                     </Link>
-                    <Form.Label>Quantity:</Form.Label>
-                    <Form.Control
-                      as='select'
-                      value={item.qty}
-                      onChange={(e) =>
-                        dispatch(
-                          addToCart(item.product, Number(e.target.value))
-                        )
-                      }
-                    >
-                      <option value='1'>1</option>
-                      <option value='1'>2</option>
-                      <option value='1'>3</option>
-                      <option value='1'>4</option>
-                      <option value='1'>5</option>
-                    </Form.Control>
-                    <p>Vegan</p>
-                    <p>Gluten Free</p>
-                    <p>Special requests: None</p>
+                    <span>
+                      Quantity: <strong>{item.qty} </strong>
+                    </span>
+                    <span>
+                      Vegan:
+                      {item.vegan === 'true' ? (
+                        <i className='fas fa-check'></i>
+                      ) : (
+                        <i className='fas fa-times'></i>
+                      )}
+                    </span>
+                    <span>
+                      Gluten Free:
+                      {item.gfree === 'true' ? (
+                        <i className='fas fa-check'></i>
+                      ) : (
+                        <i className='fas fa-times'></i>
+                      )}
+                    </span>
+                    <span>Special requests: None</span>
                   </Col>
-                  <Col md={2}>${item.price}</Col>
-                  <Col md={2}>
+                  <Col md={2}>{item.qty * item.price} ILS</Col>
+                  <Col md={1}>
+                    <Button
+                      type='button'
+                      variant='light'
+                      onClick={() => alert('will edit item')}
+                    >
+                      <i className='fas fa-edit'></i>
+                    </Button>
                     <Button
                       type='button'
                       variant='light'
                       onClick={() => removeFromCartHandler(item.product)}
                     >
-                      <i className='fas fa-trash'></i>
+                      <i className='fas fa-trash-alt'></i>
                     </Button>
                   </Col>
                 </Row>
               </ListGroup.Item>
             ))}
-            <h3 className='text-right'> Total: 200ILS </h3>
+            <h3 className='text-right'> Total: {totalPrice} ILS </h3>
           </ListGroup>
         )}
       </div>
@@ -122,20 +137,22 @@ const CartView = ({ match, location, history }) => {
           </ListGroup>
         </Accordion>
       </div>
-      {!userInfo && (
-        <Link className='btn empty-button p-1' to='/'>
-          Checkout as a guest
-        </Link>
-      )}
+      <div>
+        {!userInfo && (
+          <Link className='btn empty-button p-1' to='/'>
+            Checkout as a guest
+          </Link>
+        )}
 
-      <Button
-        type='button'
-        className='btn btn-primary'
-        disabled={cartItems.length === 0}
-        onClick={checkoutHandler}
-      >
-        SignIn and Checkout
-      </Button>
+        <Button
+          type='button'
+          className='btn btn-primary'
+          disabled={cartItems.length === 0}
+          onClick={checkoutHandler}
+        >
+          SignIn and Checkout
+        </Button>
+      </div>
     </Container>
   )
 }

@@ -36,11 +36,11 @@ const CartView = ({ match, location, history }) => {
     }
   }, [dispatch, productId, qty, vegan, gfree])
 
-  const removeFromCartHandler = (id) => { 
+  const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id))
   }
 
-  const checkoutHandler = () => { 
+  const checkoutHandler = () => {
     userInfo
       ? history.push('/checkout?redirect=cart')
       : history.push('/login?redirect=cart')
@@ -159,8 +159,8 @@ const CartView = ({ match, location, history }) => {
       </div>
       <div>
         <Button
-          type='button'
-          className='btn btn-primary'
+          variant='primary'
+          className='btn'
           disabled={cartItems.length === 0}
           onClick={checkoutHandler}
         >

@@ -6,6 +6,7 @@ import Image from 'react-bootstrap/Image'
 import { LinkContainer } from 'react-router-bootstrap'
 import { logout } from '../actions/userActions.js'
 import logo from '../images/logoArtCake.png'
+import CartItems from './CartItems.jsx'
 // import SearchBox from './SearchBox'
 
 const Header = () => {
@@ -51,36 +52,22 @@ const Header = () => {
                 id='cart'
                 className='cart-dropdown'
               >
-                <NavDropdown.Item>
-                  <h3> My Cart </h3>
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <div className='user-details'>
-                  <span>
-                    <strong>Items: </strong> One
-                  </span>
-                  <span>
-                    <strong>Items: </strong> One
-                  </span>
-                  <span>
-                    <strong>Items: </strong> One
-                  </span>
-                </div>
-                <NavDropdown.Divider />
-                <Button
-                  variant='outline-primary'
-                  size='sm'
-                  className='float-left mt-2'
-                >
-                  To my Cart
-                </Button>
-                <Button
-                  variant='primary'
-                  size='sm'
-                  className='float-right mt-2'
-                >
-                  To Checkout
-                </Button>
+                <CartItems title='My Items'>
+                  <Button
+                    variant='outline-primary'
+                    size='sm'
+                    className='float-left mt-2'
+                  >
+                    To my Cart
+                  </Button>
+                  <Button
+                    variant='primary'
+                    size='sm'
+                    className='float-right mt-2'
+                  >
+                    To Checkout
+                  </Button>
+                </CartItems>
               </NavDropdown>
               {userInfo ? (
                 <NavDropdown

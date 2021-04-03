@@ -1,18 +1,19 @@
 import React from 'react'
 import { Button, Col, Row, Tabs, Tab } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import CartItems from '../components/CartItems'
 
 const CheckoutView = () => {
+  const dispatch = useDispatch()
+
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+
   return (
     <div className='container'>
       <Row>
         <Col md={4}>
-          <div className='card-container'>
-            <h2>My Cart</h2>
-            <hr />
-            <div style={{ minHeight: '200px' }}>Item 1</div>
-            <hr />
-            <h2 className='text-right'> Total: 500ILS</h2>
-          </div>
+          <CartItems title='My Cart' />
         </Col>
         <Col md={8}>
           <div className='card-container'>
@@ -28,7 +29,7 @@ const CheckoutView = () => {
               </Tab>
             </Tabs>
 
-            <Button variant='primary' className='mx-auto'>
+            <Button variant='primary' className='float-right'>
               Finish
             </Button>
           </div>

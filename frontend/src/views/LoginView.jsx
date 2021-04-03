@@ -60,7 +60,7 @@ const LoginView = ({ location, history }) => {
           </Button>
         </Form>
         <span className='float-right'>
-          Not a member yet?{' '}
+          Not a member yet?
           <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
             Register here
           </Link>

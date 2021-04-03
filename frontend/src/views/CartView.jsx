@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import * as QueryString from 'query-string'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  Accordion,
+  Tab,
+  Nav,
   Row,
   Col,
   ListGroup,
@@ -35,12 +36,14 @@ const CartView = ({ match, location, history }) => {
     }
   }, [dispatch, productId, qty, vegan, gfree])
 
-  const removeFromCartHandler = (id) => {
+  const removeFromCartHandler = (id) => { 
     dispatch(removeFromCart(id))
   }
 
-  const checkoutHandler = () => {
-    history.push('/login?redirect=shipping')
+  const checkoutHandler = () => { 
+    userInfo
+      ? history.push('/checkout?redirect=cart')
+      : history.push('/login?redirect=cart')
   }
 
   // const totalItems = cartItems
@@ -117,40 +120,51 @@ const CartView = ({ match, location, history }) => {
         )}
       </div>
 
-      <div className='card-container my-4'>
+      <div className='card-container info-menu my-4'>
         <h3>Important Info</h3>
-        <Accordion>
-          <ListGroup variant='flush'>
-            <Accordion.Toggle as={ListGroup.Item} variant='link' eventKey='0'>
-              Click me!
-            </Accordion.Toggle>
-            <Accordion.Collapse eventKey='0'>
-              <p>Hello! I'm the body</p>
-            </Accordion.Collapse>
-
-            <Accordion.Toggle as={ListGroup.Item} variant='link' eventKey='1'>
-              Click me!
-            </Accordion.Toggle>
-            <Accordion.Collapse eventKey='1'>
-              <p>Hello! I'm another body</p>
-            </Accordion.Collapse>
-          </ListGroup>
-        </Accordion>
+        <Tab.Container id='left-tabs-example' defaultActiveKey='first'>
+          <Row>
+            <Col sm={3}>
+              <Nav variant='pills' className='flex-column'>
+                <Nav.Item>
+                  <Nav.Link eventKey='first'>Shipping</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey='second'>Payment</Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Col>
+            <Col sm={9}>
+              <Tab.Content>
+                <Tab.Pane eventKey='first'>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Debitis vero reiciendis pariatur voluptatibus adipisci, qui
+                    assumenda, enim ipsam totam blanditiis velit dolor vitae
+                    saepe ipsum vel quibusdam! Minima, quaerat aut?
+                  </p>
+                </Tab.Pane>
+                <Tab.Pane eventKey='second'>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Placeat deleniti impedit maxime magnam expedita quis, neque
+                    dolorum explicabo ullam nam incidunt ex, cumque commodi
+                    earum. Incidunt iste pariatur libero? Deleniti!
+                  </p>
+                </Tab.Pane>
+              </Tab.Content>
+            </Col>
+          </Row>
+        </Tab.Container>
       </div>
       <div>
-        {!userInfo && (
-          <Link className='btn empty-button p-1' to='/'>
-            Checkout as a guest
-          </Link>
-        )}
-
         <Button
           type='button'
           className='btn btn-primary'
           disabled={cartItems.length === 0}
           onClick={checkoutHandler}
         >
-          SignIn and Checkout
+          {userInfo ? 'Checkout' : 'SignIn and Checkout'}
         </Button>
       </div>
     </Container>

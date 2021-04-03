@@ -19,6 +19,7 @@ import ProductEditView from './views/Admin Views/ProductEditView'
 import OrderListView from './views/Admin Views/OrderListView'
 import HomeView from './views/HomeView'
 import ContactView from './views/ContactView'
+import CheckoutView from './views/CheckoutView'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path='/login' component={LoginView} />
         <Route path='/order/:id' component={OrderView} />
         <Route path='/shipping' component={ShippingView} />
+        <Route path='/checkout' component={CheckoutView} />
         <Route path='/payment' component={PaymentView} />
         <Route path='/placeorder' component={PlaceOrderView} />
         <Route path='/product/:id' component={ProductView} />

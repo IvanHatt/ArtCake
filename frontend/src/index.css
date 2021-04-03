@@ -99,6 +99,7 @@ p {
   background: #eff7ff;
   border-radius: 20px;
   filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.25));
+  height: fit-content;
 }
 
 .card-container img {
@@ -165,4 +166,10 @@ label {
 .cart-view-container .details {
   display: flex;
   flex-direction: column;
+}
+
+/* Info Menu */
+
+.info-menu .nav-link.active {
+  background-color: #8CAFCE !important;
 }

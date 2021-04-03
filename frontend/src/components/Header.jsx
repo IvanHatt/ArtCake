@@ -6,7 +6,6 @@ import Image from 'react-bootstrap/Image'
 import { LinkContainer } from 'react-router-bootstrap'
 import { logout } from '../actions/userActions.js'
 import logo from '../images/logoArtCake.png'
-import cart from '../images/cart-icon.png'
 // import SearchBox from './SearchBox'
 
 const Header = () => {
@@ -46,23 +45,46 @@ const Header = () => {
               </LinkContainer>
             </Nav>
             <Nav className='ml-auto'>
-              <NavDropdown title='Cart' id='cart'>
-                <NavDropdown.Item>My Cart</NavDropdown.Item>
-                <LinkContainer to='/'>
-                  <NavDropdown.Item>Go to my cart</NavDropdown.Item>
-                </LinkContainer>
-                <LinkContainer to='/'>
-                  <NavDropdown.Item>To checkout</NavDropdown.Item>
-                </LinkContainer>
+              <NavDropdown
+                menualign='left'
+                title={<i className='fas fa-shopping-cart'></i>}
+                id='cart'
+                className='cart-dropdown'
+              >
+                <NavDropdown.Item>
+                  <h3> My Cart </h3>
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <div className='user-details'>
+                  <span>
+                    <strong>Items: </strong> One
+                  </span>
+                  <span>
+                    <strong>Items: </strong> One
+                  </span>
+                  <span>
+                    <strong>Items: </strong> One
+                  </span>
+                </div>
+                <NavDropdown.Divider />
+                <Button
+                  variant='outline-primary'
+                  size='sm'
+                  className='float-left mt-2'
+                >
+                  To my Cart
+                </Button>
+                <Button
+                  variant='primary'
+                  size='sm'
+                  className='float-right mt-2'
+                >
+                  To Checkout
+                </Button>
               </NavDropdown>
-              <LinkContainer to='/cart'>
-                <Nav.Link>
-                  <Image src={cart} className='cart-icon'></Image>
-                </Nav.Link>
-              </LinkContainer>
               {userInfo ? (
                 <NavDropdown
-                  title='My profile'
+                  title={<i className='fas fa-user'></i>}
                   id='username'
                   className='cart-dropdown'
                 >

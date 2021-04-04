@@ -5,14 +5,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import { removeFromCart } from '../actions/cartActions'
 
-const CartItems = ({ title, small, edit, children }) => {
+const CartItems = ({ title, small, edit }) => {
   const dispatch = useDispatch()
 
   const cart = useSelector((state) => state.cart)
   const { cartItems } = cart
 
-  const userLogin = useSelector((state) => state.userLogin)
-  const { userInfo } = userLogin
+  // const userLogin = useSelector((state) => state.userLogin)
+  // const { userInfo } = userLogin
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id))
@@ -39,7 +39,7 @@ const CartItems = ({ title, small, edit, children }) => {
                   <Col md={4}>
                     <Image src={item.image} alt={item.name} fluid rounded />
                   </Col>
-                  <Col md={8}>
+                  <Col md={8} className='px-0'>
                     <div className='d-flex justify-content-between'>
                       <Link to={`/product/${item.product}`}>
                         <h2> {item.name}</h2>
@@ -47,6 +47,7 @@ const CartItems = ({ title, small, edit, children }) => {
                       {edit ? (
                         <div>
                           <Button
+                            className='p-0'
                             type='button'
                             size={small ? 'sm' : 'lg'}
                             variant='light'
@@ -55,6 +56,7 @@ const CartItems = ({ title, small, edit, children }) => {
                             <i className='fas fa-edit'></i>
                           </Button>
                           <Button
+                            className='p-0'
                             type='button'
                             size={small ? 'sm' : 'lg'}
                             variant='light'
@@ -95,9 +97,6 @@ const CartItems = ({ title, small, edit, children }) => {
           </ListGroup>
         )}
       </Row>
-      {cartItems.length > 0 && (
-        <Row className='w-100 d-flex justify-content-between'>{children}</Row>
-      )}
     </div>
   )
 }

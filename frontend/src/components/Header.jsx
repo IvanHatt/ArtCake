@@ -1,7 +1,14 @@
 import React from 'react'
 // import { Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Container, Navbar, Nav, NavDropdown, Button } from 'react-bootstrap'
+import {
+  Container,
+  Navbar,
+  Nav,
+  NavDropdown,
+  Button,
+  Dropdown,
+} from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
 import { LinkContainer } from 'react-router-bootstrap'
 import { logout } from '../actions/userActions.js'
@@ -14,6 +21,9 @@ const Header = () => {
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
+
+  const cart = useSelector((state) => state.cart)
+  const { cartItems } = cart
 
   const logoutHandler = () => {
     dispatch(logout())
@@ -52,18 +62,26 @@ const Header = () => {
                 id='cart'
                 className='cart-dropdown'
               >
-                <CartItems title='My Items' edit small>
-                  <LinkContainer to='/cart' activeClassName='outline'>
-                    <Button variant='outline-primary' size='sm'>
-                      To my Cart
-                    </Button>
-                  </LinkContainer>
-                  <LinkContainer to='/checkout'>
-                    <Button variant='primary' size='sm'>
-                      Checkout
-                    </Button>
-                  </LinkContainer>
-                </CartItems>
+                <CartItems title='My Items' edit small />
+                {cartItems.length > 0 && (
+                  <Dropdown.Item
+                    as='div'
+                    className='w-100 d-flex justify-content-between'
+                  >
+                    <LinkContainer to='/cart' activeClassName='outline'>
+                      <Button variant='outline-primary' size='sm'>
+                        To my Cart
+                      </Button>
+                    </LinkContainer>
+                    <LinkContainer
+                      to={userInfo ? '/checkout' : '/login?redirect=checkout'}
+                    >
+                      <Button variant='primary' size='sm'>
+                        {userInfo ? 'Checkout' : 'SignIn and Checkout'}
+                      </Button>
+                    </LinkContainer>
+                  </Dropdown.Item>
+                )}
               </NavDropdown>
               {userInfo ? (
                 <NavDropdown

@@ -72,9 +72,14 @@ const ProductView = ({ history, match }) => {
 
   return (
     <Container>
-      <Link className='btn empty-button my-3' to='/shop'>
-        Go Back
-      </Link>
+      <Button
+        className='mb-3'
+        variant='outline-primary'
+        onClick={() => history.goBack()}
+      >
+        Back
+      </Button>
+
       {loading ? (
         <Loader />
       ) : error ? (

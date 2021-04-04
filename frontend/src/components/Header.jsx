@@ -47,26 +47,22 @@ const Header = () => {
             </Nav>
             <Nav className='ml-auto'>
               <NavDropdown
-                menualign='left'
+                drop='left'
                 title={<i className='fas fa-shopping-cart'></i>}
                 id='cart'
                 className='cart-dropdown'
               >
-                <CartItems title='My Items'>
-                  <Button
-                    variant='outline-primary'
-                    size='sm'
-                    className='float-left mt-2'
-                  >
-                    To my Cart
-                  </Button>
-                  <Button
-                    variant='primary'
-                    size='sm'
-                    className='float-right mt-2'
-                  >
-                    To Checkout
-                  </Button>
+                <CartItems title='My Items' edit small>
+                  <LinkContainer to='/cart' activeClassName='outline'>
+                    <Button variant='outline-primary' size='sm'>
+                      To my Cart
+                    </Button>
+                  </LinkContainer>
+                  <LinkContainer to='/checkout'>
+                    <Button variant='primary' size='sm'>
+                      Checkout
+                    </Button>
+                  </LinkContainer>
                 </CartItems>
               </NavDropdown>
               {userInfo ? (

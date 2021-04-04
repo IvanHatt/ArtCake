@@ -14,6 +14,7 @@ import {
 } from 'react-bootstrap'
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
+import CartItems from '../components/CartItems'
 
 const CartView = ({ match, location, history }) => {
   const productId = match.params.id
@@ -56,70 +57,9 @@ const CartView = ({ match, location, history }) => {
 
   return (
     <Container>
-      <div className='card-container my-4 cart-view-container'>
-        <h1>Shopping Cart</h1>
-        {cartItems.length === 0 ? (
-          <Message>
-            Your cart is empty <Link to='/'>Go Back</Link>
-          </Message>
-        ) : (
-          <ListGroup variant='flush'>
-            {cartItems.map((item) => (
-              <ListGroup.Item key={item.product} bsPrefix='cart-items'>
-                <Row>
-                  <Col md={2}>
-                    <Image src={item.image} alt={item.name} fluid rounded />
-                  </Col>
-                  <Col md={7} className='details'>
-                    <Link to={`/product/${item.product}`}>
-                      <h2> {item.name}</h2>
-                    </Link>
-                    <span>
-                      Quantity: <strong>{item.qty} </strong>
-                    </span>
-                    <span>
-                      Vegan:
-                      {item.vegan === 'true' ? (
-                        <i className='fas fa-check'></i>
-                      ) : (
-                        <i className='fas fa-times'></i>
-                      )}
-                    </span>
-                    <span>
-                      Gluten Free:
-                      {item.gfree === 'true' ? (
-                        <i className='fas fa-check'></i>
-                      ) : (
-                        <i className='fas fa-times'></i>
-                      )}
-                    </span>
-                    <span>Special requests: None</span>
-                  </Col>
-                  <Col md={2}>{item.qty * item.price} ILS</Col>
-                  <Col md={1}>
-                    <Button
-                      type='button'
-                      variant='light'
-                      onClick={() => alert('will edit item')}
-                    >
-                      <i className='fas fa-edit'></i>
-                    </Button>
-                    <Button
-                      type='button'
-                      variant='light'
-                      onClick={() => removeFromCartHandler(item.product)}
-                    >
-                      <i className='fas fa-trash-alt'></i>
-                    </Button>
-                  </Col>
-                </Row>
-              </ListGroup.Item>
-            ))}
-            <h3 className='text-right'> Total: {totalPrice} ILS </h3>
-          </ListGroup>
-        )}
+      <div className='card-container'>
+        <CartItems title='Shopping Cart' edit></CartItems>
       </div>
-
       <div className='card-container info-menu my-4'>
         <h3>Important Info</h3>
         <Tab.Container id='left-tabs-example' defaultActiveKey='first'>
@@ -157,7 +97,7 @@ const CartView = ({ match, location, history }) => {
           </Row>
         </Tab.Container>
       </div>
-      <div>
+      <div className='d-flex justify-content-end'>
         <Button
           variant='primary'
           className='btn'

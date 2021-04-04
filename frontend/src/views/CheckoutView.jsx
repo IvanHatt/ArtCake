@@ -13,7 +13,9 @@ const CheckoutView = () => {
     <div className='container'>
       <Row>
         <Col md={4}>
-          <CartItems title='My Cart' />
+          <div className='card-container'>
+            <CartItems title='My Order' small></CartItems>
+          </div>
         </Col>
         <Col md={8}>
           <div className='card-container'>

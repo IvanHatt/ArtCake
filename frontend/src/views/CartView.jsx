@@ -1,19 +1,9 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import * as QueryString from 'query-string'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  Tab,
-  Nav,
-  Row,
-  Col,
-  ListGroup,
-  Image,
-  Button,
-  Container,
-} from 'react-bootstrap'
-import Message from '../components/Message'
-import { addToCart, removeFromCart } from '../actions/cartActions'
+import { Tab, Nav, Row, Col, Button, Container } from 'react-bootstrap'
+import { addToCart } from '../actions/cartActions'
 import CartItems from '../components/CartItems'
 
 const CartView = ({ match, location, history }) => {
@@ -37,28 +27,16 @@ const CartView = ({ match, location, history }) => {
     }
   }, [dispatch, productId, qty, vegan, gfree])
 
-  const removeFromCartHandler = (id) => {
-    dispatch(removeFromCart(id))
-  }
-
   const checkoutHandler = () => {
     userInfo
       ? history.push('/checkout?redirect=cart')
       : history.push('/login?redirect=cart')
   }
 
-  // const totalItems = cartItems
-  //   ? cartItems.reduce((acc, item) => acc + Number(item.qty), 0)
-  //   : 0
-
-  const totalPrice = cartItems
-    ? cartItems.reduce((acc, item) => acc + Number(item.qty * item.price), 0)
-    : 0
-
   return (
     <Container>
       <div className='card-container'>
-        <CartItems title='Shopping Cart' edit></CartItems>
+        <CartItems title='Shopping Cart'></CartItems>
       </div>
       <div className='card-container info-menu my-4'>
         <h3>Important Info</h3>

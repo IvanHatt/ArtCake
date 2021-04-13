@@ -18,13 +18,9 @@ import {
   createProductReview,
 } from '../actions/productActions'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
-import Counter from '../components/Counter'
+import ProductForm from '../components/ProductForm'
 
 const ProductView = ({ history, match }) => {
-  const [qty, setQty] = useState(1)
-  const [vegan, setVegan] = useState(false)
-  const [gfree, setGfree] = useState(false)
-  const [request, setRequest] = useState('')
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState('')
 
@@ -54,7 +50,7 @@ const ProductView = ({ history, match }) => {
     }
   }, [dispatch, match, successProductReview, product._id])
 
-  const addToCartHandler = () => {
+  const addToCartHandler = (qty, vegan, gfree) => {
     history.push(
       `/cart/${match.params.id}?qty=${qty}&vegan=${vegan}&gfree=${gfree}`
     )
@@ -121,74 +117,15 @@ const ProductView = ({ history, match }) => {
                 <h1>{product.name}</h1>
                 <p>{product.description}</p>
                 <hr></hr>
-                {product.inStock ? (
-                  <Form>
-                    <Form.Group className='mb-1'>
-                      <Form.Label>Quantity: </Form.Label>
-                      <Counter
-                        min='1'
-                        max={product.category === 'Cake' ? '6' : '24'}
-                        handleQuantity={(nbr) => setQty(nbr)}
-                      />
-                    </Form.Group>
-                    <Form.Group className='mb-1'>
-                      {product.veganOpt && (
-                        <div className='d-inline-block mr-3'>
-                          <label>Vegan:</label>
-                          <input
-                            className='mx-2'
-                            type='checkbox'
-                            value={vegan}
-                            onChange={() => setVegan(!vegan)}
-                          ></input>
-                        </div>
-                      )}
-                      {product.glutenFreeOpt && (
-                        <div className='d-inline-block mr-3'>
-                          <label>Gluten Free:</label>
-                          <input
-                            className='mx-2'
-                            type='checkbox'
-                            value={gfree}
-                            onChange={() => setGfree(!gfree)}
-                          ></input>
-                        </div>
-                      )}
-                    </Form.Group>
-                    <Form.Group className='mb-1'>
-                      <Form.Label>Special requests:</Form.Label>
-                      <Form.Control
-                        as='textarea'
-                        rows={3}
-                        value={request}
-                        onChange={(e) => setRequest(e.target.value)}
-                      />
-                    </Form.Group>
-                  </Form>
-                ) : (
-                  <Message variant='danger'> Out of Stock </Message>
-                )}
-                <div className='product-price'>
-                  <h3 className='text-right'>
-                    Price:
-                    <strong> {qty * product.price} ILS </strong>
-                  </h3>
-                  <Button
-                    onClick={addToCartHandler}
-                    className='btn float-right'
-                    type='button'
-                    disabled={!product.inStock}
-                  >
-                    Add To Cart
-                  </Button>
-                </div>
+                {product.inStock ? <ProductForm product={product} addToCartHandler={addToCartHandler} ></ProductForm> : <div>Out of Stock</div> }
+                  
               </Col>
             </Row>
             <Row>
               <Col md={6}></Col>
             </Row>
           </div>
-
+{/* Reviews */}
           <Row className='d-none'>
             <Col
               md={6}

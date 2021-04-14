@@ -4,7 +4,7 @@ import Counter from './Counter'
 
 
 
-const ProductForm = ({ addToCartHandler, product }) => {
+const ProductForm = ({ addToCartHandler, product, forEdit }) => {
     const [qty, setQty] = useState(1)
     const [vegan, setVegan] = useState(false)
     const [gfree, setGfree] = useState(false)
@@ -65,8 +65,28 @@ const ProductForm = ({ addToCartHandler, product }) => {
                       />
                     </Form.Group>
                   </Form>
+                  {forEdit && (<div>
+                <Button
+                            className='p-0'
+                            type='button'
+                            size='sm'
+                            variant='light'
+                            onClick={() => alert('will edit item')}
+                          >
+                            <i className='fas fa-edit'></i>
+                          </Button>
+                          <Button
+                            className='p-0'
+                            type='button'
+                            size='sm'
+                            variant='light'
+                            onClick={() => alert('will edit item')}
+                          >
+                            <i className='fas fa-times'></i>
+                          </Button>
+                </div>)}
                 
-                <div className='product-price'>
+            { !forEdit &&   (<div className='product-price'>
                   <h3 className='text-right'>
                     Price:
                     <strong> {qty * product.price} ILS </strong>
@@ -79,7 +99,7 @@ const ProductForm = ({ addToCartHandler, product }) => {
                   >
                     Add To Cart
                   </Button>
-                </div>
+                </div>)}
         </>
     )
 }

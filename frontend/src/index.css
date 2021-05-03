@@ -11,6 +11,11 @@ main {
   min-height: 80vh;
 }
 
+a:hover,
+a.active {
+  text-decoration: none;
+}
+
 h3 {
   font-family: 'Baloo';
   font-style: normal;
@@ -138,11 +143,17 @@ label {
   border-radius: 20px;
 }
 
+.cart-dropdown.menu-narrow .dropdown-menu {
+  width: 20vw !important;
+}
+
 .cart-dropdown h1 {
   font-size: 30px;
   margin-bottom: 0;
 }
-.cart-dropdown .dropdown-item:hover {
+
+.cart-dropdown .dropdown-item:hover,
+.cart-dropdown .dropdown-item.active {
   background: none;
 }
 
@@ -151,7 +162,6 @@ label {
   display: block;
 }
 .cart-dropdown .user-details {
-  margin-left: 2rem;
   display: flex;
   flex-direction: column;
 }
@@ -175,6 +185,7 @@ label {
   padding: 0;
   transition: ease-in-out 0.2s;
 }
+
 .cart-items button:hover {
   transform: scale(1.2);
 }

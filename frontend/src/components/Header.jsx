@@ -87,11 +87,11 @@ const Header = () => {
                 <NavDropdown
                   title={<i className='fas fa-user'></i>}
                   id='username'
-                  className='cart-dropdown'
+                  className='cart-dropdown menu-narrow'
                 >
                   <LinkContainer to='/profile'>
                     <NavDropdown.Item>
-                      <h3> {userInfo.name}</h3>
+                      <h3 className='text-center'> {userInfo.name}</h3>
                     </NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Divider />

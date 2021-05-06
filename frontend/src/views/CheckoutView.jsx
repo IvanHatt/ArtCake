@@ -1,12 +1,13 @@
 import React from 'react'
 import { Button, Col, Row, Tabs, Tab } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import CartItems from '../components/CartItems'
 import Delivery from '../components/Delivery'
 
 const CheckoutView = () => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
+  console.log(userInfo)
 
   return (
     <div className='container'>

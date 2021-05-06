@@ -22,11 +22,13 @@ const orderSchema = mongoose.Schema(
         },
       },
     ],
+    delivery: {
+      type: String,
+      required: true,
+    },
     shippingAddress: {
-      address: { type: String, required: true },
-      apartment: { type: String },
-      city: { type: String, required: true },
-      addressComment: { type: String },
+      type: String,
+      default: 'Not applicable',
     },
     paymentMethod: {
       type: String,

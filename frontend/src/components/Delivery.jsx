@@ -1,14 +1,22 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
+import { saveDelivery } from '../actions/cartActions'
 import Message from './Message'
 import Shipping from './Shipping'
 
 const Delivery = () => {
   const [delivery, setDelivery] = useState('')
+  const dispatch = useDispatch()
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    dispatch(saveDelivery(delivery))
+  }
 
   return (
     <div>
-      <Form>
+      <Form onSubmit={submitHandler}>
         <p>Choose delivery method:</p>
         <Form.Group controlId='delivery'>
           <Form.Check

@@ -19,8 +19,8 @@ const CheckoutView = () => {
         </Col>
         <Col md={8}>
           <div className='card-container'>
-            <Tabs defaultActiveKey='shipping' id='uncontrolled-tab-example'>
-              <Tab eventKey='shipping' title='Delivery'>
+            <Tabs defaultActiveKey='delivery' id='tabs-checkout'>
+              <Tab eventKey='delivery' title='Delivery'>
                 <Delivery />
               </Tab>
               <Tab eventKey='details' title='Details'>

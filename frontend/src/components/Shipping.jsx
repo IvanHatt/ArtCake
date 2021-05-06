@@ -12,7 +12,7 @@ const Shipping = () => {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(saveShippingAddress({ address, city, apartment }))
+    dispatch(saveShippingAddress(`${address} ${apartment}, ${city}`))
     console.log('saved')
   }
 

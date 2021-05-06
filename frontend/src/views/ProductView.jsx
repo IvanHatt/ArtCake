@@ -117,15 +117,21 @@ const ProductView = ({ history, match }) => {
                 <h1>{product.name}</h1>
                 <p>{product.description}</p>
                 <hr></hr>
-                {product.inStock ? <ProductForm forEdit product={product} addToCartHandler={addToCartHandler} ></ProductForm> : <div>Out of Stock</div> }
-                  
+                {product.inStock ? (
+                  <ProductForm
+                    product={product}
+                    addToCartHandler={addToCartHandler}
+                  ></ProductForm>
+                ) : (
+                  <div>Out of Stock</div>
+                )}
               </Col>
             </Row>
             <Row>
               <Col md={6}></Col>
             </Row>
           </div>
-{/* Reviews */}
+          {/* Reviews */}
           <Row className='d-none'>
             <Col
               md={6}

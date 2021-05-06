@@ -19,22 +19,22 @@ const Footer = () => {
             <ul className='social-network d-flex justify-content-around'>
               <li>
                 <Link to='/' className='social-icon faFacebook'>
-                  <i class='fab fa-facebook'></i>
+                  <i className='fab fa-facebook'></i>
                 </Link>
               </li>
               <li>
                 <Link to='/' className='social-icon faInstagram'>
-                  <i class='fab fa-instagram'></i>
+                  <i className='fab fa-instagram'></i>
                 </Link>
               </li>
               <li>
                 <Link to='/' className='social-icon faLinkedin'>
-                  <i class='fab fa-linkedin'></i>
+                  <i className='fab fa-linkedin'></i>
                 </Link>
               </li>
               <li>
                 <Link to='/' className='social-icon faTwitter'>
-                  <i class='fab fa-twitter'></i>
+                  <i className='fab fa-twitter'></i>
                 </Link>
               </li>
             </ul>

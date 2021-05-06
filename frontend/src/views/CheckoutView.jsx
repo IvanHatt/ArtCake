@@ -3,6 +3,7 @@ import { Button, Col, Row, Tabs, Tab } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import CartItems from '../components/CartItems'
 import Delivery from '../components/Delivery'
+import UserDetailsForm from '../components/UserDetailsForm'
 
 const CheckoutView = () => {
   const userLogin = useSelector((state) => state.userLogin)
@@ -24,7 +25,7 @@ const CheckoutView = () => {
                 <Delivery />
               </Tab>
               <Tab eventKey='details' title='Details'>
-                <p>Details </p>
+                <UserDetailsForm />
               </Tab>
               <Tab eventKey='payment' title='Payment'>
                 <p>Payment</p>

@@ -1,11 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Col, Row, ListGroup, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import { removeFromCart } from '../actions/cartActions'
+import ProductForm from './ProductForm'
 
 const CartItems = ({ title, small, edit }) => {
+
+  const [update, setUpdate] = useState(false)
+
   const dispatch = useDispatch()
 
   const cart = useSelector((state) => state.cart)
@@ -51,7 +55,7 @@ const CartItems = ({ title, small, edit }) => {
                             type='button'
                             size={small ? 'sm' : 'lg'}
                             variant='light'
-                            onClick={() => alert('will edit item')}
+                            onClick={()=> setUpdate(!update)}
                           >
                             <i className='fas fa-edit'></i>
                           </Button>
@@ -67,7 +71,8 @@ const CartItems = ({ title, small, edit }) => {
                         </div>
                       ) : null}
                     </div>
-                    <ul className={`details ${small ? 'small' : ''}`}>
+                { update ? <ProductForm forEdit product={item}></ProductForm> : 
+                <ul className={`details ${small ? 'small' : ''}`}>
                       <li>Quantity: {item.qty}</li>
                       <li>Price: {item.qty * item.price} ILS</li>
                       <li>
@@ -87,7 +92,7 @@ const CartItems = ({ title, small, edit }) => {
                         )}
                       </li>
                       <li>Special requests: None</li>
-                    </ul>
+                    </ul>}
                   </Col>
                 </Row>
               </ListGroup.Item>

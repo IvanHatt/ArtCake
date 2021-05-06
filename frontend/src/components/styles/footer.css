@@ -1,0 +1,48 @@
+.main-footer {
+  background: url('../../images/bcg-wave-up.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 250px;
+  margin-top: -10vh;
+}
+
+.main-footer .footer-content {
+  padding-top: 5%;
+}
+
+ul.social-network {
+  list-style: none;
+}
+
+ul.social-network li {
+  margin-right: 10px;
+  font-size: 2rem;
+}
+
+.social-icon:hover i {
+  -moz-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -ms--transform: rotate(360deg);
+  transform: rotate(360deg);
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.faFacebook {
+  color: #4267b2;
+}
+
+.faInstagram {
+  color: #bc2a8d;
+}
+
+.faLinkedin {
+  color: #0072b1;
+}
+
+.faTwitter {
+  color: #1da1f2;
+}

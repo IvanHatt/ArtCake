@@ -91,7 +91,10 @@ const Header = () => {
                 >
                   <LinkContainer to='/profile'>
                     <NavDropdown.Item>
-                      <h3 className='text-center'> {userInfo.name}</h3>
+                      <h2 className='text-center mb-0'>
+                        {' '}
+                        Welcome {userInfo.name} !
+                      </h2>
                     </NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Divider />

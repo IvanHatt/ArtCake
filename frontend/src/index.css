@@ -219,3 +219,11 @@ label {
 .info-menu .nav-link.active {
   background-color: #8cafce !important;
 }
+
+/* Checkout */
+
+.checkout .disabled {
+  color: grey !important;
+  cursor: not-allowed !important;
+  pointer-events: initial !important;
+}

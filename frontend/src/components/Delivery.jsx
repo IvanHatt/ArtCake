@@ -3,15 +3,16 @@ import { Form, Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { saveDelivery } from '../actions/cartActions'
 import Message from './Message'
-import Shipping from './Shipping'
+// import Shipping from './Shipping'
 
-const Delivery = () => {
+const Delivery = ({ nextStep }) => {
   const [delivery, setDelivery] = useState('')
   const dispatch = useDispatch()
 
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(saveDelivery(delivery))
+    delivery === 'pickup' ? nextStep('details') : nextStep('shipping')
   }
 
   return (
@@ -41,12 +42,16 @@ const Delivery = () => {
             value='shipping'
             onChange={(e) => setDelivery(e.target.value)}
           />
+          {delivery && delivery === 'shipping' && (
+            <Message>
+              <p>Shipping has an extra cost of 50 ils</p>
+            </Message>
+          )}
         </Form.Group>
         <Button variant='primary' type='submit'>
-          Continue
+          {delivery === 'shipping' ? 'Set shipping address' : 'Continue'}
         </Button>
       </Form>
-      {delivery && delivery === 'shipping' && <Shipping />}
     </div>
   )
 }

@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { saveShippingAddress } from '../actions/cartActions'
-import Message from './Message'
 
 const Shipping = () => {
   const [address, setAddress] = useState('')
@@ -18,9 +17,6 @@ const Shipping = () => {
 
   return (
     <Form onSubmit={submitHandler}>
-      <Message>
-        <p>Shipping has an extra cost of 50 ils</p>
-      </Message>
       <Form.Group controlId='address'>
         <Form.Label>Address</Form.Label>
         <Form.Control

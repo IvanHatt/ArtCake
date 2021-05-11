@@ -12,7 +12,7 @@ const Delivery = ({ nextStep }) => {
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(saveDelivery(delivery))
-    delivery === 'pickup' ? nextStep('details') : nextStep('shipping')
+    delivery === 'pickup' ? nextStep('payment') : nextStep('shipping')
   }
 
   return (
@@ -48,7 +48,7 @@ const Delivery = ({ nextStep }) => {
             </Message>
           )}
         </Form.Group>
-        <Button variant='primary' type='submit'>
+        <Button variant='primary' type='submit' size='sm'>
           {delivery === 'shipping' ? 'Set shipping address' : 'Continue'}
         </Button>
       </Form>

@@ -43,7 +43,7 @@ const UserDetailsForm = () => {
         ></Form.Control>
       </Form.Group>
       <Button type='submit' variant='primary' className='mt-4'>
-        Done
+        Next
       </Button>
     </Form>
   )

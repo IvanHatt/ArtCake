@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Container,
-   Button,
+  Button,
   Row,
   Col,
   ListGroup,
@@ -11,21 +11,24 @@ import {
 } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
-import CheckoutSteps from '../components/CheckoutSteps'
 import { createOrder } from '../actions/orderActions'
 import { USER_DETAILS_RESET } from '../constants/userConstants'
 import { ORDER_CREATE_RESET } from '../constants/orderConstants'
+import CartItems from '../components/CartItems'
 
 const PlaceOrderView = ({ history }) => {
   const dispatch = useDispatch()
-
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
   const cart = useSelector((state) => state.cart)
+  const deliveryType = cart.delivery
 
-  if (!cart.shippingAddress.address) {
-    history.push('/shipping')
+  if (!cart.delivery) {
+    history.push('/checkout?step=delivery')
   } else if (!cart.paymentMethod) {
-    history.push('/payment')
+    history.push('/checkout?step=payment')
   }
+
   //   Calculate prices
   // addDecimals is just a fucntion to make numbers appear with 2 decimals even if it's 12.5
   const addDecimals = (num) => {
@@ -35,12 +38,11 @@ const PlaceOrderView = ({ history }) => {
   cart.itemsPrice = addDecimals(
     cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
   )
-  cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 50)
-  cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice).toFixed(2)))
+
+  cart.shippingPrice = addDecimals(cart.itemsPrice > 500 ? 0 : 50)
+
   cart.totalPrice = (
-    Number(cart.itemsPrice) +
-    Number(cart.shippingPrice) +
-    Number(cart.taxPrice)
+    Number(cart.itemsPrice) + Number(cart.shippingPrice)
   ).toFixed(2)
 
   const orderCreate = useSelector((state) => state.orderCreate)
@@ -65,7 +67,6 @@ const PlaceOrderView = ({ history }) => {
         paymentMethod: cart.paymentMethod,
         itemsPrice: cart.itemsPrice,
         shippingPrice: cart.shippingPrice,
-        taxPrice: cart.taxPrice,
         totalPrice: cart.totalPrice,
       })
     )
@@ -73,103 +74,37 @@ const PlaceOrderView = ({ history }) => {
 
   return (
     <Container>
-      <CheckoutSteps step1 step2 step3 step4 />
       <Row>
-        <Col md={8}>
-          <ListGroup variant='flush'>
-            <ListGroup.Item>
-              <h2>Shipping</h2>
-              <p>
-                <strong>Address:</strong>
-                {cart.shippingAddress.address}, {cart.shippingAddress.city}
-                {cart.shippingAddress.postalCode},{cart.shippingAddress.country}
-              </p>
-            </ListGroup.Item>
-
-            <ListGroup.Item>
-              <h2>Payment Method</h2>
-              <strong>Method: </strong>
-              {cart.paymentMethod}
-            </ListGroup.Item>
-
-            <ListGroup.Item>
-              <h2>Order Items</h2>
-              {cart.cartItems.length === 0 ? (
-                <Message>Your cart is empty</Message>
-              ) : (
-                <ListGroup variant='flush'>
-                  {cart.cartItems.map((item, index) => (
-                    <ListGroup.Item key={index}>
-                      <Row>
-                        <Col md={1}>
-                          <Image
-                            src={item.image}
-                            alt={item.name}
-                            fluid
-                            rounded
-                          />
-                        </Col>
-                        <Col>
-                          <Link to={`/product/${item.product}`}>
-                            {item.name}
-                          </Link>
-                        </Col>
-                        <Col md={4}>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
-                  ))}
-                </ListGroup>
-              )}
-            </ListGroup.Item>
-          </ListGroup>
-        </Col>
         <Col md={4}>
-          <Card>
-            <ListGroup variant='flush'>
-              <ListGroup.Item>
-                <h2>Order Summary</h2>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Row>
-                  <Col>Items</Col>
-                  <Col>${cart.itemsPrice}</Col>
-                </Row>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Row>
-                  <Col>Shipping</Col>
-                  <Col>${cart.shippingPrice}</Col>
-                </Row>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Row>
-                  <Col>Tax</Col>
-                  <Col>${cart.taxPrice}</Col>
-                </Row>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Row>
-                  <Col>Total</Col>
-                  <Col>${cart.totalPrice}</Col>
-                </Row>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                {error && <Message variant='danger'>{error}</Message>}
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Button
-                  type='button'
-                  className='btn-block'
-                  disabled={cart.cartItems.length === 0}
-                  onClick={placeOrderHandler}
-                >
-                  Place Order
-                </Button>
-              </ListGroup.Item>
-            </ListGroup>
-          </Card>
+          <div className='card-container'>
+            <h2> Order details</h2>
+            <p>
+              <strong>Name: </strong> {userInfo.name}
+            </p>
+            <p>
+              <strong>Email: </strong> {userInfo.email}
+            </p>
+            {cart.delivery && (
+              <p>
+                <strong> Delivery: </strong>
+                {deliveryType === 'pickup'
+                  ? 'Self Pickup from store'
+                  : 'Shipping'}
+              </p>
+            )}
+            {deliveryType && deliveryType === 'shipping' && (
+              <p>
+                <strong>Address: </strong> {cart.shippingAddress}
+              </p>
+            )}
+            <p>
+              <strong>Items: </strong>
+            </p>
+            <CartItems small></CartItems>
+          </div>
+        </Col>
+        <Col md={8}>
+          <div className='card-container'></div>
         </Col>
       </Row>
     </Container>

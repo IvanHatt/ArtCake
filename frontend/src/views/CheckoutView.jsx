@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Col, Row, Tabs, Tab } from 'react-bootstrap'
+import { Button, Col, Row, Tabs, Tab, ListGroup } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import * as QueryString from 'query-string'
 import CartItems from '../components/CartItems'
 import Delivery from '../components/Delivery'
-import UserDetailsForm from '../components/UserDetailsForm'
 import Shipping from '../components/Shipping'
+import Payment from '../components/Payment'
 
 const CheckoutView = ({ location, history }) => {
   const userLogin = useSelector((state) => state.userLogin)
 
-  const deliveryType = useSelector((state) => state.cart.delivery)
+  const { delivery: deliveryType, shippingAddress } = useSelector(
+    (state) => state.cart
+  )
 
   const { userInfo } = userLogin
   console.log(userInfo)
@@ -25,7 +27,11 @@ const CheckoutView = ({ location, history }) => {
   }, [location.search])
 
   const nextStep = (step) => {
-    history.push(`checkout?step=${step}`)
+    if (step === 'finish') {
+      history.push('/placeorder')
+    } else {
+      history.push(`checkout?step=${step}`)
+    }
   }
 
   return (
@@ -33,7 +39,30 @@ const CheckoutView = ({ location, history }) => {
       <Row>
         <Col md={4}>
           <div className='card-container'>
-            <CartItems title='My Order' small></CartItems>
+            <h2> Order details</h2>
+            <p>
+              <strong>Name: </strong> {userInfo.name}
+            </p>
+            <p>
+              <strong>Email: </strong> {userInfo.email}
+            </p>
+            {deliveryType && (
+              <p>
+                <strong> Delivery: </strong>
+                {deliveryType === 'pickup'
+                  ? 'Self Pickup from store'
+                  : 'Shipping'}
+              </p>
+            )}
+            {deliveryType && deliveryType === 'shipping' && (
+              <p>
+                <strong>Address: </strong> {shippingAddress}
+              </p>
+            )}
+            <p>
+              <strong>Items: </strong>
+            </p>
+            <CartItems small></CartItems>
           </div>
         </Col>
         <Col md={8}>
@@ -44,19 +73,38 @@ const CheckoutView = ({ location, history }) => {
               onSelect={(k) => nextStep(k)}
               id='tabs-checkout'
             >
-              <Tab eventKey='delivery' title='Delivery'>
+              <Tab
+                eventKey='delivery'
+                title={
+                  deliveryType ? (
+                    <span>
+                      Details <i className='fas fa-check text-success'></i>
+                    </span>
+                  ) : (
+                    <span>Details</span>
+                  )
+                }
+              >
                 <Delivery nextStep={nextStep} />
               </Tab>
               {deliveryType === 'shipping' ? (
-                <Tab eventKey='shipping' title='Address'>
+                <Tab
+                  eventKey='shipping'
+                  title={
+                    shippingAddress ? (
+                      <span>
+                        Address <i className='fas fa-check text-success'></i>
+                      </span>
+                    ) : (
+                      <span>Address</span>
+                    )
+                  }
+                >
                   <Shipping nextStep={nextStep} />
                 </Tab>
               ) : null}
-              <Tab eventKey='details' title='Details'>
-                <UserDetailsForm />
-              </Tab>
-              <Tab eventKey='payment' title='Payment'>
-                <p>Payment</p>
+              <Tab eventKey='payment' title='Payment Method'>
+                <Payment nextStep={nextStep} />
               </Tab>
             </Tabs>
 

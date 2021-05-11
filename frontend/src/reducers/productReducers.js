@@ -2,6 +2,9 @@ import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_FAIL,
+  TOPPRODUCT_LIST_REQUEST,
+  TOPPRODUCT_LIST_SUCCESS,
+  TOPPRODUCT_LIST_FAIL,
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
@@ -34,6 +37,22 @@ export const productListReducer = (state = { products: [] }, action) => {
         page: action.payload.page,
       }
     case PRODUCT_LIST_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+export const topProductListReducer = (state = { topProducts: [] }, action) => {
+  switch (action.type) {
+    case TOPPRODUCT_LIST_REQUEST:
+      return { loading: true, topProducts: [] }
+    case TOPPRODUCT_LIST_SUCCESS:
+      return {
+        loading: false,
+        topProducts: action.payload,
+      }
+    case TOPPRODUCT_LIST_FAIL:
       return { loading: false, error: action.payload }
     default:
       return state

@@ -1,47 +1,47 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Container, Carousel } from 'react-bootstrap'
+import { getTopProducts } from '../actions/productActions.js'
+import Message from '../components/Message'
+import Loader from '../components/Loader'
 import './styles/topten.css'
 
 const Topten = () => {
+  const topProductList = useSelector((state) => state.topProductList)
+  const { loading, error, topProducts } = topProductList
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getTopProducts())
+  }, [dispatch])
+
   return (
     <div className='topten'>
       <Container className='topten-container'>
-        <h1 className='text-center'>Our favorite cakes</h1>
-        <Carousel interval={null}>
-          <Carousel.Item>
-            <div className='topten-img-container'>
-              <img
-                className='topten-img'
-                src='/images/cake-crema.png'
-                alt='First slide'
-              />
-              <h3>Cream Cake</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </div>
-          </Carousel.Item>
-          <Carousel.Item>
-            <div className='topten-img-container'>
-              <img
-                className='topten-img'
-                src='/images/cake-chocolate.png'
-                alt='Second slide'
-              />
-              <h3>Chocolate Cake</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-          </Carousel.Item>
-          <Carousel.Item>
-            <div className='topten-img-container'>
-              <img
-                className='topten-img'
-                src='/images/cake-frutosrojos.png'
-                alt='Third slide'
-              />
-              <h3>Berries Cake</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-          </Carousel.Item>
-        </Carousel>
+        <h1 className='text-center'>Our Top Five </h1>
+        <p className='text-center'>According to our customers' reviews</p>
+        {loading ? (
+          <Loader />
+        ) : error ? (
+          <Message variant='danger'>{error}</Message>
+        ) : (
+          <Carousel interval={null} indicators={false}>
+            {topProducts.map((product) => (
+              <Carousel.Item>
+                <div className='topten-img-container'>
+                  <img
+                    className='topten-img'
+                    src={product.image}
+                    alt={product.name}
+                  />
+                  <h3 className='mt-3'>{product.name}</h3>
+                  <h2>Rating: {product.rating}</h2>
+                </div>
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        )}
       </Container>
     </div>
   )

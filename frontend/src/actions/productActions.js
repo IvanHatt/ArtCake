@@ -3,6 +3,9 @@ import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_FAIL,
+  TOPPRODUCT_LIST_REQUEST,
+  TOPPRODUCT_LIST_SUCCESS,
+  TOPPRODUCT_LIST_FAIL,
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
@@ -39,6 +42,27 @@ export const listProducts = (keyword = '', pageNumber = '') => async (
   } catch (error) {
     dispatch({
       type: PRODUCT_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+export const getTopProducts = () => async (dispatch) => {
+  try {
+    dispatch({ type: TOPPRODUCT_LIST_REQUEST })
+
+    const { data } = await axios.get('/api/products/top')
+
+    dispatch({
+      type: TOPPRODUCT_LIST_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: TOPPRODUCT_LIST_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

@@ -26,8 +26,9 @@
 }
 
 .topten-img {
-  width: 400px;
-  filter: drop-shadow(0px 60px 20px rgba(0, 0, 0, 0.3));
+  height: 40vh;
+  filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.3));
+  border-radius: 20px;
 }
 
 .topten-img-container {

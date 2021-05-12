@@ -11,6 +11,7 @@ import {
 } from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
 import { LinkContainer } from 'react-router-bootstrap'
+import { HashLink } from 'react-router-hash-link'
 import { logout } from '../actions/userActions.js'
 import logo from '../images/logoArtCake.png'
 import CartItems from './CartItems.jsx'
@@ -45,9 +46,9 @@ const Header = () => {
               <LinkContainer to='/'>
                 <Nav.Link>Home</Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/about'>
-                <Nav.Link>About</Nav.Link>
-              </LinkContainer>
+              <HashLink to='/#about' className='nav-link'>
+                About
+              </HashLink>
               <LinkContainer to='/contact'>
                 <Nav.Link>Contact</Nav.Link>
               </LinkContainer>

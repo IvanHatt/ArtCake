@@ -89,8 +89,9 @@ p {
 
 .cake-bcg {
   height: 85vh;
+  margin-bottom: -9vh;
   display: grid;
-  place-items: center;
+  place-items: baseline;
   background-image: url('./images/bcg-hero.png'),
     url('./images/cupcake-bcg3.png');
   background-position: 110% 100%, 0% 100%;
@@ -101,7 +102,7 @@ p {
 /* general container */
 .card-container {
   padding: 20px;
-  background: #eff7ff;
+  background: #eff7ff !important;
   border-radius: 20px;
   filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.25));
   height: fit-content;
@@ -226,4 +227,17 @@ label {
   color: grey !important;
   cursor: not-allowed !important;
   pointer-events: initial !important;
+}
+
+/* Product details  */
+
+.product-details {
+  font-size: small;
+  padding: 10px;
+}
+
+/* Pagination  */
+
+.pagination {
+  justify-content: center;
 }

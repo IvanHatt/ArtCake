@@ -1,13 +1,16 @@
 .about {
-  min-height: 886px;
+  min-height: 100vh;
+  max-height: fit-content;
   display: grid;
-  place-items: center;
+  align-items: baseline;
   background-image: url('../../images//about-bcg.jpg');
   background-size: cover;
+  margin-bottom: -15vh;
 }
 
 .about-container {
   height: 100%;
+  margin-top: 5vh;
   padding: 3rem;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(30px);

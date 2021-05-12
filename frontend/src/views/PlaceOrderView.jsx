@@ -1,16 +1,9 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import {
-  Container,
-  Button,
-  Row,
-  Col,
-  ListGroup,
-  Image,
-  Card,
-} from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
+import Loader from '../components/Loader'
 import { createOrder } from '../actions/orderActions'
 import { USER_DETAILS_RESET } from '../constants/userConstants'
 import { ORDER_CREATE_RESET } from '../constants/orderConstants'
@@ -21,7 +14,6 @@ const PlaceOrderView = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
   const cart = useSelector((state) => state.cart)
-  const deliveryType = cart.delivery
 
   if (!cart.delivery) {
     history.push('/checkout?step=delivery')
@@ -29,17 +21,13 @@ const PlaceOrderView = ({ history }) => {
     history.push('/checkout?step=payment')
   }
 
-  //   Calculate prices
-  // addDecimals is just a fucntion to make numbers appear with 2 decimals even if it's 12.5
-  const addDecimals = (num) => {
-    return (Math.round(num * 100) / 100).toFixed(2)
-  }
-
-  cart.itemsPrice = addDecimals(
-    cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+  cart.itemsPrice = cart.cartItems.reduce(
+    (acc, item) => acc + item.price * item.qty,
+    0
   )
 
-  cart.shippingPrice = addDecimals(cart.itemsPrice > 500 ? 0 : 50)
+  cart.shippingPrice =
+    cart.delivery === 'shipping' ? (cart.itemsPrice > 500 ? 0 : 50) : '0'
 
   cart.totalPrice = (
     Number(cart.itemsPrice) + Number(cart.shippingPrice)
@@ -50,7 +38,19 @@ const PlaceOrderView = ({ history }) => {
 
   //if everything ok, state success, redirect to /order/${order._id}
   // order._id doesnt exist yet, so i cannot add it to the [ ] below, so I disable the eslint notification
+
   useEffect(() => {
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        delivery: cart.delivery,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        totalPrice: cart.totalPrice,
+      })
+    )
     if (success) {
       history.push(`/order/${order._id}`)
       dispatch({ type: USER_DETAILS_RESET })
@@ -59,54 +59,13 @@ const PlaceOrderView = ({ history }) => {
     // eslint-disable-next-line
   }, [history, success])
 
-  const placeOrderHandler = () => {
-    dispatch(
-      createOrder({
-        orderItems: cart.cartItems,
-        shippingAddress: cart.shippingAddress,
-        paymentMethod: cart.paymentMethod,
-        itemsPrice: cart.itemsPrice,
-        shippingPrice: cart.shippingPrice,
-        totalPrice: cart.totalPrice,
-      })
-    )
-  }
-
   return (
     <Container>
-      <Row>
-        <Col md={4}>
-          <div className='card-container'>
-            <h2> Order details</h2>
-            <p>
-              <strong>Name: </strong> {userInfo.name}
-            </p>
-            <p>
-              <strong>Email: </strong> {userInfo.email}
-            </p>
-            {cart.delivery && (
-              <p>
-                <strong> Delivery: </strong>
-                {deliveryType === 'pickup'
-                  ? 'Self Pickup from store'
-                  : 'Shipping'}
-              </p>
-            )}
-            {deliveryType && deliveryType === 'shipping' && (
-              <p>
-                <strong>Address: </strong> {cart.shippingAddress}
-              </p>
-            )}
-            <p>
-              <strong>Items: </strong>
-            </p>
-            <CartItems small></CartItems>
-          </div>
-        </Col>
-        <Col md={8}>
-          <div className='card-container'></div>
-        </Col>
-      </Row>
+      {error && (
+        <Message error>
+          <p>{error}</p>
+        </Message>
+      )}
     </Container>
   )
 }

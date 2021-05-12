@@ -1,48 +1,15 @@
 import React, { useState } from 'react'
 import { Form, Button, Col } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { savePaymentMethod } from '../actions/cartActions'
-import { createOrder } from '../actions/orderActions'
 
 const Payment = ({ nextStep }) => {
-  const cart = useSelector((state) => state.cart)
   const [paymentMethod, setPaymentMethod] = useState('PayPal')
   const dispatch = useDispatch()
-
-  //   Calculate prices
-  // addDecimals is just a fucntion to make numbers appear with 2 decimals even if it's 12.5
-  const addDecimals = (num) => {
-    return (Math.round(num * 100) / 100).toFixed(2)
-  }
-
-  cart.itemsPrice = addDecimals(
-    cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
-  )
-
-  cart.shippingPrice =
-    cart.delivery === 'shipping'
-      ? addDecimals(cart.itemsPrice > 500 ? 0 : 50)
-      : '0'
-
-  cart.totalPrice = (
-    Number(cart.itemsPrice) + Number(cart.shippingPrice)
-  ).toFixed(2)
 
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(savePaymentMethod(paymentMethod))
-    dispatch(
-      createOrder({
-        orderItems: cart.cartItems,
-        delivery: cart.delivery,
-        shippingAddress: cart.shippingAddress,
-        paymentMethod: cart.paymentMethod,
-        itemsPrice: cart.itemsPrice,
-        shippingPrice: cart.shippingPrice,
-        totalPrice: cart.totalPrice,
-      })
-    )
-    window.alert('saved')
   }
   return (
     <>
@@ -81,7 +48,7 @@ const Payment = ({ nextStep }) => {
         </Form.Group>
 
         <Button type='submit' variant='primary' size='sm'>
-          Place order and pay
+          Select Method
         </Button>
       </Form>
     </>

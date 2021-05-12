@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Col, Row, ListGroup, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,14 +6,13 @@ import Message from '../components/Message'
 import { removeFromCart } from '../actions/cartActions'
 import ProductForm from './ProductForm'
 
-const CartItems = ({ title, small, edit }) => {
+const CartItems = ({ title, small, edit, ...props }) => {
+  const dispatch = useDispatch()
 
   const [update, setUpdate] = useState(false)
 
-  const dispatch = useDispatch()
-
   const cart = useSelector((state) => state.cart)
-  const { cartItems } = cart
+  const { cartItems, delivery } = cart
 
   // const userLogin = useSelector((state) => state.userLogin)
   // const { userInfo } = userLogin
@@ -22,9 +21,13 @@ const CartItems = ({ title, small, edit }) => {
     dispatch(removeFromCart(id))
   }
 
-  const totalPrice = cartItems
-    ? cartItems.reduce((acc, item) => acc + Number(item.qty * item.price), 0)
-    : 0
+  const itemsPrice = Number(
+    cartItems
+      ? cartItems.reduce((acc, item) => acc + Number(item.qty * item.price), 0)
+      : 0
+  )
+
+  const shippingPrice = Number(itemsPrice > 500 ? '0' : '50')
 
   return (
     <div className='container cart-items-container'>
@@ -55,7 +58,7 @@ const CartItems = ({ title, small, edit }) => {
                             type='button'
                             size={small ? 'sm' : 'lg'}
                             variant='light'
-                            onClick={()=> setUpdate(!update)}
+                            onClick={() => setUpdate(!update)}
                           >
                             <i className='fas fa-edit'></i>
                           </Button>
@@ -71,34 +74,45 @@ const CartItems = ({ title, small, edit }) => {
                         </div>
                       ) : null}
                     </div>
-                { update ? <ProductForm forEdit product={item}></ProductForm> : 
-                <ul className={`details ${small ? 'small' : ''}`}>
-                      <li>Quantity: {item.qty}</li>
-                      <li>Price: {item.qty * item.price} ILS</li>
-                      <li>
-                        Vegan:{' '}
-                        {item.vegan === 'true' ? (
-                          <i className='fas fa-check'></i>
-                        ) : (
-                          <i className='fas fa-times'></i>
-                        )}
-                      </li>
-                      <li>
-                        Gluten Free:{' '}
-                        {item.gfree === 'true' ? (
-                          <i className='fas fa-check'></i>
-                        ) : (
-                          <i className='fas fa-times'></i>
-                        )}
-                      </li>
-                      <li>Special requests: None</li>
-                    </ul>}
+                    {update ? (
+                      <ProductForm forEdit product={item}></ProductForm>
+                    ) : (
+                      <ul className={`details ${small ? 'small' : ''}`}>
+                        <li>Quantity: {item.qty}</li>
+                        <li>Price: {item.qty * item.price} ILS</li>
+                        <li>
+                          Vegan:{' '}
+                          {item.vegan === 'true' ? (
+                            <i className='fas fa-check'></i>
+                          ) : (
+                            <i className='fas fa-times'></i>
+                          )}
+                        </li>
+                        <li>
+                          Gluten Free:{' '}
+                          {item.gfree === 'true' ? (
+                            <i className='fas fa-check'></i>
+                          ) : (
+                            <i className='fas fa-times'></i>
+                          )}
+                        </li>
+                      </ul>
+                    )}
                   </Col>
                 </Row>
               </ListGroup.Item>
             ))}
             <hr className='w-100'></hr>
-            <h2 className='text-right'> Total: {totalPrice} ILS </h2>
+            {props.showShipping && delivery && delivery === 'shipping' ? (
+              <>
+                <h2 className='text-right'>
+                  Total: {itemsPrice + shippingPrice} ILS{' '}
+                </h2>
+                <small className='text-right'>(50 ils shipping included)</small>
+              </>
+            ) : (
+              <h2 className='text-right'>Total: {itemsPrice} ILS </h2>
+            )}
           </ListGroup>
         )}
       </Row>

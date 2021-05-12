@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Col, Row, Tabs, Tab, ListGroup } from 'react-bootstrap'
+import { Button, Col, Row, Tabs, Tab } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import * as QueryString from 'query-string'
 import CartItems from '../components/CartItems'
@@ -10,9 +11,11 @@ import Payment from '../components/Payment'
 const CheckoutView = ({ location, history }) => {
   const userLogin = useSelector((state) => state.userLogin)
 
-  const { delivery: deliveryType, shippingAddress } = useSelector(
-    (state) => state.cart
-  )
+  const {
+    delivery: deliveryType,
+    shippingAddress,
+    paymentMethod,
+  } = useSelector((state) => state.cart)
 
   const { userInfo } = userLogin
   console.log(userInfo)
@@ -59,10 +62,15 @@ const CheckoutView = ({ location, history }) => {
                 <strong>Address: </strong> {shippingAddress}
               </p>
             )}
+            {paymentMethod && (
+              <p>
+                <strong>Pay with: </strong> {paymentMethod}
+              </p>
+            )}
             <p>
               <strong>Items: </strong>
             </p>
-            <CartItems small></CartItems>
+            <CartItems small showShipping></CartItems>
           </div>
         </Col>
         <Col md={8}>
@@ -103,15 +111,32 @@ const CheckoutView = ({ location, history }) => {
                   <Shipping nextStep={nextStep} />
                 </Tab>
               ) : null}
-              <Tab eventKey='payment' title='Payment Method'>
+              <Tab
+                eventKey='payment'
+                title={
+                  paymentMethod ? (
+                    <span>
+                      Choose Payment{' '}
+                      <i className='fas fa-check text-success'></i>
+                    </span>
+                  ) : (
+                    <span>Choose Payment</span>
+                  )
+                }
+              >
                 <Payment nextStep={nextStep} />
               </Tab>
             </Tabs>
-
-            {/* <Button variant='primary' className='d-block ml-auto mr-0'>
-              Finish
-            </Button> */}
           </div>
+          {(deliveryType === 'pickup' ||
+            (deliveryType === 'shipping' && shippingAddress)) &&
+            paymentMethod && (
+              <Link to={'/placeorder'}>
+                <Button variant='primary' className='d-block ml-auto mr-0 my-3'>
+                  Place Order and Pay
+                </Button>
+              </Link>
+            )}
         </Col>
       </Row>
     </div>

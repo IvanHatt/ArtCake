@@ -24,7 +24,7 @@ function App() {
   return (
     <Router>
       <Header />
-      <main className='py-3'>
+      <main className='mt-3' style={{ paddingBottom: '10vh' }}>
         <Route path='/profile' component={ProfileView} />
         <Route path='/register' component={RegisterView} />
         <Route path='/contact' component={ContactView} />

@@ -67,7 +67,7 @@ const ProductView = ({ history, match }) => {
   }
 
   return (
-    <Container>
+    <Container className='mb-5'>
       <Button
         className='mb-3'
         variant='outline-primary'
@@ -86,9 +86,9 @@ const ProductView = ({ history, match }) => {
             <Row>
               <Col md={6}>
                 <Image src={product.image} alt={product.name} fluid />
-                <ListGroup variant='flush'>
+                <ListGroup variant='flush' className='product-details'>
                   <span>
-                    Vegan Option:{' '}
+                    <strong>Vegan Option: </strong>{' '}
                     {product.veganOpt ? (
                       <i className='fas fa-check'></i>
                     ) : (
@@ -96,16 +96,25 @@ const ProductView = ({ history, match }) => {
                     )}
                   </span>
                   <span>
-                    Gluten Free Option:{' '}
+                    <strong> Gluten Free Option: </strong>{' '}
                     {product.glutenFreeOpt ? (
                       <i className='fas fa-check'></i>
                     ) : (
                       <i className='fas fa-times'></i>
                     )}
                   </span>
-                  <span>Allergens: {product.allergens}</span>
-                  <span>Dimensions: {product.dimensions}</span>
-                  <span>Servings: {product.servings}</span>
+                  <span>
+                    {' '}
+                    <strong> Allergens: </strong> {product.allergens}
+                  </span>
+                  <span>
+                    {' '}
+                    <strong> Dimensions: </strong> {product.dimensions}
+                  </span>
+                  <span>
+                    {' '}
+                    <strong> Servings:</strong> {product.servings}
+                  </span>
                   <hr></hr>
                   <Rating
                     value={product.rating}

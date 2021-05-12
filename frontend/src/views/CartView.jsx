@@ -56,18 +56,15 @@ const CartView = ({ match, location, history }) => {
               <Tab.Content>
                 <Tab.Pane eventKey='first'>
                   <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Debitis vero reiciendis pariatur voluptatibus adipisci, qui
-                    assumenda, enim ipsam totam blanditiis velit dolor vitae
-                    saepe ipsum vel quibusdam! Minima, quaerat aut?
+                    Shipping to your address has a cost of 50ILS. For orders
+                    more than 500ILS, shipping is free of charge. Area of
+                    shipping: Central Israel For more questions, contact us
                   </p>
                 </Tab.Pane>
                 <Tab.Pane eventKey='second'>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Placeat deleniti impedit maxime magnam expedita quis, neque
-                    dolorum explicabo ullam nam incidunt ex, cumque commodi
-                    earum. Incidunt iste pariatur libero? Deleniti!
+                    Payment can be done with Paypal or using Credit Card: Visa,
+                    Mastercard or Diners
                   </p>
                 </Tab.Pane>
               </Tab.Content>

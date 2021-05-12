@@ -24,7 +24,7 @@ const ShopView = ({ match }) => {
 
   return (
     <Container>
-      <h1 className='text-center'>Latest Products</h1>
+      <h1 className='text-center'>Our Products</h1>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -41,11 +41,13 @@ const ShopView = ({ match }) => {
               ))}
             </Col>
           </Row>
-          <Paginate
-            pages={pages}
-            page={page}
-            keyword={keyword ? keyword : ''}
-          />
+          <div className='w-100'>
+            <Paginate
+              pages={pages}
+              page={page}
+              keyword={keyword ? keyword : ''}
+            />
+          </div>
         </>
       )}
     </Container>

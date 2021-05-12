@@ -8,7 +8,7 @@ const ContactView = () => {
       <FormContainer>
         <h1 className='text-center'>Contact Us</h1>
 
-        <Form onSubmit={console.log('send')}>
+        <Form onSubmit={() => window.alert('Message Sent')}>
           <Form.Group controlId='name'>
             <Form.Label>Name</Form.Label>
             <Form.Control type='text' placeholder='Your name'></Form.Control>
@@ -26,7 +26,7 @@ const ContactView = () => {
               placeholder='Write your comments....'
             ></Form.Control>
           </Form.Group>
-          <Button type='button' variant='primary' className='mt-4'>
+          <Button type='submit' variant='primary' className='mt-4'>
             Send
           </Button>
         </Form>

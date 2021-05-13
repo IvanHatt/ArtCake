@@ -28,9 +28,11 @@ import {
   orderListReducer,
   orderDeliverReducer,
 } from './reducers/orderReducers'
+import { filterReducer } from './reducers/filterReducers'
 
 const reducer = combineReducers({
   productList: productListReducer,
+  filters: filterReducer,
   topProductList: topProductListReducer,
   productDetails: productDetailsReducer,
   productReviewCreate: productReviewCreateReducer,

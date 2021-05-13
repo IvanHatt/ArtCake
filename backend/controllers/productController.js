@@ -1,6 +1,14 @@
 import asyncHandler from 'express-async-handler'
 import Product from '../models/productModel.js'
 
+// @desc    Fetch all products
+// @route   GET /api/products/all
+// @access  Public
+const getAllProducts = asyncHandler(async (req, res) => {
+  const allProducts = await Product.find()
+  res.json({ allProducts })
+})
+
 // @desc    Fetch all products or what was passed as query in the search
 // @route   GET /api/products
 // @access  Public
@@ -190,6 +198,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 export {
   getProducts,
   getTopProducts,
+  getAllProducts,
   getProductById,
   createProductReview,
   deleteProduct,

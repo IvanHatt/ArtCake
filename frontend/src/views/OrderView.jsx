@@ -118,6 +118,10 @@ const OrderView = ({ match, history }) => {
               <strong>Email: </strong>{' '}
               <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
             </p>
+            <p>
+              <strong>Delivery Type: </strong>{' '}
+              {order.delivery === 'pickup' ? 'Pickup from store' : 'Shipping'}
+            </p>
             {order.shippingAddress !== null && (
               <p>
                 <strong>Address: </strong> {order.shippingAddress}

@@ -102,7 +102,7 @@ p {
 /* general container */
 .card-container {
   padding: 20px;
-  background: #eff7ff !important;
+  background: rgb(239, 247, 255) !important;
   border-radius: 20px;
   filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.25));
   height: fit-content;

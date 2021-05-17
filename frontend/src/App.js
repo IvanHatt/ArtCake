@@ -20,6 +20,7 @@ import HomeView from './views/HomeView'
 import ContactView from './views/ContactView'
 import CheckoutView from './views/CheckoutView'
 
+
 function App() {
   return (
     <Router>

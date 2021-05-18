@@ -20,7 +20,6 @@ import HomeView from './views/HomeView'
 import ContactView from './views/ContactView'
 import CheckoutView from './views/CheckoutView'
 import Dashboard from './views/Admin Views/Dashboard'
-import Test from './views/Admin Views/Test'
 
 function App() {
   return (

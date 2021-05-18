@@ -24,7 +24,7 @@ const UserListView = ({ history }) => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listUsers())
     } else {
-      history.push('/login')
+      window.alert('Not Authorized')
     }
   }, [dispatch, history, userInfo, successDelete]) //if succesDelete changes, I want it to re-render
 

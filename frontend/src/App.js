@@ -19,7 +19,8 @@ import OrderListView from './views/Admin Views/OrderListView'
 import HomeView from './views/HomeView'
 import ContactView from './views/ContactView'
 import CheckoutView from './views/CheckoutView'
-
+import Dashboard from './views/Admin Views/Dashboard'
+import Test from './views/Admin Views/Test'
 
 function App() {
   return (
@@ -27,6 +28,21 @@ function App() {
       <Header />
       <main className='mt-3' style={{ paddingBottom: '10vh' }}>
         <Route path='/profile' component={ProfileView} />
+        <Route path='/dashboard/userlist'>
+          <Dashboard>
+            <UserListView />
+          </Dashboard>
+        </Route>
+        <Route path='/dashboard/productslist'>
+          <Dashboard>
+            <ProductListView />
+          </Dashboard>
+        </Route>
+        <Route path='/dashboard/orderslist'>
+          <Dashboard>
+            <OrderListView />
+          </Dashboard>
+        </Route>
         <Route path='/register' component={RegisterView} />
         <Route path='/contact' component={ContactView} />
         <Route path='/login' component={LoginView} />
@@ -36,7 +52,6 @@ function App() {
         <Route path='/placeorder' component={PlaceOrderView} />
         <Route path='/product/:id' component={ProductView} />
         <Route path='/cart/:id?' component={CartView} />
-        <Route path='/admin/userlist' component={UserListView} />
         <Route path='/admin/user/:id/edit' component={UserEditView} />
         <Route path='/admin/productlist' component={ProductEditView} exact />
         <Route
@@ -56,7 +71,6 @@ function App() {
         <Route path='/shop' component={ShopView} exact />
         <Route path='/' component={HomeView} exact />
       </main>
-
       <Footer />
     </Router>
   )

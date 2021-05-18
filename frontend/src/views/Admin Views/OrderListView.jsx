@@ -6,7 +6,7 @@ import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import { listOrders } from '../../actions/orderActions'
 
-const OrderListView = ({ history }) => {
+const OrderListView = () => {
   const dispatch = useDispatch()
 
   const orderList = useSelector((state) => state.orderList)
@@ -19,9 +19,9 @@ const OrderListView = ({ history }) => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listOrders())
     } else {
-      history.push('/login')
+      window.alert('Not Authorized')
     }
-  }, [dispatch, history, userInfo])
+  }, [dispatch, userInfo])
 
   return (
     <>

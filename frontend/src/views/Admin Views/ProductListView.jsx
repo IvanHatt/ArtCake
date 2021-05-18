@@ -12,11 +12,9 @@ import {
 } from '../../actions/productActions'
 import { PRODUCT_CREATE_RESET } from '../../constants/productConstants'
 
-const ProductListView = ({ history, match }) => {
+const ProductListView = () => {
   const dispatch = useDispatch()
-
-  const pageNumber = match.params.pageNumber || 1
-
+  const serverApproach = false
   const productList = useSelector((state) => state.productList)
   const { loading, error, products, page, pages } = productList
 
@@ -39,26 +37,8 @@ const ProductListView = ({ history, match }) => {
   } = productCreate
 
   useEffect(() => {
-    dispatch({ type: PRODUCT_CREATE_RESET })
-
-    if (!userInfo || !userInfo.isAdmin) {
-      history.push('/login')
-    }
-    if (successCreate) {
-      /// right after it was created it takes us to edit that product
-      history.push(`/admin/product/${createdProduct._id}/edit`)
-    } else {
-      dispatch(listProducts('', pageNumber))
-    }
-  }, [
-    dispatch,
-    history,
-    userInfo,
-    successDelete,
-    successCreate,
-    createdProduct,
-    pageNumber,
-  ])
+    dispatch(listProducts('', '', serverApproach))
+  }, [dispatch, serverApproach])
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure')) {
@@ -96,22 +76,28 @@ const ProductListView = ({ history, match }) => {
           <Table striped bordered hover responsive className='table-sm'>
             <thead>
               <tr>
+                <th>IMAGE</th>
                 <th>ID</th>
                 <th>NAME</th>
                 <th>PRICE</th>
                 <th>CATEGORY</th>
-                <th>BRAND</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               {products.map((product) => (
                 <tr key={product._id}>
+                  <td>
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      style={{ width: '70px' }}
+                    ></img>
+                  </td>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
-                  <td>${product.price}</td>
+                  <td>{product.price} ILS</td>
                   <td>{product.category}</td>
-                  <td>{product.brand}</td>
                   <td>
                     <LinkContainer to={`/admin/product/${product._id}/edit`}>
                       <Button variant='light' className='btn-sm'>

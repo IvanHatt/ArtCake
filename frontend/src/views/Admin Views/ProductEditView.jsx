@@ -231,7 +231,7 @@ const ProductEditView = ({ match, history }) => {
                 type='text'
                 placeholder='Enter servings'
                 value={servings}
-                onChange={(e) => setCategory(e.target.value)}
+                onChange={(e) => setServings(e.target.value)}
               ></Form.Control>
             </Form.Group>
 

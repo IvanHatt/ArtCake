@@ -36,7 +36,7 @@ const UserListView = ({ history }) => {
 
   return (
     <>
-      <h3>Users</h3>
+      <h1>Users</h1>
       {loading ? (
         <Loader />
       ) : error ? (

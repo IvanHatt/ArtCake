@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,6 +15,7 @@ import { PRODUCT_CREATE_RESET } from '../../constants/productConstants'
 
 const ProductListView = () => {
   const dispatch = useDispatch()
+  let history = useHistory()
   const serverApproach = false
   const productList = useSelector((state) => state.productList)
   const { loading, error, products, page, pages } = productList
@@ -37,8 +39,26 @@ const ProductListView = () => {
   } = productCreate
 
   useEffect(() => {
-    dispatch(listProducts('', '', serverApproach))
-  }, [dispatch, serverApproach, successDelete])
+    dispatch({ type: PRODUCT_CREATE_RESET })
+
+    if (!userInfo || !userInfo.isAdmin) {
+      history.push('/login')
+    }
+
+    if (successCreate) {
+      history.push(`/admin/product/${createdProduct._id}/edit`)
+    } else {
+      dispatch(listProducts('', '', serverApproach))
+    }
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    successDelete,
+    successCreate,
+    createdProduct,
+    serverApproach,
+  ])
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure')) {
@@ -94,7 +114,9 @@ const ProductListView = () => {
                       style={{ width: '70px' }}
                     ></img>
                   </td>
-                  <td>{product._id}</td>
+                  <td>
+                    <Link to={`/product/${product._id}`}> {product._id} </Link>{' '}
+                  </td>
                   <td>{product.name}</td>
                   <td>{product.price} ILS</td>
                   <td>{product.category}</td>

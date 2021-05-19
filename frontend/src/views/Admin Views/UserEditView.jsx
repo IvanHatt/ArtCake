@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
@@ -49,10 +48,14 @@ const UserEditView = ({ match, history }) => {
   }
 
   return (
-    <>
-      <Link to='/dashboard/userlist' className='btn my-3'>
-        Go Back
-      </Link>
+    <Container>
+      <Button
+        className='mb-3'
+        variant='outline-primary'
+        onClick={() => history.goBack()}
+      >
+        Back
+      </Button>
       <FormContainer>
         <h1>Edit User</h1>
         {loadingUpdate && <Loader />}
@@ -98,7 +101,7 @@ const UserEditView = ({ match, history }) => {
           </Form>
         )}
       </FormContainer>
-    </>
+    </Container>
   )
 }
 

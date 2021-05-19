@@ -15,8 +15,13 @@ connectDB()
 
 const app = express()
 app.use(express.json())
-const PORT = process.env.PORT || 5000
 
+//make upload files available at frontend by making it static
+// im using here es6 imports, instead of js require()... so __dirname will not be available
+// that's why I create a var called __dirname and set it to path.resolve()
+
+const __dirname = path.resolve()
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
@@ -31,13 +36,8 @@ app.get('/api/config/paypal', (req, res) =>
 app.use(notFound)
 app.use(errorHandler)
 
-//make upload files available at frontend by making it static
-// im using here es6 imports, instead of js require()... so __dirname will not be available
-// that's why I create a var called __dirname and set it to path.resolve()
-const __dirname = path.resolve()
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+const PORT = process.env.PORT ? process.env.PORT : '5000'
 
-//
 app.listen(PORT, () => {
   console.log(
     `Listening at http://localhost:${PORT} in ${process.env.NODE_ENV} mode`

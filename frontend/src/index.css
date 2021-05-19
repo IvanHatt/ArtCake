@@ -30,6 +30,10 @@ h3 {
   margin: 0.1rem;
 }
 
+.rating {
+  display: inline-block;
+}
+
 h1 {
   font-family: 'Baloo';
   font-style: normal;
@@ -106,6 +110,7 @@ p {
   border-radius: 20px;
   filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.25));
   height: fit-content;
+  z-index: 100;
 }
 
 .card-container img {
@@ -254,4 +259,20 @@ label {
 .dashboard-menu .active {
   background: rgb(239, 247, 255);
   border-radius: 10px 0 0 10px;
+}
+
+/* Review Container */
+.review-container div {
+  background: rgb(239, 247, 255) !important;
+}
+
+.review-container {
+  background: rgb(239, 247, 255) !important;
+  border-radius: 0 0 20px 20px !important;
+  box-shadow: 8px 8px 8px 1px rgba(0, 0, 0, 0.1);
+  /* filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.25)); */
+  height: fit-content;
+  margin-left: 16px;
+  margin-top: -12px;
+  padding-top: 20px !important;
 }

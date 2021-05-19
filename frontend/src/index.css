@@ -241,3 +241,17 @@ label {
 .pagination {
   justify-content: center;
 }
+
+/* Dashboard Menu */
+.dashboard-main {
+  background: rgb(239, 247, 255);
+  padding: 40px 60px;
+  margin-bottom: 60px;
+}
+.dashboard-menu {
+  padding-right: 0 !important;
+}
+.dashboard-menu .active {
+  background: rgb(239, 247, 255);
+  border-radius: 10px 0 0 10px;
+}

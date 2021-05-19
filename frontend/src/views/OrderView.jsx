@@ -128,7 +128,16 @@ const OrderView = ({ match, history }) => {
               </p>
             )}
             <p>
-              <strong>Delivery Status: </strong>
+              <strong>Delivery Status: </strong>{' '}
+              {userInfo.isAdmin && !order.isDelivered && (
+                <Button
+                  onClick={() => deliverHandler()}
+                  className='float-right'
+                  size='sm'
+                >
+                  Change status
+                </Button>
+              )}
             </p>
             {order.isDelivered ? (
               <Message variant='success'>
@@ -161,7 +170,12 @@ const OrderView = ({ match, history }) => {
                   <ListGroup.Item key={index}>
                     <Row>
                       <Col md={1}>
-                        <Image src={item.image} alt={item.name} fluid rounded />
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          fluid
+                          rounded
+                        />
                       </Col>
                       <Col>
                         <Link to={`/product/${item.product}`}>{item.name}</Link>

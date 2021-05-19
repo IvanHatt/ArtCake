@@ -13,12 +13,16 @@ const ProductEditView = ({ match, history }) => {
   const productId = match.params.id
 
   const [name, setName] = useState('')
-  const [price, setPrice] = useState(0)
   const [image, setImage] = useState('')
-  const [brand, setBrand] = useState('')
+  const [allergens, setAllergens] = useState('')
+  const [dimensions, setDimensions] = useState('')
+  const [servings, setServings] = useState('')
+  const [veganOpt, setVeganOpt] = useState(false)
+  const [glutenFreeOpt, setGlutenFreeOpt] = useState(false)
   const [category, setCategory] = useState('')
-  const [inStock, setInStock] = useState(true)
   const [description, setDescription] = useState('')
+  const [price, setPrice] = useState(0)
+  const [inStock, setInStock] = useState(true)
   const [uploading, setUploading] = useState(false)
 
   const dispatch = useDispatch()
@@ -36,17 +40,21 @@ const ProductEditView = ({ match, history }) => {
   useEffect(() => {
     if (successUpdate) {
       dispatch({ type: PRODUCT_UPDATE_RESET })
-      history.push('/admin/productlist')
+      history.push('/dashboard/productslist')
     } else {
       if (!product.name || product._id !== productId) {
         dispatch(listProductDetails(productId))
       } else {
         setName(product.name)
+        setAllergens(product.allergens)
+        setDimensions(product.dimensions)
+        setServings(product.servings)
+        setVeganOpt(product.veganOpt)
+        setGlutenFreeOpt(product.glutenFreeOpt)
         setPrice(product.price)
         setImage(product.image)
-        setBrand(product.brand)
         setCategory(product.category)
-        setInStock(product.countInSock)
+        setInStock(product.inStock)
         setDescription(product.description)
       }
     }
@@ -58,11 +66,15 @@ const ProductEditView = ({ match, history }) => {
       updateProduct({
         _id: productId,
         name,
-        price,
         image,
-        brand,
         category,
         description,
+        allergens,
+        dimensions,
+        servings,
+        veganOpt,
+        glutenFreeOpt,
+        price,
         inStock,
       })
     )
@@ -82,7 +94,6 @@ const ProductEditView = ({ match, history }) => {
       }
 
       const { data } = await axios.post('/api/upload', formData, config)
-
       setImage(data)
       setUploading(false)
     } catch (error) {
@@ -93,7 +104,7 @@ const ProductEditView = ({ match, history }) => {
 
   return (
     <>
-      <Link to='/admin/productlist' className='btn btn-light my-3'>
+      <Link to='/dashboard/productslist' className='btn my-3'>
         Go Back
       </Link>
       <FormContainer>
@@ -140,26 +151,35 @@ const ProductEditView = ({ match, history }) => {
               id='image-file'
               label='Choose File'
               custom
-              onChange={uploadFileHandler}
+              onChange={(e) => uploadFileHandler(e)}
             ></Form.File>
             {uploading && <Loader />}
-
-            <Form.Group controlId='brand'>
-              <Form.Label>Brand</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Enter brand'
-                value={brand}
-                onChange={(e) => setBrand(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
 
             <Form.Group controlId='inStock'>
               <Form.Check
                 type='checkbox'
+                checked={inStock}
                 label='In Stock?'
                 value={inStock}
-                onChange={(e) => setInStock(e.target.value)}
+                onChange={() => setInStock(!inStock)}
+              />
+            </Form.Group>
+            <Form.Group controlId='veganOpt'>
+              <Form.Check
+                type='checkbox'
+                label='Vegan option available?'
+                value={veganOpt}
+                checked={veganOpt}
+                onChange={() => setVeganOpt(!veganOpt)}
+              />
+            </Form.Group>
+            <Form.Group controlId='glutenFreeOpt'>
+              <Form.Check
+                type='checkbox'
+                label='Gluten Free Available?'
+                value={glutenFreeOpt}
+                checked={glutenFreeOpt}
+                onChange={() => setGlutenFreeOpt(!glutenFreeOpt)}
               />
             </Form.Group>
 
@@ -177,9 +197,41 @@ const ProductEditView = ({ match, history }) => {
               <Form.Label>Description</Form.Label>
               <Form.Control
                 type='text'
+                as='textarea'
+                rows='5'
                 placeholder='Enter description'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='allergens'>
+              <Form.Label>Allergens</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter allergens'
+                value={allergens}
+                onChange={(e) => setAllergens(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='dimensions'>
+              <Form.Label>Dimensions</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter dimensions'
+                value={dimensions}
+                onChange={(e) => setDimensions(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='servings'>
+              <Form.Label>Servings</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter servings'
+                value={servings}
+                onChange={(e) => setCategory(e.target.value)}
               ></Form.Control>
             </Form.Group>
 

@@ -38,7 +38,7 @@ const ProductListView = () => {
 
   useEffect(() => {
     dispatch(listProducts('', '', serverApproach))
-  }, [dispatch, serverApproach])
+  }, [dispatch, serverApproach, successDelete])
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure')) {
@@ -59,7 +59,7 @@ const ProductListView = () => {
         </Col>
         <Col className='text-right'>
           <Button className='my-3' onClick={createProductHandler}>
-            <i className='fas fa-plus'></i> Create Product
+            <i className='fas fa-plus'></i> Add New Product
           </Button>
         </Col>
       </Row>
@@ -106,7 +106,7 @@ const ProductListView = () => {
                     </LinkContainer>
                     <Button
                       variant='danger'
-                      className='btn-sm'
+                      size='sm'
                       onClick={() => deleteHandler(product._id)}
                     >
                       <i className='fas fa-trash'></i>

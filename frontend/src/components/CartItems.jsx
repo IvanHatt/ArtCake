@@ -37,7 +37,10 @@ const CartItems = ({ title, small, edit, ...props }) => {
       </Row>
       <Row className='w-100'>
         {cartItems.length === 0 ? (
-          <Message>Your cart is empty</Message>
+          <Message variant='danger'>
+            Your Cart is Empty
+            <i className='far fa-frown-open mx-3'></i>
+          </Message>
         ) : (
           <ListGroup variant='flush'>
             {cartItems.map((item) => (

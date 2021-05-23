@@ -213,7 +213,7 @@ label {
 
 .cart-items {
   background: none;
-  border-bottom: 1px solid rgba(45, 43, 75, 0.2);
+  margin-bottom: 20px;
 }
 
 .cart-view-container h1 {

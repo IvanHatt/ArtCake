@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { Container, Carousel } from 'react-bootstrap'
 import { getTopProducts } from '../actions/productActions.js'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import './styles/topten.css'
+import Rating from './Rating.jsx'
 
 const Topten = () => {
   const topProductList = useSelector((state) => state.topProductList)
@@ -35,8 +37,10 @@ const Topten = () => {
                     src={product.image}
                     alt={product.name}
                   />
-                  <h3 className='mt-3'>{product.name}</h3>
-                  <h2>Rating: {product.rating}</h2>
+                  <Link to={`/product/${product._id}`}>
+                    <h3 className='mt-3 mb-0'> {product.name}</h3>
+                  </Link>
+                  <Rating value={product.rating} />
                 </div>
               </Carousel.Item>
             ))}

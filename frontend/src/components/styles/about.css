@@ -3,8 +3,9 @@
   max-height: fit-content;
   display: grid;
   align-items: baseline;
-  background-image: url('../../images//about-bcg.jpg');
-  background-size: cover;
+  background: linear-gradient(90deg, #e0c3fc 0%, #8ec5fc 100%);
+  /* background-image: url('../../images//about-bcg.jpg');
+  background-size: cover; */
   margin-bottom: -15vh;
 }
 

@@ -103,24 +103,32 @@ const Header = () => {
                   id='username'
                   className='cart-dropdown menu-narrow'
                 >
+                  <NavDropdown.Item>
+                    <h2 className='text-center mb-0'>
+                      Welcome {userInfo.name}
+                    </h2>
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+
                   <LinkContainer to='/profile'>
                     <NavDropdown.Item>
-                      <h2 className='text-center mb-0'>
-                        {' '}
-                        Welcome {userInfo.name} !
-                      </h2>
+                      <i className='fas fa-user'> </i>
+                      <span>Profile</span>
                     </NavDropdown.Item>
                   </LinkContainer>
-                  <NavDropdown.Divider />
-                  <div className='user-details'>
-                    <span>
-                      <strong>Email: </strong> {userInfo.email}
-                    </span>
-                    <span>
-                      <strong>Shipping Address: </strong>
-                      {userInfo.shippingAddress ?? 'None'}
-                    </span>
-                  </div>
+                  <LinkContainer to='/profile'>
+                    <NavDropdown.Item>
+                      <i className='fas fa-shopping-basket'> </i>
+                      <span>Orders</span>
+                    </NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/profile'>
+                    <NavDropdown.Item>
+                      <i className='fas fa-comment'> </i>
+                      <span>Reviews</span>
+                    </NavDropdown.Item>
+                  </LinkContainer>
+
                   <NavDropdown.Divider />
                   <Button
                     variant='primary'

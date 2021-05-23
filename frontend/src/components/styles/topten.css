@@ -1,7 +1,10 @@
 .topten {
-  padding: 10vh;
+  padding: 5vh 5vw;
   min-height: 100vh;
-  background-color: #eff7ff;
+  /* background-color: #eff7ff; */
+  background-image: url('../../images//topten-bcg.svg');
+  background-size: 100vh;
+  background-repeat: repeat;
   font-family: 'Baloo';
   font-style: normal;
   font-weight: normal;

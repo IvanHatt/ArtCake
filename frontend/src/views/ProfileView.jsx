@@ -129,10 +129,10 @@ const ProfileView = ({ location, history }) => {
               </p>
             )}
 
-            <p>
+            <p id='my-reviews'>
               <strong>My Reviews </strong>
             </p>
-            <p>
+            <p id='my-orders'>
               <strong>My orders</strong>
               <OrdersList />
             </p>

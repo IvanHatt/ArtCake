@@ -86,10 +86,10 @@ const CheckoutView = ({ location, history }) => {
                 title={
                   deliveryType ? (
                     <span>
-                      Details <i className='fas fa-check text-success'></i>
+                      Delivery <i className='fas fa-check text-success'></i>
                     </span>
                   ) : (
-                    <span>Details</span>
+                    <span>Delivery</span>
                   )
                 }
               >

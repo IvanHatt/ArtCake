@@ -113,13 +113,13 @@ const OrderView = ({ match, history }) => {
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : (
-        <>
-          <h1>My Order </h1>
-          <p>Order number: {order._id}</p>
+        <div>
+          <h1 className='d-inline-block'>My Order </h1>
+          <small>Order number: {order._id}</small>
           <Row>
             <Col md={8}>
-              <div className='card-container'>
-                <h2>Order details</h2>
+              <div className='card-container p-4'>
+                <h3 className='border-bottom pl-4'>Order details</h3>
                 <p>
                   <strong>Name: </strong> {order.user.name}
                 </p>
@@ -149,30 +149,35 @@ const OrderView = ({ match, history }) => {
                       Change status
                     </Button>
                   )}
+                  {order.isDelivered ? (
+                    <Message variant='success' display='d-inline p-1'>
+                      Delivered on {order.deliveredAt}
+                    </Message>
+                  ) : (
+                    <Message variant='danger' display='d-inline p-1'>
+                      Not Delivered
+                    </Message>
+                  )}
                 </p>
-                {order.isDelivered ? (
-                  <Message variant='success'>
-                    Delivered on {order.deliveredAt}
-                  </Message>
-                ) : (
-                  <Message variant='danger'>Not Delivered</Message>
-                )}
-                <hr></hr>
-                <h2>Payment</h2>
+                <h3 className='border-bottom pl-4 pt-4'>Payment</h3>
                 <p>
                   <strong>Method: </strong>
                   {order.paymentMethod}
                 </p>
                 <p>
                   <strong> Status: </strong>
+
+                  {order.isPaid ? (
+                    <Message variant='success' display='d-inline p-1'>
+                      Paid on {order.paidAt}
+                    </Message>
+                  ) : (
+                    <Message variant='danger' display='d-inline p-1'>
+                      Not Paid
+                    </Message>
+                  )}
                 </p>
-                {order.isPaid ? (
-                  <Message variant='success'>Paid on {order.paidAt}</Message>
-                ) : (
-                  <Message variant='danger'>Not Paid</Message>
-                )}
-                <hr></hr>
-                <h2>Order Items</h2>
+                <h3 className='border-bottom pl-4 pt-4'>Order Items</h3>
                 {order.orderItems.length === 0 ? (
                   <Message>Order is empty</Message>
                 ) : (
@@ -190,7 +195,7 @@ const OrderView = ({ match, history }) => {
                           </Col>
                           <Col>
                             <Link to={`/product/${item.product}`}>
-                              {item.name}
+                              {item.name} x {item.qty}
                             </Link>
                           </Col>
                           <Col md={4}>
@@ -205,10 +210,10 @@ const OrderView = ({ match, history }) => {
                   </ListGroup>
                 )}
                 <hr></hr>
-                <h2 className='text-right'>
+                <h3 className='text-right'>
                   {' '}
                   Total price: {order.totalPrice} ILS
-                </h2>
+                </h3>
               </div>
             </Col>
             <Col md={4}>
@@ -247,7 +252,7 @@ const OrderView = ({ match, history }) => {
                 )}
             </Col>
           </Row>
-        </>
+        </div>
       )}
     </Container>
   )

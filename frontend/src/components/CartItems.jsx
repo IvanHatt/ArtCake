@@ -51,9 +51,7 @@ const CartItems = ({ title, small, edit, ...props }) => {
                   </Col>
                   <Col md={8} className='px-0'>
                     <div className='d-flex justify-content-between'>
-                      <Link to={`/product/${item.product}`}>
-                        <h2> {item.name}</h2>
-                      </Link>
+                      <Link to={`/product/${item.product}`}>{item.name}</Link>
                       {edit ? (
                         <div>
                           <Button
@@ -105,7 +103,7 @@ const CartItems = ({ title, small, edit, ...props }) => {
                 </Row>
               </ListGroup.Item>
             ))}
-            <hr className='w-100'></hr>
+            <hr className='w-100 mt-0'></hr>
             {props.showShipping && delivery && delivery === 'shipping' ? (
               <>
                 <h2 className='text-right'>

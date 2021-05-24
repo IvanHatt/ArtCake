@@ -12,10 +12,9 @@ const Payment = ({ nextStep }) => {
     dispatch(savePaymentMethod(paymentMethod))
   }
   return (
-    <>
+    <div className='pt-4 pl-5 pb-3'>
       <Form onSubmit={submitHandler}>
         <Form.Group>
-          <Form.Label as='legend'>Select Method</Form.Label>
           <Col>
             <Form.Check
               type='radio'
@@ -51,7 +50,7 @@ const Payment = ({ nextStep }) => {
           Select Method
         </Button>
       </Form>
-    </>
+    </div>
   )
 }
 

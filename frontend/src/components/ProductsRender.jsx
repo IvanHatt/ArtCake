@@ -12,7 +12,7 @@ const ProductsRender = ({ products }) => {
       ) : (
         <Message variant='danger'>
           <p className='text-center'>
-            <span> No cakes matching your criteria...</span>
+            <span> No products matching your criteria...</span>
           </p>
         </Message>
       )}

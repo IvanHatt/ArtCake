@@ -74,10 +74,10 @@ const ProductListView = () => {
   return (
     <>
       <Row className='align-items-center'>
-        <Col>
-          <h1>Products</h1>
+        <Col md={8}>
+          <h1>Admin Dashboard - Products</h1>
         </Col>
-        <Col className='text-right'>
+        <Col md={4} className='text-right'>
           <Button className='my-3' onClick={createProductHandler}>
             <i className='fas fa-plus'></i> Add New Product
           </Button>
@@ -92,7 +92,7 @@ const ProductListView = () => {
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : (
-        <>
+        <div className='p-4 mt-3'>
           <Table striped bordered hover responsive className='table-sm'>
             <thead>
               <tr>
@@ -139,7 +139,7 @@ const ProductListView = () => {
             </tbody>
           </Table>
           <Paginate pages={pages} page={page} isAdmin={true} />
-        </>
+        </div>
       )}
     </>
   )

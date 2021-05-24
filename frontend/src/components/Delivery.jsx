@@ -16,9 +16,8 @@ const Delivery = ({ nextStep }) => {
   }
 
   return (
-    <div>
+    <div className='pt-4 pl-5 pb-3'>
       <Form onSubmit={submitHandler}>
-        <p>Choose delivery method:</p>
         <Form.Group controlId='delivery'>
           <Form.Check
             type='radio'

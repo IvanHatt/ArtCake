@@ -40,9 +40,9 @@ const CheckoutView = ({ location, history }) => {
   return (
     <div className='container'>
       <Row>
-        <Col md={4}>
+        <Col md={5}>
           <div className='card-container'>
-            <h2> Order details</h2>
+            <h3 className='text-center'> Order details</h3>
             <p>
               <strong>Name: </strong> {userInfo.name}
             </p>
@@ -67,13 +67,13 @@ const CheckoutView = ({ location, history }) => {
                 <strong>Pay with: </strong> {paymentMethod}
               </p>
             )}
-            <p>
+            <p className='mb-0'>
               <strong>Items: </strong>
             </p>
             <CartItems small showShipping></CartItems>
           </div>
         </Col>
-        <Col md={8}>
+        <Col md={7}>
           <div className='card-container checkout'>
             <Tabs
               defaultActiveKey='delivery'

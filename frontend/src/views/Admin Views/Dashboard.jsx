@@ -1,7 +1,6 @@
 import React from 'react'
 import { Container, Nav, Navbar, Row } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 const Dashboard = ({ children }) => {
   return (
@@ -28,8 +27,6 @@ const Dashboard = ({ children }) => {
           role='main'
           className='dashboard-main col-md-9 ml-sm-auto col-lg-10'
         >
-          <h1>Admin Dashboard</h1>
-          <hr></hr>
           <div className='dashboard-body'>{children}</div>
         </main>
       </Row>

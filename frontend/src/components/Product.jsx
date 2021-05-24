@@ -13,17 +13,20 @@ const Product = ({ product }) => {
     >
       <Link to={`/product/${product._id}`}>
         <Card.Img src={product.image} alt={product.title} variant='top' />
-        {showPrice &&
-          (product.inStock ? (
-            <div className='product-description'>
-              <Card.Title>{product.name}</Card.Title>
-              <Card.Text>{product.price} ILS </Card.Text>
-            </div>
-          ) : (
-            <div className='product-description'>
-              <Card.Title> Out of Stock </Card.Title>
-            </div>
-          ))}
+        {showPrice && (
+          <div className='product-description'>
+            {product.inStock ? (
+              <>
+                <Card.Title>{product.name}</Card.Title>
+                <Card.Text>{product.price} ILS </Card.Text>
+              </>
+            ) : (
+              <Card.Title>
+                Out of Stock <i className='far fa-frown'></i>
+              </Card.Title>
+            )}
+          </div>
+        )}
       </Link>
     </Card>
   )

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Alert } from 'react-bootstrap'
 
-const Message = ({ variant, children }) => {
+const Message = ({ variant, children, ...props }) => {
   return (
-    <Alert className='mx-auto' variant={variant}>
+    <Alert className={`mx-auto ${props.display}`} variant={variant}>
       {children}
     </Alert>
   )

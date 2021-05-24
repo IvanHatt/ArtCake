@@ -51,94 +51,90 @@ const ProfileView = ({ location, history }) => {
 
   return (
     <Container>
-      <Row className='justify-content-center'>
-        <Col md={8}>
-          <div className='card-container '>
-            <h1>My Profile</h1>
-            {message && <Message variant='danger'>{message}</Message>}
-            {error && <Message variant='danger'>{error}</Message>}
-            {success && <Message variant='success'> Updated!</Message>}
-            {loading && <Loader />}
-            <p>
-              <strong>Name: </strong> {user.name}
-            </p>
-            {updemail ? (
-              <Form onSubmit={submitHandler}>
-                <Form.Group controlId='email'>
-                  <Form.Label>Update Email Address</Form.Label>
-                  <Form.Control
-                    type='email'
-                    placeholder='Enter email'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  ></Form.Control>
-                  <Button size='sm' type='submit'>
-                    <i className='fas fa-check'></i>
-                  </Button>
-                  <Button size='sm' onClick={() => setUpdemail(!updemail)}>
-                    <i className='fas fa-times'></i>
-                  </Button>
-                </Form.Group>
-              </Form>
-            ) : (
-              <p>
-                <strong>Email: </strong>{' '}
-                <a href={`mailto:${user.email}`}>{user.email}</a>
-                <Button size='sm' onClick={() => setUpdemail(!updemail)}>
-                  <i className='fas fa-edit'></i>
-                </Button>
-              </p>
-            )}
-            <p>
-              <strong>Phone: </strong> 0544444444
-            </p>
+      <div className='card-container '>
+        <h1>My Profile</h1>
+        {message && <Message variant='danger'>{message}</Message>}
+        {error && <Message variant='danger'>{error}</Message>}
+        {success && <Message variant='success'> Updated!</Message>}
+        {loading && <Loader />}
+        <p>
+          <strong>Name: </strong> {user.name}
+        </p>
+        {updemail ? (
+          <Form onSubmit={submitHandler}>
+            <Form.Group controlId='email'>
+              <Form.Label>Update Email Address</Form.Label>
+              <Form.Control
+                type='email'
+                placeholder='Enter email'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              ></Form.Control>
+              <Button size='sm' type='submit'>
+                <i className='fas fa-check'></i>
+              </Button>
+              <Button size='sm' onClick={() => setUpdemail(!updemail)}>
+                <i className='fas fa-times'></i>
+              </Button>
+            </Form.Group>
+          </Form>
+        ) : (
+          <p>
+            <strong>Email: </strong>{' '}
+            <a href={`mailto:${user.email}`}>{user.email}</a>
+            <Button size='sm' onClick={() => setUpdemail(!updemail)}>
+              <i className='fas fa-edit'></i>
+            </Button>
+          </p>
+        )}
+        <p>
+          <strong>Phone: </strong> 0544444444
+        </p>
 
-            {updpassword ? (
-              <Form onSubmit={submitHandler}>
-                <Form.Group controlId='password'>
-                  <Form.Label>Update Password </Form.Label>
-                  <Form.Control
-                    type='password'
-                    placeholder='Enter password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  ></Form.Control>
-                </Form.Group>
-                <Form.Group controlId='confirmPassword'>
-                  <Form.Label>Confirm Update Password</Form.Label>
-                  <Form.Control
-                    type='password'
-                    placeholder='Confirm password'
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                  ></Form.Control>
-                </Form.Group>
-                <Button size='sm' type='submit'>
-                  <i className='fas fa-check'></i>
-                </Button>
-                <Button size='sm' onClick={() => setUpdpassword(!updpassword)}>
-                  <i className='fas fa-times'></i>
-                </Button>
-              </Form>
-            ) : (
-              <p>
-                <strong>Change Password </strong>
-                <Button size='sm' onClick={() => setUpdpassword(!updpassword)}>
-                  <i className='fas fa-edit'></i>
-                </Button>
-              </p>
-            )}
+        {updpassword ? (
+          <Form onSubmit={submitHandler}>
+            <Form.Group controlId='password'>
+              <Form.Label>Update Password </Form.Label>
+              <Form.Control
+                type='password'
+                placeholder='Enter password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group controlId='confirmPassword'>
+              <Form.Label>Confirm Update Password</Form.Label>
+              <Form.Control
+                type='password'
+                placeholder='Confirm password'
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+            <Button size='sm' type='submit'>
+              <i className='fas fa-check'></i>
+            </Button>
+            <Button size='sm' onClick={() => setUpdpassword(!updpassword)}>
+              <i className='fas fa-times'></i>
+            </Button>
+          </Form>
+        ) : (
+          <p>
+            <strong>Change Password </strong>
+            <Button size='sm' onClick={() => setUpdpassword(!updpassword)}>
+              <i className='fas fa-edit'></i>
+            </Button>
+          </p>
+        )}
 
-            <p id='my-reviews'>
-              <strong>My Reviews </strong>
-            </p>
-            <p id='my-orders'>
-              <strong>My orders</strong>
-              <OrdersList />
-            </p>
-          </div>
-        </Col>
-      </Row>
+        <p id='my-reviews'>
+          <strong>My Reviews </strong>
+        </p>
+        <p id='my-orders'>
+          <strong>My orders</strong>
+          <OrdersList />
+        </p>
+      </div>
     </Container>
   )
 }

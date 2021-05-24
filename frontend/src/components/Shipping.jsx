@@ -18,47 +18,49 @@ const Shipping = ({ nextStep }) => {
   }
 
   return (
-    <Form onSubmit={submitHandler}>
-      <Form.Group controlId='address'>
-        <Form.Label>Address</Form.Label>
-        <Form.Control
-          type='text'
-          placeholder='Enter address'
-          value={address}
-          required
-          onChange={(e) => setAddress(e.target.value)}
-        ></Form.Control>
-      </Form.Group>
-      <Form.Group controlId='apartment'>
-        <Form.Label>Apartment</Form.Label>
-        <Form.Control
-          type='text'
-          placeholder='Enter Apartment or House number'
-          value={apartment}
-          required
-          onChange={(e) => setApartment(e.target.value)}
-        ></Form.Control>
-      </Form.Group>
+    <div className='pt-4 pl-5 pb-3'>
+      <Form onSubmit={submitHandler}>
+        <Form.Group controlId='address'>
+          <Form.Label>Address</Form.Label>
+          <Form.Control
+            type='text'
+            placeholder='Enter address'
+            value={address}
+            required
+            onChange={(e) => setAddress(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+        <Form.Group controlId='apartment'>
+          <Form.Label>Apartment</Form.Label>
+          <Form.Control
+            type='text'
+            placeholder='Enter Apartment or House number'
+            value={apartment}
+            required
+            onChange={(e) => setApartment(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
 
-      <Form.Group controlId='city'>
-        <Form.Label>City</Form.Label>
-        <Form.Control
-          type='text'
-          placeholder='Enter city'
-          value={city}
-          required
-          onChange={(e) => setCity(e.target.value)}
-        ></Form.Control>
-      </Form.Group>
-      <Button
-        size='sm'
-        type='submit'
-        variant='primary'
-        className='d-block ml-auto mr-0'
-      >
-        Set address
-      </Button>
-    </Form>
+        <Form.Group controlId='city'>
+          <Form.Label>City</Form.Label>
+          <Form.Control
+            type='text'
+            placeholder='Enter city'
+            value={city}
+            required
+            onChange={(e) => setCity(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+        <Button
+          size='sm'
+          type='submit'
+          variant='primary'
+          className='d-block ml-auto mr-0'
+        >
+          Set address
+        </Button>
+      </Form>
+    </div>
   )
 }
 

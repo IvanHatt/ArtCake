@@ -228,6 +228,10 @@ label {
 .cart-items-container a {
   margin-bottom: auto;
   margin-top: auto;
+  font-family: 'Montserrat' !important;
+  font-style: normal;
+  font-weight: 700;
+  color: #2d2b4b;
 }
 
 /* Cart View */
@@ -253,6 +257,13 @@ label {
   color: grey !important;
   cursor: not-allowed !important;
   pointer-events: initial !important;
+}
+
+.checkout form label {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  color: #2d2b4b;
 }
 
 /* Product details  */
@@ -296,4 +307,13 @@ label {
   margin-left: 16px;
   margin-top: -12px;
   padding-top: 20px !important;
+}
+
+/* Filter container  */
+
+.filter label {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: normal;
+  color: #2d2b4b;
 }

@@ -15,7 +15,7 @@ const Filter = () => {
   }, [dispatch, veganOption, gfreeOption, price])
 
   return (
-    <div className='card-container'>
+    <div className='card-container filter'>
       <h3 className='text-center'>Filter</h3>
       <Form>
         <Form.Group>

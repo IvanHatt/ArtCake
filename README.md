@@ -4,9 +4,9 @@ MERN Project ArtCake App
 
 
 
-Ecosystem:
-React, Redux, MongoDb (Mongoose), NodeJS
-Ecommerce site for a fictional cake shop
+### Ecosystem:
+- React, Redux, MongoDb (Mongoose), NodeJS
+- Ecommerce site for a fictional cake shop
 
 ![art1](https://user-images.githubusercontent.com/49058964/117329819-b5e95b80-ae9d-11eb-9b61-c00e520457b6.jpg)
 

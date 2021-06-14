@@ -1,3 +1,5 @@
+//Data examples for seeding
+
 import bcrypt from 'bcryptjs'
 
 const users = [

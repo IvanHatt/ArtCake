@@ -1,18 +1,15 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
-import Loader from '../components/Loader'
 import { createOrder } from '../actions/orderActions'
 import { USER_DETAILS_RESET } from '../constants/userConstants'
 import { ORDER_CREATE_RESET } from '../constants/orderConstants'
-import CartItems from '../components/CartItems'
 
 const PlaceOrderView = ({ history }) => {
   const dispatch = useDispatch()
-  const userLogin = useSelector((state) => state.userLogin)
-  const { userInfo } = userLogin
+  // const userLogin = useSelector((state) => state.userLogin)
+  // const { userInfo } = userLogin
   const cart = useSelector((state) => state.cart)
 
   if (!cart.delivery) {

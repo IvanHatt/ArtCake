@@ -34,6 +34,7 @@ const ShopView = ({ match }) => {
     dispatch(listProducts(keyword, pageNumber, serverApproach))
   }, [dispatch, keyword, pageNumber])
 
+  // filter product list
   if (veganOption) products = products.filter((prod) => prod.veganOpt === true)
   if (gfreeOption)
     products = products.filter((prod) => prod.glutenFreeOpt === true)

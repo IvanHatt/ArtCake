@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { saveShippingAddress } from '../actions/cartActions'
 
 const Shipping = ({ nextStep }) => {
@@ -9,7 +9,7 @@ const Shipping = ({ nextStep }) => {
   const [apartment, setApartment] = useState('')
   const dispatch = useDispatch()
 
-  const { shippingAddress } = useSelector((state) => state.cart)
+  // const { shippingAddress } = useSelector((state) => state.cart)
 
   const submitHandler = (e) => {
     e.preventDefault()

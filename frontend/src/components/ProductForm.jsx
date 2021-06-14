@@ -6,7 +6,6 @@ const ProductForm = ({ addToCartHandler, product, forEdit }) => {
   const [qty, setQty] = useState(1)
   const [vegan, setVegan] = useState(false)
   const [gfree, setGfree] = useState(false)
-  const [request, setRequest] = useState('')
 
   // const dispatch = useDispatch()
 

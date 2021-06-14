@@ -96,7 +96,7 @@ const createProductReview = asyncHandler(async (req, res) => {
 
     product.numReviews = product.reviews.length
 
-    /// promedio de todos los reviews (suma dividido el numero de reviews)
+    /// average of all reviews
     product.rating =
       product.reviews.reduce((acc, item) => item.rating + acc, 0) /
       product.reviews.length

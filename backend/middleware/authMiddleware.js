@@ -2,8 +2,8 @@ import jwt from 'jsonwebtoken'
 import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js'
 
-///in the request it sends the token as: "authorization": "Bearer jhsdkjhkdsjhfkjsdfhkjh(tokencontent)"
-// that's why it has to filter the word Bearer
+///In the request it sends the token as: "authorization": "Bearer jhsdkjhkdsjhfkjsdfhkjh(tokencontent)"
+// string 'Bearer' needs to be filtered to catch it
 
 const protect = asyncHandler(async (req, res, next) => {
   let token
@@ -13,6 +13,7 @@ const protect = asyncHandler(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     try {
+      //grab only the token number
       token = req.headers.authorization.split(' ')[1]
 
       const decoded = jwt.verify(token, process.env.JWT_SECRET)

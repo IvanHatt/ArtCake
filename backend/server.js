@@ -16,7 +16,7 @@ connectDB()
 const app = express()
 app.use(express.json())
 
-//make upload files available at frontend by making it static
+// make upload files available at frontend by making it static
 // im using here es6 imports, instead of js require()... so __dirname will not be available
 // that's why I create a var called __dirname and set it to path.resolve()
 
@@ -28,11 +28,12 @@ app.use('/api/orders', orderRoutes)
 app.use('/api/upload', uploadRoutes)
 
 //sandbox paypal (fake) when I need the client_id, i call this endpoint
-// i dont want to store the id in front end
+//dont store the id in front end
 app.get('/api/config/paypal', (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
 )
 
+///custom made error handlers middleware
 app.use(notFound)
 app.use(errorHandler)
 

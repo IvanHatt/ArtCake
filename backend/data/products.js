@@ -1,3 +1,5 @@
+/// Data examples for seeding
+
 const products = [
   {
     name: 'Chocolate Dream',
@@ -5,7 +7,6 @@ const products = [
     category: 'Cake',
     description:
       'A perfect cake for chocolate lovers. The cake is coated in buttercream, topped with chocolate ganache',
-
     allergens: 'eggs, almonds, peanut',
     dimensions: '40 cm diameter',
     servings: '12 persons',
@@ -22,13 +23,11 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-
     allergens: 'eggs, milk, peanut, honey',
     dimensions: '40 cm diameter',
     servings: '12 persons',
     veganOpt: false,
     glutenFreeOpt: true,
-
     price: 150,
     inStock: true,
     rating: 4.5,
@@ -40,13 +39,11 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-
     allergens: 'eggs, milk, peanut, cinnammon',
     dimensions: '40 cm diameter',
     servings: '12 persons',
     veganOpt: true,
     glutenFreeOpt: true,
-
     price: 180,
     inStock: true,
     rating: 3.5,
@@ -58,13 +55,11 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-
     allergens: 'eggs, milk, peanut',
     dimensions: '30 cm diameter',
     servings: '10 persons',
     veganOpt: true,
     glutenFreeOpt: true,
-
     price: 190,
     inStock: true,
     rating: 4,
@@ -76,13 +71,11 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-
     allergens: 'eggs, milk, cinnammon',
     dimensions: '25 cm diameter',
     servings: '10 persons',
     veganOpt: false,
     glutenFreeOpt: true,
-
     price: 90,
     inStock: true,
     rating: 5,
@@ -94,13 +87,11 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-
     allergens: 'eggs, milk, peanut, cherry',
     dimensions: '35 cm diameter',
     servings: '8 persons',
     veganOpt: true,
     glutenFreeOpt: true,
-
     price: 145,
     inStock: true,
     rating: 3,
@@ -112,13 +103,11 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-
     allergens: 'eggs, milk, peanut, cinnammon',
     dimensions: '35 cm diameter',
     servings: '12 persons',
     veganOpt: false,
     glutenFreeOpt: true,
-
     price: 135,
     inStock: true,
     rating: 4.5,
@@ -130,13 +119,11 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-
     allergens: 'eggs, milk',
     dimensions: '40 cm diameter',
     servings: '12 persons',
     veganOpt: true,
     glutenFreeOpt: true,
-
     price: 200,
     inStock: false,
     rating: 4,
@@ -148,13 +135,11 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-
     allergens: 'eggs, milk',
     dimensions: '40 cm diameter',
     servings: '8 persons',
     veganOpt: false,
     glutenFreeOpt: true,
-
     price: 85,
     inStock: true,
     rating: 5,
@@ -166,13 +151,11 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-
     allergens: 'eggs, milk',
     dimensions: '35 cm diameter',
     servings: '10 persons',
     veganOpt: true,
     glutenFreeOpt: true,
-
     price: 185,
     inStock: true,
     rating: 4.5,
@@ -184,13 +167,11 @@ const products = [
     category: 'Cake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-
     allergens: 'eggs, milk, honey',
     dimensions: '40 cm diameter',
     servings: '12 persons',
     veganOpt: true,
     glutenFreeOpt: true,
-
     price: 205,
     inStock: true,
     rating: 5,
@@ -202,13 +183,11 @@ const products = [
     category: 'Cup',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-
     allergens: 'eggs, milk, peanut, honey',
     dimensions: '10 cm diameter',
     servings: '1 person',
     veganOpt: false,
     glutenFreeOpt: true,
-
     price: 12,
     inStock: true,
     rating: 4,
@@ -220,13 +199,11 @@ const products = [
     category: 'Cup',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-
     allergens: 'eggs, milk, peanut, honey',
     dimensions: '10 cm diameter',
     servings: '1 person',
     veganOpt: false,
     glutenFreeOpt: true,
-
     price: 12,
     inStock: true,
     rating: 4,
@@ -238,13 +215,11 @@ const products = [
     category: 'Cupcake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-
     allergens: 'eggs, milk, peanut',
     dimensions: '10 cm diameter',
     servings: '1 person',
     veganOpt: false,
     glutenFreeOpt: true,
-
     price: 10,
     inStock: true,
     rating: 4,
@@ -256,13 +231,11 @@ const products = [
     category: 'Cupcake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-
     allergens: 'eggs, milk',
     dimensions: '10 cm diameter',
     servings: '1 person',
     veganOpt: true,
     glutenFreeOpt: true,
-
     price: 15,
     inStock: true,
     rating: 3.5,
@@ -274,13 +247,11 @@ const products = [
     category: 'Cupcake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-
     allergens: 'eggs, milk',
     dimensions: '10 cm diameter',
     servings: '1 person',
     veganOpt: false,
     glutenFreeOpt: true,
-
     price: 12,
     inStock: true,
     rating: 4,
@@ -292,50 +263,16 @@ const products = [
     category: 'Cupcake',
     description:
       'Aenean viverra pulvinar mauris, et condimentum quam volutpat vel. Curabitur in venenatis ipsum, ac pellentesque eros. Aenean nec libero eget augue sodales rhoncus. Aliquam imperdiet purus quis porta tempor. In hac habitasse platea dictumst. Integer feugiat sed quam et egestas',
-
     allergens: 'eggs, milk',
     dimensions: '10 cm diameter',
     servings: '1 person',
     veganOpt: false,
     glutenFreeOpt: true,
-
     price: 12,
     inStock: true,
     rating: 4,
     numReviews: 1,
   },
 ]
-
-// NODE_ENV = development
-// PORT = 5000
-// MONGO_URI = mongodb+srv://IvanAdmin:xwQXso1873Hv8GgM@cluster0.5m4ly.mongodb.net/ArtCake?retryWrites=true&w=majority
-// JWT_SECRET = 121212hash
-// PAYPAL_CLIENT_ID = AY_Vg0Gmw3OYiSeHTJFpSn8mRH9h2hUKM8yMH8yLOhEMdlUJR2vI51z6bTsbNS3TfsjaFw0AJq_7BWaD
-
-// # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-// # dependencies
-// node_modules
-// node_modules/
-// /.pnp
-// .pnp.js
-
-// # testing
-// /coverage
-
-// # production
-// /frontend/build
-
-// # misc
-// .DS_Store
-// .env
-// .env.local
-// .env.development.local
-// .env.test.local
-// .env.production.local
-
-// npm-debug.log*
-// yarn-debug.log*
-// yarn-error.log*
 
 export default products

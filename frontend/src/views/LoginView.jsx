@@ -40,6 +40,7 @@ const LoginView = ({ location, history }) => {
           <Form.Group controlId='email'>
             <Form.Label>Email Address</Form.Label>
             <Form.Control
+              autoComplete='email'
               type='email'
               placeholder='Enter email'
               value={email}
@@ -49,6 +50,7 @@ const LoginView = ({ location, history }) => {
           <Form.Group controlId='password'>
             <Form.Label>Password</Form.Label>
             <Form.Control
+              autoComplete='current-password'
               type='password'
               placeholder='Enter password'
               value={password}

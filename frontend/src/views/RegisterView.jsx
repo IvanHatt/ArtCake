@@ -47,6 +47,7 @@ const RegisterView = ({ location, history }) => {
           <Form.Group controlId='name'>
             <Form.Label>Name</Form.Label>
             <Form.Control
+              autoComplete='name'
               type='name'
               placeholder='Enter name'
               value={name}
@@ -56,6 +57,7 @@ const RegisterView = ({ location, history }) => {
           <Form.Group controlId='email'>
             <Form.Label>Email Address</Form.Label>
             <Form.Control
+              autoComplete='email'
               type='email'
               placeholder='Enter email'
               value={email}
@@ -66,6 +68,7 @@ const RegisterView = ({ location, history }) => {
           <Form.Group controlId='password'>
             <Form.Label>Password</Form.Label>
             <Form.Control
+              autoComplete='current-password'
               type='password'
               placeholder='Enter password'
               value={password}
@@ -75,6 +78,7 @@ const RegisterView = ({ location, history }) => {
           <Form.Group controlId='confirmPassword'>
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
+              autoComplete='current-password'
               type='password'
               placeholder='Confirm password'
               value={confirmPassword}

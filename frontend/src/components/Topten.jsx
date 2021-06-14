@@ -30,7 +30,7 @@ const Topten = () => {
         ) : (
           <Carousel interval={null} indicators={false}>
             {topProducts.map((product) => (
-              <Carousel.Item>
+              <Carousel.Item key={product._id}>
                 <div className='topten-img-container'>
                   <img
                     className='topten-img'

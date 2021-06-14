@@ -1,22 +1,14 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Carousel } from 'react-bootstrap'
-import { getTopProducts } from '../actions/productActions.js'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import './styles/topten.css'
 import Rating from './Rating.jsx'
+import useTopten from '../hooks/useTopten.js'
 
 const Topten = () => {
-  const topProductList = useSelector((state) => state.topProductList)
-  const { loading, error, topProducts } = topProductList
-
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(getTopProducts())
-  }, [dispatch])
+  const { loading, error, topProducts } = useTopten()
 
   return (
     <div className='topten'>

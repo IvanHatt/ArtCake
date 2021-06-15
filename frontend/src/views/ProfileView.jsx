@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Button, Container } from 'react-bootstrap'
+import { Form, Button, Container, Modal } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -34,13 +34,18 @@ const ProfileView = ({ location, history }) => {
         // passing profile will lead to: /api/users/profile as defined in action creator
         dispatch(getUserDetails('profile'))
         dispatch(listMyOrders())
+      }
+      if (success) {
+        setUpdemail(false)
+        setUpdpassword(false)
       } else {
         setEmail(user.email)
       }
     }
-  }, [dispatch, history, userInfo, user])
+  }, [dispatch, history, userInfo, user, success])
 
-  const submitHandler = (e) => {
+  //same handler for email and password
+  const updateHandler = (e) => {
     e.preventDefault()
     if (password !== confirmPassword) {
       setMessage('Passwords do not match')
@@ -53,79 +58,101 @@ const ProfileView = ({ location, history }) => {
     <Container>
       <div className='card-container '>
         <h1>My Profile</h1>
-        {message && <Message variant='danger'>{message}</Message>}
+        <hr></hr>
         {error && <Message variant='danger'>{error}</Message>}
         {success && <Message variant='success'> Updated!</Message>}
         {loading && <Loader />}
         <p>
           <strong>Name: </strong> {user.name}
         </p>
-        {updemail ? (
-          <Form onSubmit={submitHandler}>
-            <Form.Group controlId='email'>
-              <Form.Label>Update Email Address</Form.Label>
-              <Form.Control
-                type='email'
-                placeholder='Enter email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              ></Form.Control>
+        <p>
+          <strong>Email: </strong> {user.email}
+          <Button
+            className='mx-3'
+            type='button'
+            size='sm'
+            variant='primary'
+            onClick={() => setUpdemail(true)}
+          >
+            <i className='fas fa-edit'></i>
+          </Button>
+        </p>
+        <Modal show={updemail} backdrop='static' keyboard={false}>
+          <Modal.Body>
+            <Form onSubmit={updateHandler}>
+              <Form.Group controlId='email'>
+                <Form.Label>Update Email Address</Form.Label>
+                <Form.Control
+                  type='email'
+                  placeholder='Enter email'
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Button size='sm' onClick={() => setUpdemail(false)}>
+                <i className='fas fa-times'></i>
+              </Button>
               <Button size='sm' type='submit'>
                 <i className='fas fa-check'></i>
               </Button>
-              <Button size='sm' onClick={() => setUpdemail(!updemail)}>
-                <i className='fas fa-times'></i>
-              </Button>
-            </Form.Group>
-          </Form>
-        ) : (
-          <p>
-            <strong>Email: </strong>{' '}
-            <a href={`mailto:${user.email}`}>{user.email}</a>
-            <Button size='sm' onClick={() => setUpdemail(!updemail)}>
-              <i className='fas fa-edit'></i>
-            </Button>
-          </p>
-        )}
+            </Form>
+          </Modal.Body>
+        </Modal>
         <p>
           <strong>Phone: </strong> 0544444444
         </p>
-
-        {updpassword ? (
-          <Form onSubmit={submitHandler}>
-            <Form.Group controlId='password'>
-              <Form.Label>Update Password </Form.Label>
-              <Form.Control
-                type='password'
-                placeholder='Enter password'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group controlId='confirmPassword'>
-              <Form.Label>Confirm Update Password</Form.Label>
-              <Form.Control
-                type='password'
-                placeholder='Confirm password'
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            <Button size='sm' type='submit'>
-              <i className='fas fa-check'></i>
-            </Button>
-            <Button size='sm' onClick={() => setUpdpassword(!updpassword)}>
-              <i className='fas fa-times'></i>
-            </Button>
-          </Form>
-        ) : (
-          <p>
-            <strong>Change Password </strong>
-            <Button size='sm' onClick={() => setUpdpassword(!updpassword)}>
-              <i className='fas fa-edit'></i>
-            </Button>
-          </p>
-        )}
+        <p>
+          <strong>Change Password </strong>
+          <Button
+            className='mx-3'
+            size='sm'
+            onClick={() => setUpdpassword(true)}
+          >
+            <i className='fas fa-edit'></i>
+          </Button>
+        </p>
+        <Modal
+          show={updpassword}
+          onHide={() => setUpdpassword(false)}
+          backdrop='static'
+          keyboard={false}
+        >
+          <Modal.Body>
+            <Form onSubmit={updateHandler}>
+              <Form.Group controlId='password'>
+                <Form.Label>Update Password </Form.Label>
+                <Form.Control
+                  type='password'
+                  placeholder='Enter password'
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value)
+                    setMessage(false)
+                  }}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId='confirmPassword'>
+                <Form.Label>Confirm Update Password</Form.Label>
+                <Form.Control
+                  type='password'
+                  placeholder='Confirm password'
+                  value={confirmPassword}
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value)
+                    setMessage(false)
+                  }}
+                ></Form.Control>
+              </Form.Group>
+              <Button size='sm' onClick={() => setUpdpassword(false)}>
+                <i className='fas fa-times'> </i>
+              </Button>
+              <Button size='sm' type='submit'>
+                <i className='fas fa-check'></i>
+              </Button>
+            </Form>
+            {message && <Message variant='danger'>{message}</Message>}
+          </Modal.Body>
+        </Modal>
 
         <p id='my-reviews'>
           <strong>My Reviews </strong>

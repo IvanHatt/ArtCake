@@ -1,6 +1,6 @@
 import React from 'react'
-// import { Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import {
   Container,
   Navbar,
@@ -19,6 +19,7 @@ import CartItems from './CartItems.jsx'
 
 const Header = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
@@ -28,6 +29,7 @@ const Header = () => {
 
   const logoutHandler = () => {
     dispatch(logout())
+    history.push('/')
   }
 
   return (

@@ -3,8 +3,8 @@ import { Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import { createOrder } from '../actions/orderActions'
-import { USER_DETAILS_RESET } from '../constants/userConstants'
 import { ORDER_CREATE_RESET } from '../constants/orderConstants'
+import { CART_RESET } from '../constants/cartConstants'
 
 const PlaceOrderView = ({ history }) => {
   const dispatch = useDispatch()
@@ -37,21 +37,22 @@ const PlaceOrderView = ({ history }) => {
   // order._id doesnt exist yet, so i cannot add it to the [ ] below, so I disable the eslint notification
 
   useEffect(() => {
-    dispatch(
-      createOrder({
-        orderItems: cart.cartItems,
-        delivery: cart.delivery,
-        shippingAddress: cart.shippingAddress,
-        paymentMethod: cart.paymentMethod,
-        itemsPrice: cart.itemsPrice,
-        shippingPrice: cart.shippingPrice,
-        totalPrice: cart.totalPrice,
-      })
-    )
-    if (success) {
+    if (!success) {
+      dispatch(
+        createOrder({
+          orderItems: cart.cartItems,
+          delivery: cart.delivery,
+          shippingAddress: cart.shippingAddress,
+          paymentMethod: cart.paymentMethod,
+          itemsPrice: cart.itemsPrice,
+          shippingPrice: cart.shippingPrice,
+          totalPrice: cart.totalPrice,
+        })
+      )
+    } else {
       history.push(`/order/${order._id}`)
-      dispatch({ type: USER_DETAILS_RESET })
       dispatch({ type: ORDER_CREATE_RESET })
+      dispatch({ type: CART_RESET })
     }
     // eslint-disable-next-line
   }, [history, success])

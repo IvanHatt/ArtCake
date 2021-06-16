@@ -1,11 +1,17 @@
 import asyncHandler from 'express-async-handler'
 import generateToken from '../utils/generateToken.js'
-import { User, joiValidateUser } from '../models/userModel.js'
+import { User, joiValidateUser, joiValidateAuth } from '../models/userModel.js'
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
 // @access  Public
 const authUser = asyncHandler(async (req, res) => {
+  const { error } = joiValidateAuth(req.body)
+  if (error) {
+    res.status(400)
+    throw new Error(error.details[0].message)
+  }
+
   const { email, password } = req.body
 
   const user = await User.findOne({ email })
@@ -82,6 +88,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
     throw new Error('User not found')
   }
 })
+
 // @desc    Update user profile
 // @route   PUT /api/users/profile
 // @access  Private // req.user._id from middleware

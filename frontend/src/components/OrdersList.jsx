@@ -24,7 +24,7 @@ const OrdersList = ({ history }) => {
   }, [dispatch, history, userInfo])
 
   return (
-    <Container>
+    <Container className='mt-3'>
       {!loadingOrders &&
         !errorOrders &&
         orders.length > 0 &&

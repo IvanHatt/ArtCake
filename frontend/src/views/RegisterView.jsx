@@ -30,9 +30,9 @@ const RegisterView = ({ location, history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    if (password !== confirmPassword) {
-      setMessage('Passwords do not match!')
-    }
+    if (password !== confirmPassword)
+      return setMessage('Passwords do not match!')
+
     dispatch(register(name, email, password))
   }
 

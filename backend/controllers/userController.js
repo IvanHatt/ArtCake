@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import generateToken from '../utils/generateToken.js'
-import User from '../models/userModel.js'
+import { User, joiValidateUser } from '../models/userModel.js'
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
@@ -29,6 +29,12 @@ const authUser = asyncHandler(async (req, res) => {
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
+  const { error } = joiValidateUser(req.body)
+  if (error) {
+    res.status(400)
+    throw new Error(error.details[0].message)
+  }
+
   const { name, email, password } = req.body
 
   const userExists = await User.findOne({ email: email })

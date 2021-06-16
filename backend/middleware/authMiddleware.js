@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 import asyncHandler from 'express-async-handler'
-import User from '../models/userModel.js'
+import { User } from '../models/userModel.js'
 
 ///In the request it sends the token as: "authorization": "Bearer jhsdkjhkdsjhfkjsdfhkjh(tokencontent)"
 // string 'Bearer' needs to be filtered to catch it

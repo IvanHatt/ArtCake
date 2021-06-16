@@ -63,7 +63,7 @@ export const login = (email, password) => async (dispatch) => {
 }
 
 export const logout = () => (dispatch) => {
-  localStorage.removeItem('userInfo')
+  localStorage.clear()
   dispatch({ type: USER_LOGOUT })
   // to cleanup after logout, otherwise it will stay there
   dispatch({ type: USER_DETAILS_RESET })

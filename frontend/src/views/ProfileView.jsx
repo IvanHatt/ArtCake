@@ -123,6 +123,7 @@ const ProfileView = ({ location, history }) => {
               <Form.Group controlId='password'>
                 <Form.Label>Update Password </Form.Label>
                 <Form.Control
+                  minLength='6'
                   type='password'
                   placeholder='Enter password'
                   value={password}
@@ -135,6 +136,7 @@ const ProfileView = ({ location, history }) => {
               <Form.Group controlId='confirmPassword'>
                 <Form.Label>Confirm Update Password</Form.Label>
                 <Form.Control
+                  minLength='6'
                   type='password'
                   placeholder='Confirm password'
                   value={confirmPassword}

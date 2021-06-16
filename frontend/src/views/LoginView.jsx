@@ -51,6 +51,7 @@ const LoginView = ({ location, history }) => {
             <Form.Label>Password</Form.Label>
             <Form.Control
               autoComplete='current-password'
+              minLength='6'
               type='password'
               placeholder='Enter password'
               value={password}

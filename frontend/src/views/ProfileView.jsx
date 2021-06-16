@@ -6,6 +6,7 @@ import Loader from '../components/Loader'
 import { getUserDetails, updateUserProfile } from '../actions/userActions'
 import { listMyOrders } from '../actions/orderActions'
 import OrdersList from '../components/OrdersList'
+import AccordionSimple from '../components/AccordionSimple'
 
 const ProfileView = ({ location, history }) => {
   const [updemail, setUpdemail] = useState(false)
@@ -153,14 +154,10 @@ const ProfileView = ({ location, history }) => {
             {message && <Message variant='danger'>{message}</Message>}
           </Modal.Body>
         </Modal>
-
-        <p id='my-reviews'>
-          <strong>My Reviews </strong>
-        </p>
-        <p id='my-orders'>
-          <strong>My orders</strong>
+        <AccordionSimple title='My orders'>
           <OrdersList />
-        </p>
+        </AccordionSimple>
+        <AccordionSimple title='My Reviews'></AccordionSimple>
       </div>
     </Container>
   )

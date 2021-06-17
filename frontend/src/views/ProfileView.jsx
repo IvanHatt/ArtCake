@@ -69,10 +69,10 @@ const ProfileView = ({ location, history }) => {
         <p>
           <strong>Email: </strong> {user.email}
           <Button
-            className='mx-3'
+            className='mx-2 p-0 bg-transparent border-0'
+            variant='light'
             type='button'
             size='sm'
-            variant='primary'
             onClick={() => setUpdemail(true)}
           >
             <i className='fas fa-edit'></i>
@@ -105,7 +105,8 @@ const ProfileView = ({ location, history }) => {
         <p>
           <strong>Change Password </strong>
           <Button
-            className='mx-3'
+            className='mx-2 p-0 bg-transparent border-0'
+            variant='light'
             size='sm'
             onClick={() => setUpdpassword(true)}
           >
@@ -159,7 +160,26 @@ const ProfileView = ({ location, history }) => {
         <AccordionSimple title='My orders'>
           <OrdersList />
         </AccordionSimple>
-        <AccordionSimple title='My Reviews'></AccordionSimple>
+        <AccordionSimple title='My Reviews'>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
+            aut nesciunt velit commodi earum saepe veritatis impedit, est
+            reiciendis repellat doloremque itaque quaerat, similique numquam!
+            Odit ea quam mollitia facilis.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
+            aut nesciunt velit commodi earum saepe veritatis impedit, est
+            reiciendis repellat doloremque itaque quaerat, similique numquam!
+            Odit ea quam mollitia facilis.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
+            aut nesciunt velit commodi earum saepe veritatis impedit, est
+            reiciendis repellat doloremque itaque quaerat, similique numquam!
+            Odit ea quam mollitia facilis.
+          </p>
+        </AccordionSimple>
       </div>
     </Container>
   )
